@@ -342,27 +342,25 @@
     .bottom-nav {
       display: none;
       position: fixed;
-      bottom: max(10px, env(safe-area-inset-bottom));
-      left: 10px;
-      right: 10px;
-      background: rgba(15, 23, 42, 0.94);
+      bottom: max(8px, env(safe-area-inset-bottom));
+      left: 8px;
+      right: 8px;
+      background: rgba(15, 23, 42, 0.96);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      border-radius: 18px;
-      padding: 6px 4px;
+      border-radius: 16px;
+      padding: 5px 4px;
       z-index: 90;
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.28);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.3);
       border: 1px solid rgba(255, 255, 255, 0.14);
-      overflow-x: auto;
-      scrollbar-width: none;
     }
-    .bottom-nav::-webkit-scrollbar { display: none; }
     .bottom-nav-list {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
       align-items: center;
       gap: 2px;
-      min-width: 100%;
+      width: 100%;
     }
     .bottom-nav-item {
       display: flex;
@@ -370,20 +368,29 @@
       align-items: center;
       justify-content: center;
       gap: 3px;
-      flex: 1;
-      min-width: 52px;
+      min-width: 0;
+      width: 100%;
       background: transparent;
       border: none;
       color: var(--slate-400);
-      font-size: 0.63rem;
+      font-size: 0.62rem;
       font-weight: 600;
-      padding: 6px 4px;
-      border-radius: 12px;
+      padding: 6px 2px;
+      border-radius: 10px;
       cursor: pointer;
       transition: all 0.2s;
-      white-space: nowrap;
+      overflow: hidden;
     }
-    .bottom-nav-item i { font-size: 1.08rem; }
+    .bottom-nav-item span {
+      display: block;
+      width: 100%;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.1;
+    }
+    .bottom-nav-item i { font-size: 1rem; line-height: 1; }
     .bottom-nav-item.active {
       color: #38bdf8;
       background: rgba(56, 189, 248, 0.16);
@@ -704,14 +711,13 @@
       text-transform: uppercase;
     }
     .student-card-school {
-      font-size: 0.78rem;
+      font-size: 0.64rem;
       font-weight: 800;
       color: #ffffff;
       text-transform: uppercase;
       margin: 1px 0 2px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      line-height: 1.15;
+      letter-spacing: -0.1px;
     }
     .student-card-address {
       font-size: 0.52rem;
@@ -928,160 +934,6 @@
       padding: 5px 7px !important;
       background: #ffffff !important;
       color: #000000 !important;
-    }
-    .official-table th {
-      text-align: center;
-      font-weight: bold;
-      background: #f8fafc !important;
-    }
-    .official-ttd-img {
-      height: 28px;
-      max-width: 85px;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
-    .report-sign-grid {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 26px;
-      padding: 0 14px;
-      font-size: 10.5pt;
-      line-height: 1.35;
-    }
-    .sign-box {
-      width: 245px;
-    }
-    .sign-space {
-      height: 58px;
-    }
-    .kop-logo {
-      width: 78px;
-      height: 78px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .kop-text {
-      flex: 1;
-      text-align: center;
-      line-height: 1.28;
-    }
-    .kop-text .kementerian {
-      font-size: 13.5pt;
-      font-weight: bold;
-      letter-spacing: 0.3px;
-    }
-    .kop-text .sekolah {
-      font-size: 13.5pt;
-      font-weight: bold;
-      margin: 2px 0;
-    }
-    .kop-text .alamat {
-      font-size: 10pt;
-    }
-    .report-title-block {
-      text-align: center;
-      margin: 14px 0 14px;
-      line-height: 1.35;
-    }
-    .report-title-block h4 {
-      font-size: 12pt;
-      font-weight: bold;
-      margin: 0;
-    }
-    .report-meta-table {
-      width: auto;
-      border: none;
-      margin-bottom: 12px;
-      font-size: 11pt;
-    }
-    .report-meta-table td {
-      border: none !important;
-      padding: 2px 8px 2px 0 !important;
-      background: transparent !important;
-    }
-    .official-ttd-img {
-      height: 28px;
-      max-width: 85px;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
-    .report-sign-grid {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 26px;
-      padding: 0 14px;
-      font-size: 10.5pt;
-      line-height: 1.35;
-    }
-    .sign-box {
-      width: 245px;
-    }
-    .sign-space {
-      height: 58px;
-    }
-    .kop-logo {
-      width: 78px;
-      height: 78px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .kop-text {
-      flex: 1;
-      text-align: center;
-      line-height: 1.28;
-    }
-    .kop-text .kementerian {
-      font-size: 13.5pt;
-      font-weight: bold;
-      letter-spacing: 0.3px;
-    }
-    .kop-text .sekolah {
-      font-size: 13.5pt;
-      font-weight: bold;
-      margin: 2px 0;
-    }
-    .kop-text .alamat {
-      font-size: 10pt;
-    }
-    .report-title-block {
-      text-align: center;
-      margin: 14px 0 14px;
-      line-height: 1.35;
-    }
-    .report-title-block h4 {
-      font-size: 12pt;
-      font-weight: bold;
-      margin: 0;
-    }
-    .report-meta-table {
-      width: auto;
-      border: none;
-      margin-bottom: 12px;
-      font-size: 11pt;
-    }
-    .report-meta-table td {
-      border: none !important;
-      padding: 2px 8px 2px 0 !important;
-      background: transparent !important;
-    }
-    .official-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 10.5pt;
-      border: 0.5px solid #334155;
-    }
-    .official-table th,
-    .official-table td {
-      border: 0.5px solid #334155 !important;
-      padding: 5px 7px !important;
-      background: #ffffff !important;
-      color: #000000 !important;
       box-shadow: none !important;
     }
     .official-table th {
@@ -1207,20 +1059,7 @@
         min-width: 145px;
       }
 
-      /* Scanner QR & Sesi Pills di HP */
-      .session-pills {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 6px;
-      }
-      .session-pill:last-child {
-        grid-column: span 2;
-      }
-      .session-pill {
-        text-align: center;
-        padding: 9px 10px;
-        font-size: 0.8rem;
-      }
+      /* Scanner QR & Dropdown Sesi di HP */
       #qr-reader {
         min-height: 230px;
       }
@@ -1290,7 +1129,7 @@
         padding: 7px 10px;
       }
       .student-card-school {
-        font-size: 0.68rem;
+        font-size: 0.56rem;
       }
       .student-card-body {
         padding: 8px 10px 6px;
@@ -1321,8 +1160,9 @@
 
     @media (max-width: 390px) {
       .stats-grid { grid-template-columns: 1fr; }
-      .bottom-nav-item span { font-size: 0.58rem; }
-      .bottom-nav-item { min-width: 46px; padding: 5px 2px; }
+      .bottom-nav-item span { font-size: 0.56rem; }
+      .bottom-nav-item i { font-size: 0.92rem; }
+      .bottom-nav-item { padding: 5px 1px; }
     }
   </style>
 </head>
@@ -1396,7 +1236,7 @@
           </span>
         </div>
         <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
-          <i class="fa-solid fa-right-to-bracket"></i> Masuk ke Aplikasi
+          <i class="fa-solid fa-right-to-bracket"></i> Login
         </button>
       </form>
 
@@ -1512,7 +1352,7 @@
                 <tr>
                   <th>Waktu</th>
                   <th>Nama Siswa & NIK</th>
-                  <th>Jenjang / Kelas</th>
+                  <th>Jenjang / Asrama</th>
                   <th>Sesi Konsumsi</th>
                   <th>TTD Siswa</th>
                 </tr>
@@ -1528,17 +1368,19 @@
         <div class="scanner-grid">
           <!-- Kolom Kamera & Kontrol Sesi -->
           <div class="glass-card" style="padding: 20px;">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-              <label class="form-label" style="margin: 0;">1. Pilih Sesi Makan / Snack:</label>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+              <label for="scan-session-select" class="form-label" style="margin: 0;">1. Pilih Sesi Makan / Snack:</label>
               <span class="badge badge-emerald" id="auto-session-hint">Otomatis sesuai jam</span>
             </div>
 
-            <div class="session-pills" id="session-pills-container">
-              <button type="button" class="session-pill" data-session="Makan Pagi">Makan Pagi</button>
-              <button type="button" class="session-pill" data-session="Snack Pagi">Snack Pagi</button>
-              <button type="button" class="session-pill" data-session="Makan Siang">Makan Siang</button>
-              <button type="button" class="session-pill" data-session="Snack Sore">Snack Sore</button>
-              <button type="button" class="session-pill" data-session="Makan Malam">Makan Malam</button>
+            <div class="form-group" style="margin-bottom: 14px;">
+              <select id="scan-session-select" class="form-control" style="font-weight: 700; color: var(--slate-900); border-color: #93c5fd; background-color: #f8fafc;">
+                <option value="Makan Pagi">Makan Pagi</option>
+                <option value="Snack Pagi">Snack Pagi</option>
+                <option value="Makan Siang">Makan Siang</option>
+                <option value="Snack Sore">Snack Sore</option>
+                <option value="Makan Malam">Makan Malam</option>
+              </select>
             </div>
 
             <div style="display: flex; align-items: center; justify-content: space-between; background: var(--slate-50); padding: 10px 14px; border-radius: 10px; margin-bottom: 14px; border: 1px solid var(--slate-200);">
@@ -1640,8 +1482,8 @@
         <div class="glass-card" style="padding: 20px;">
           <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px;">
             <div>
-              <h3 style="font-size: 1rem; font-weight: 700;">Daftar Data Petugas</h3>
-              <p style="font-size: 0.8rem; color: var(--slate-500);">Akun & NIP petugas akan tampil otomatis pada kolom tanda tangan laporan harian</p>
+              <h3 style="font-size: 1rem; font-weight: 700;">Daftar Data Petugas (Juru Masak)</h3>
+              <p style="font-size: 0.8rem; color: var(--slate-500);">Nama petugas Juru Masak akan tampil otomatis pada kolom tanda tangan laporan harian</p>
             </div>
             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
               <button type="button" id="btn-open-upload-petugas" class="btn btn-outline">
@@ -1658,8 +1500,8 @@
               <thead>
                 <tr>
                   <th>Foto & Nama Petugas</th>
+                  <th>NIK</th>
                   <th>Jabatan</th>
-                  <th>NIP</th>
                   <th>Username</th>
                   <th>Password</th>
                   <th>Aksi</th>
@@ -1685,7 +1527,7 @@
               <i class="fa-solid fa-camera" style="color: var(--primary);"></i> Ganti Foto
             </button>
             <div id="profil-petugas-nama-display" style="font-size: 1.15rem; font-weight: 800; color: var(--slate-900);">-</div>
-            <span id="profil-petugas-jabatan-badge" class="badge badge-emerald" style="margin-top: 6px; font-size: 0.8rem; padding: 5px 14px;">-</span>
+            <span id="profil-petugas-jabatan-badge" class="badge badge-emerald" style="margin-top: 6px; font-size: 0.8rem; padding: 5px 14px;">Juru Masak</span>
           </div>
 
           <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 12px;">
@@ -1694,12 +1536,12 @@
               <span id="profil-petugas-nama" style="font-size: 0.9rem; font-weight: 700; color: var(--slate-900);">-</span>
             </div>
             <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid var(--slate-200);">
-              <span style="font-size: 0.82rem; font-weight: 600; color: var(--slate-500);">Jabatan</span>
-              <span id="profil-petugas-jabatan" style="font-size: 0.9rem; font-weight: 700; color: var(--primary-dark);">-</span>
+              <span style="font-size: 0.82rem; font-weight: 600; color: var(--slate-500);">NIK</span>
+              <span id="profil-petugas-nik" style="font-size: 0.9rem; font-weight: 700; font-family: monospace; color: var(--slate-900);">-</span>
             </div>
             <div style="display: flex; justify-content: space-between; align-items: center;">
-              <span style="font-size: 0.82rem; font-weight: 600; color: var(--slate-500);">NIP</span>
-              <span id="profil-petugas-nip" style="font-size: 0.9rem; font-weight: 700; color: var(--slate-900);">-</span>
+              <span style="font-size: 0.82rem; font-weight: 600; color: var(--slate-500);">Jabatan</span>
+              <span id="profil-petugas-jabatan" style="font-size: 0.9rem; font-weight: 700; color: var(--primary-dark);">Juru Masak</span>
             </div>
           </div>
         </div>
@@ -1708,7 +1550,7 @@
       <!-- SECTION: LAPORAN HARIAN RESMI & EKSPOR (Admin & Petugas) -->
       <section id="sec-laporan" class="app-section hidden">
         <div class="glass-card" style="padding: 20px; margin-bottom: 18px;">
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 12px; align-items: end;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(195px, 1fr)); gap: 12px; align-items: end;">
             <div>
               <label class="form-label">Hari / Tanggal Laporan</label>
               <input type="date" id="lap-filter-date" class="form-control">
@@ -1730,16 +1572,13 @@
               </select>
             </div>
             <div>
-              <label class="form-label">NIP Kepala Sekolah</label>
-              <input type="text" id="lap-nip-kepsek" class="form-control" placeholder="Isi NIP Kepsek (opsional)">
-            </div>
-            <div>
-              <label class="form-label">NIP Petugas</label>
-              <input type="text" id="lap-nip-petugas" class="form-control" placeholder="Isi NIP Petugas (opsional)">
+              <button type="button" id="btn-lihat-laporan" class="btn btn-primary" style="width: 100%; height: 44px;">
+                <i class="fa-solid fa-eye"></i> Lihat Laporan
+              </button>
             </div>
           </div>
 
-          <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--slate-200);">
+          <div id="lap-export-actions" class="hidden" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--slate-200);">
             <button type="button" id="btn-export-csv" class="btn btn-outline">
               <i class="fa-solid fa-file-excel" style="color: #059669;"></i> Unduh Excel (.xlsx)
             </button>
@@ -1749,8 +1588,19 @@
           </div>
         </div>
 
+        <!-- PLACEHOLDER SEBELUM LIHAT LAPORAN DIKLIK -->
+        <div id="laporan-empty-prompt" class="glass-card" style="padding: 38px 20px; text-align: center;">
+          <div style="width: 56px; height: 56px; border-radius: 16px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin: 0 auto 12px;">
+            <i class="fa-solid fa-file-contract"></i>
+          </div>
+          <h4 style="font-size: 1.02rem; font-weight: 800; color: var(--slate-900); margin-bottom: 4px;">Pratinjau Laporan Belum Ditampilkan</h4>
+          <p style="font-size: 0.84rem; color: var(--slate-500); max-width: 420px; margin: 0 auto 16px;">
+            Pilih <strong>Hari/Tanggal</strong>, <strong>Jenjang</strong>, dan <strong>Jenis Daftar Hadir</strong> di atas, lalu tekan tombol <strong>Lihat Laporan</strong> untuk menampilkan dokumen.
+          </p>
+        </div>
+
         <!-- PRATINJAU DOKUMEN RESMI SIAP CETAK -->
-        <div class="report-paper-wrap">
+        <div id="laporan-paper-container" class="report-paper-wrap hidden">
           <div id="printable-official-report" class="report-paper">
             <!-- Kop Surat Kementerian Sosial RI -->
             <div class="kop-surat">
@@ -1818,7 +1668,7 @@
                 <div>Petugas</div>
                 <div class="sign-space"></div>
                 <div id="rep-sign-nama-petugas" style="font-weight: bold; text-decoration: underline;">-</div>
-                <div id="rep-sign-nip-petugas">NIP. </div>
+                <div id="rep-sign-nik-petugas">NIK. -</div>
               </div>
             </div>
           </div>
@@ -1944,6 +1794,55 @@
         <i class="fa-solid fa-check"></i> Simpan Presensi
       </button>
     </div>
+  </div>
+</div>
+
+<!-- ==================== MODAL 1B: POP-UP BERHASIL SCAN & BIODATA SISWA ==================== -->
+<div id="modal-scan-success-popup" class="modal-backdrop hidden">
+  <div class="modal-box" style="max-width: 440px; text-align: center;">
+    <div style="display: flex; justify-content: flex-end; margin-bottom: -8px;">
+      <button type="button" class="btn btn-outline btn-sm" onclick="window.closeModal('modal-scan-success-popup')">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div style="display: inline-flex; align-items: center; gap: 6px; background: #dcfce7; color: #15803d; font-weight: 800; font-size: 0.8rem; padding: 6px 14px; border-radius: 99px; margin-bottom: 14px;">
+      <i class="fa-solid fa-circle-check"></i> PRESENSI BERHASIL TERCATAT
+    </div>
+
+    <div style="margin: 0 auto 12px; width: 112px; height: 134px; border-radius: 16px; overflow: hidden; border: 3px solid var(--primary); box-shadow: 0 10px 24px rgba(37, 99, 235, 0.2); background: #eff6ff;">
+      <img id="popup-scan-photo" src="" alt="Foto Siswa" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+
+    <h3 id="popup-scan-nama" style="font-size: 1.25rem; font-weight: 800; color: var(--slate-900); margin-bottom: 4px;">-</h3>
+    <div id="popup-scan-nik" style="font-family: monospace; font-size: 0.92rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 14px;">NIK: -</div>
+
+    <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: 14px; padding: 12px 14px; text-align: left; display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; font-size: 0.85rem;">
+      <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed var(--slate-200); padding-bottom: 6px;">
+        <span style="color: var(--slate-500); font-weight: 600;">Jenis Kelamin</span>
+        <strong id="popup-scan-jk" style="color: var(--slate-900);">-</strong>
+      </div>
+      <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed var(--slate-200); padding-bottom: 6px;">
+        <span style="color: var(--slate-500); font-weight: 600;">Jenjang</span>
+        <strong id="popup-scan-jenjang" style="color: var(--primary-dark);">-</strong>
+      </div>
+      <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed var(--slate-200); padding-bottom: 6px;">
+        <span style="color: var(--slate-500); font-weight: 600;">Asrama</span>
+        <strong id="popup-scan-asrama" style="color: var(--slate-900);">-</strong>
+      </div>
+      <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed var(--slate-200); padding-bottom: 6px;">
+        <span style="color: var(--slate-500); font-weight: 600;">Sesi Konsumsi</span>
+        <span id="popup-scan-sesi" class="badge badge-emerald">-</span>
+      </div>
+      <div style="display: flex; justify-content: space-between;">
+        <span style="color: var(--slate-500); font-weight: 600;">Waktu Scan</span>
+        <strong id="popup-scan-waktu" style="color: var(--slate-800);">-</strong>
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-primary btn-lg" style="width: 100%;" onclick="window.closeModal('modal-scan-success-popup')">
+      <i class="fa-solid fa-qrcode"></i> Lanjut Scan Berikutnya
+    </button>
   </div>
 </div>
 
@@ -2179,23 +2078,19 @@
       <input type="hidden" id="petugas-id">
       <div class="form-group">
         <label class="form-label">Nama Lengkap Petugas</label>
-        <input type="text" id="petugas-nama-input" class="form-control" placeholder="Contoh: Hendra Saputra, S.Pd" required>
+        <input type="text" id="petugas-nama-input" class="form-control" placeholder="Contoh: Hendra Saputra" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">NIK Juru Masak</label>
+        <input type="text" id="petugas-nik-input" class="form-control" placeholder="16 digit NIK juru masak" required>
       </div>
       <div class="form-group">
         <label class="form-label">Jabatan</label>
-        <select id="petugas-jabatan-input" class="form-control" required>
-          <option value="Wali Asuh">Wali Asuh</option>
-          <option value="Wali Asrama">Wali Asrama</option>
-          <option value="Juru Masak">Juru Masak</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label">NIP (Opsional, untuk Laporan)</label>
-        <input type="text" id="petugas-nip-input" class="form-control" placeholder="Contoh: 199004122020121004">
+        <input type="text" id="petugas-jabatan-input" class="form-control" value="Juru Masak" readonly style="background: var(--slate-100); font-weight: 700; color: var(--primary-dark);">
       </div>
       <div class="form-group">
         <label class="form-label">Username Login</label>
-        <input type="text" id="petugas-user-input" class="form-control" placeholder="Contoh: petugas1" required>
+        <input type="text" id="petugas-user-input" class="form-control" placeholder="Contoh: jurumasak1" required>
       </div>
       <div class="form-group">
         <label class="form-label">Password</label>
@@ -2224,7 +2119,7 @@
         1. Unduh Format Template Excel / CSV
       </div>
       <p style="font-size: 0.78rem; color: #1d4ed8; margin-bottom: 10px;">
-        Pastikan kolom file berisi: <strong>Nama Petugas</strong>, <strong>Jabatan</strong> (Wali Asuh / Wali Asrama / Juru Masak), <strong>NIP</strong> (opsional), <strong>Username</strong>, dan <strong>Password</strong>.
+        Pastikan kolom file berisi: <strong>NIK</strong>, <strong>Nama Petugas</strong>, <strong>Jabatan</strong> (Juru Masak), <strong>Username</strong>, dan <strong>Password</strong>.
       </p>
       <button type="button" id="btn-download-template-petugas" class="btn btn-primary btn-sm">
         <i class="fa-solid fa-download"></i> Unduh Template Excel (.xlsx)
@@ -2245,9 +2140,9 @@
         <table>
           <thead>
             <tr>
+              <th>NIK</th>
               <th>Nama Petugas</th>
               <th>Jabatan</th>
-              <th>NIP</th>
               <th>Username</th>
               <th>Password</th>
             </tr>
@@ -2385,7 +2280,7 @@
     alamat: 'Jl. Veteran Selatan, Bajoe, Kec. Tanete Riattang Timur, Kabupaten Bone',
     email: 'sekolahrakyat61bone@gmail.com',
     nama_kepsek: 'Resky Januarty, S.Pd.,M.Pd',
-    nip_kepsek: '',
+    nip_kepsek: '199001152019032018',
     logo_sekolah: '',
     logo_laporan: ''
   };
@@ -2462,8 +2357,8 @@
       { id: 's-5', nik: '7308010907070005', nama_lengkap: 'Andi Muh. Alif', jenis_kelamin: 'L', jenjang: 'SRMA', kelas: 'Asrama Putra C', foto_url: '', ttd_master_base64: SAMPLE_SIG_SVG }
     ],
     petugas: [
-      { id: 'p-1', nama: 'Hendra Saputra, S.Pd', jabatan: 'Wali Asuh', nip: '199004122020121004', username: 'petugas1', password: '123', foto_url: '' },
-      { id: 'p-2', nama: 'Nurul Hidayah, S.Pd', jabatan: 'Wali Asrama', nip: '199408172022212009', username: 'petugas2', password: '123', foto_url: '' }
+      { id: 'p-1', nik: '7308011504900001', nama: 'Hendra Saputra', jabatan: 'Juru Masak', username: 'petugas1', password: '123', foto_url: '' },
+      { id: 'p-2', nik: '7308015208920002', nama: 'Nurul Hidayah', jabatan: 'Juru Masak', username: 'petugas2', password: '123', foto_url: '' }
     ],
     presensi: [
       {
@@ -2473,7 +2368,7 @@
         jenis_konsumsi: 'Makan Pagi',
         waktu_scan: new Date().toISOString(),
         ttd_base64: SAMPLE_SIG_SVG,
-        petugas_nama: 'Hendra Saputra, S.Pd'
+        petugas_nama: 'Hendra Saputra'
       }
     ],
     keteranganAbsen: []
@@ -2483,7 +2378,7 @@
   // 4. STATE APLIKASI & UTILITAS UI
   // ============================================================================
   const appState = {
-    currentUser: null, // { id?, role: 'admin'|'petugas', name, jabatan?, nip?, username?, foto_url? }
+    currentUser: null,
     activeMenu: 'dashboard',
     selectedSession: 'Makan Pagi',
     siswaList: [],
@@ -2514,7 +2409,7 @@
 
   window.closeModal = function(modalId) {
     document.getElementById(modalId)?.classList.add('hidden');
-    if (modalId === 'modal-scan-ttd') {
+    if (modalId === 'modal-scan-ttd' || modalId === 'modal-scan-success-popup') {
       appState.isProcessingScan = false;
       appState.pendingScanStudent = null;
     }
@@ -2526,80 +2421,63 @@
       ? `<img src="${cfg.logo_sekolah}" alt="Logo Sekolah" style="width:100%;height:100%;object-fit:contain;">`
       : DEFAULT_LOGO_SEKOLAH_SVG;
     const logoLaporanHtml = cfg.logo_laporan
-      ? `<img src="${cfg.logo_laporan}" alt="Logo Instansi" style="width:100%;height:100%;object-fit:contain;">`
+      ? `<img src="${cfg.logo_laporan}" alt="Logo Instansi" style="width:72px;height:72px;object-fit:contain;">`
       : DEFAULT_LOGO_LAPORAN_SVG;
 
     const loginLogoEl = document.getElementById('login-sr-logo');
-    if (loginLogoEl) loginLogoEl.innerHTML = logoSekolahHtml;
-
     const sidebarLogoEl = document.getElementById('sidebar-sr-logo');
-    if (sidebarLogoEl) sidebarLogoEl.innerHTML = logoSekolahHtml;
-
-    const loginSubtitleEl = document.querySelector('#view-login p:nth-of-type(2)');
-    if (loginSubtitleEl) loginSubtitleEl.textContent = cfg.nama_sekolah;
-
     const kopLogoEl = document.getElementById('kop-logo-container');
+    if (loginLogoEl) loginLogoEl.innerHTML = logoSekolahHtml;
+    if (sidebarLogoEl) sidebarLogoEl.innerHTML = logoSekolahHtml;
     if (kopLogoEl) kopLogoEl.innerHTML = logoLaporanHtml;
 
-    const setElText = (id, val) => {
-      const el = document.getElementById(id);
-      if (el) el.textContent = val;
-    };
-
-    setElText('rep-kop-kementerian', (cfg.kementerian || '').toUpperCase());
-    setElText('rep-kop-sekolah', (cfg.nama_sekolah || '').toUpperCase());
-    setElText('rep-kop-alamat', `Alamat : ${cfg.alamat || '-'}`);
-    setElText('rep-kop-email', `Email : ${cfg.email || '-'}`);
-    setElText('rep-doc-sub-sekolah', (cfg.nama_sekolah || '').toUpperCase());
-    setElText('rep-sign-nama-kepsek', cfg.nama_kepsek || '-');
-
-    const lapNipInput = document.getElementById('lap-nip-kepsek');
-    if (lapNipInput && !lapNipInput.dataset.userEdited) {
-      lapNipInput.value = cfg.nip_kepsek || '';
-    }
-    setElText('rep-sign-nip-kepsek', `NIP. ${lapNipInput ? lapNipInput.value.trim() : (cfg.nip_kepsek || '')}`);
+    const kemEl = document.getElementById('rep-kop-kementerian');
+    const sekEl = document.getElementById('rep-kop-sekolah');
+    const almEl = document.getElementById('rep-kop-alamat');
+    const emlEl = document.getElementById('rep-kop-email');
+    const subSekEl = document.getElementById('rep-doc-sub-sekolah');
+    if (kemEl) kemEl.textContent = (cfg.kementerian || DEFAULT_SEKOLAH_CONFIG.kementerian).toUpperCase();
+    if (sekEl) sekEl.textContent = (cfg.nama_sekolah || DEFAULT_SEKOLAH_CONFIG.nama_sekolah).toUpperCase();
+    if (subSekEl) subSekEl.textContent = (cfg.nama_sekolah || DEFAULT_SEKOLAH_CONFIG.nama_sekolah).toUpperCase();
+    if (almEl) almEl.textContent = `Alamat : ${cfg.alamat || DEFAULT_SEKOLAH_CONFIG.alamat}`;
+    if (emlEl) emlEl.textContent = `Email : ${cfg.email || DEFAULT_SEKOLAH_CONFIG.email}`;
   }
 
   // ============================================================================
-  // 5. SIGNATURE PAD CONTROLLER (MOUSE & TOUCH SUPPORT)
+  // 5. SIGNATURE PAD HELPER (TOUCH & MOUSE)
   // ============================================================================
-  class SignaturePadController {
+  class SignaturePadHelper {
     constructor(canvasId, placeholderId) {
       this.canvas = document.getElementById(canvasId);
       this.placeholder = document.getElementById(placeholderId);
-      this.ctx = this.canvas.getContext('2d');
+      this.ctx = this.canvas ? this.canvas.getContext('2d') : null;
       this.drawing = false;
-      this.isEmpty = true;
-      this.setupEvents();
-      this.resetStyle();
+      this.hasStroke = false;
+      if (this.canvas && this.ctx) this.init();
     }
 
-    resetStyle() {
+    init() {
       this.ctx.strokeStyle = '#0f172a';
       this.ctx.lineWidth = 2.6;
       this.ctx.lineCap = 'round';
       this.ctx.lineJoin = 'round';
-    }
 
-    getPos(e) {
-      const rect = this.canvas.getBoundingClientRect();
-      const scaleX = this.canvas.width / rect.width;
-      const scaleY = this.canvas.height / rect.height;
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      return {
-        x: (clientX - rect.left) * scaleX,
-        y: (clientY - rect.top) * scaleY
+      const getPos = (e) => {
+        const rect = this.canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        return {
+          x: (clientX - rect.left) * (this.canvas.width / rect.width),
+          y: (clientY - rect.top) * (this.canvas.height / rect.height)
+        };
       };
-    }
 
-    setupEvents() {
       const start = (e) => {
         if (e.cancelable) e.preventDefault();
         this.drawing = true;
-        this.isEmpty = false;
+        this.hasStroke = true;
         if (this.placeholder) this.placeholder.classList.add('hidden');
-        const pos = this.getPos(e);
+        const pos = getPos(e);
         this.ctx.beginPath();
         this.ctx.moveTo(pos.x, pos.y);
       };
@@ -2607,73 +2485,70 @@
       const move = (e) => {
         if (!this.drawing) return;
         if (e.cancelable) e.preventDefault();
-        const pos = this.getPos(e);
+        const pos = getPos(e);
         this.ctx.lineTo(pos.x, pos.y);
         this.ctx.stroke();
       };
 
-      const end = () => {
-        this.drawing = false;
-      };
+      const end = () => { this.drawing = false; };
 
       this.canvas.addEventListener('mousedown', start);
       this.canvas.addEventListener('mousemove', move);
       window.addEventListener('mouseup', end);
-
       this.canvas.addEventListener('touchstart', start, { passive: false });
       this.canvas.addEventListener('touchmove', move, { passive: false });
       this.canvas.addEventListener('touchend', end);
     }
 
     clear() {
+      if (!this.canvas || !this.ctx) return;
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      this.resetStyle();
-      this.isEmpty = true;
+      this.hasStroke = false;
       if (this.placeholder) this.placeholder.classList.remove('hidden');
     }
 
-    loadDataUrl(dataUrl) {
+    toDataURL() {
+      return this.hasStroke ? this.canvas.toDataURL('image/png') : '';
+    }
+
+    loadDataURL(dataUrl) {
       this.clear();
-      if (!dataUrl) return;
+      if (!dataUrl || !this.canvas || !this.ctx) return;
       const img = new Image();
       img.onload = () => {
         this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height);
-        this.isEmpty = false;
+        this.hasStroke = true;
         if (this.placeholder) this.placeholder.classList.add('hidden');
       };
       img.src = dataUrl;
     }
-
-    toDataURL() {
-      return this.isEmpty ? '' : this.canvas.toDataURL('image/png');
-    }
   }
 
-  const scanSigPad = new SignaturePadController('canvas-scan-sig', 'placeholder-scan-sig');
-  const masterSigPad = new SignaturePadController('canvas-master-sig', 'placeholder-master-sig');
+  const scanSigPad = new SignaturePadHelper('canvas-scan-sig', 'placeholder-scan-sig');
+  const masterSigPad = new SignaturePadHelper('canvas-master-sig', 'placeholder-master-sig');
 
-  document.getElementById('btn-clear-scan-sig').addEventListener('click', () => scanSigPad.clear());
-  document.getElementById('btn-clear-master-sig').addEventListener('click', () => masterSigPad.clear());
+  document.getElementById('btn-clear-scan-sig')?.addEventListener('click', () => scanSigPad.clear());
+  document.getElementById('btn-clear-master-sig')?.addEventListener('click', () => masterSigPad.clear());
 
   // ============================================================================
-  // 6. LAPISAN AKSES DATA (DUAL-MODE: PREVIEW LOCAL & SUPABASE REAL-TIME)
+  // 6. ABSTRAKSI DATABASE (DUAL MODE: PREVIEW & SUPABASE)
   // ============================================================================
   const DB = {
     async fetchPengaturan() {
-      if (IS_PREVIEW) return { ...previewDB.sekolahConfig };
-      const { data, error } = await supabase.from('pengaturan_sekolah').select('*').eq('id', 'default').maybeSingle();
+      if (IS_PREVIEW || !supabase) return { ...previewDB.sekolahConfig };
+      const { data, error } = await supabase.from('pengaturan_sekolah').select('*').eq('id', 'default').single();
       if (error || !data) return { ...DEFAULT_SEKOLAH_CONFIG };
-      return { ...DEFAULT_SEKOLAH_CONFIG, ...data };
+      return data;
     },
 
-    async savePengaturan(payload) {
-      if (IS_PREVIEW) {
-        previewDB.sekolahConfig = { ...previewDB.sekolahConfig, ...payload };
-        return previewDB.sekolahConfig;
+    async savePengaturan(cfg) {
+      if (IS_PREVIEW || !supabase) {
+        previewDB.sekolahConfig = { ...previewDB.sekolahConfig, ...cfg };
+        return { ...previewDB.sekolahConfig };
       }
       const { data, error } = await supabase
         .from('pengaturan_sekolah')
-        .upsert([{ id: 'default', ...payload, updated_at: new Date().toISOString() }])
+        .upsert({ id: 'default', ...cfg, updated_at: new Date().toISOString() })
         .select()
         .single();
       if (error) throw error;
@@ -2681,57 +2556,45 @@
     },
 
     async fetchSiswa() {
-      if (IS_PREVIEW) return [...previewDB.siswa];
-      const { data, error } = await supabase.from('siswa').select('*').order('nama_lengkap');
+      if (IS_PREVIEW || !supabase) return [...previewDB.siswa];
+      const { data, error } = await supabase.from('siswa').select('*').order('nama_lengkap', { ascending: true });
       if (error) throw error;
       return data || [];
     },
 
-    async upsertSiswa(payload, id = null) {
-      if (IS_PREVIEW) {
-        if (id) {
-          const idx = previewDB.siswa.findIndex(s => s.id === id);
+    async upsertSiswa(payload) {
+      if (IS_PREVIEW || !supabase) {
+        if (payload.id) {
+          const idx = previewDB.siswa.findIndex(s => s.id === payload.id);
           if (idx > -1) previewDB.siswa[idx] = { ...previewDB.siswa[idx], ...payload };
         } else {
-          if (previewDB.siswa.some(s => s.nik === payload.nik)) {
-            throw new Error('NIK sudah terdaftar!');
-          }
-          previewDB.siswa.push({ id: 's-' + Date.now(), ...payload });
+          if (previewDB.siswa.some(s => s.nik === payload.nik)) throw new Error('NIK sudah terdaftar!');
+          previewDB.siswa.push({ ...payload, id: 's-' + Date.now() });
         }
         return;
       }
-      if (id) {
-        const { error } = await supabase.from('siswa').update(payload).eq('id', id);
-        if (error) throw error;
-      } else {
-        const { error } = await supabase.from('siswa').insert([payload]);
-        if (error) throw error;
-      }
+      const cleanPayload = { ...payload };
+      if (!cleanPayload.id) delete cleanPayload.id;
+      const { error } = await supabase.from('siswa').upsert(cleanPayload, { onConflict: 'nik' });
+      if (error) throw error;
     },
 
     async bulkUpsertSiswa(rows) {
-      if (IS_PREVIEW) {
-        let added = 0;
-        let updated = 0;
-        rows.forEach((row, i) => {
-          const idx = previewDB.siswa.findIndex(s => s.nik === row.nik);
-          if (idx > -1) {
-            previewDB.siswa[idx] = { ...previewDB.siswa[idx], ...row };
-            updated++;
-          } else {
-            previewDB.siswa.push({ id: `s-${Date.now()}-${i}`, foto_url: '', ttd_master_base64: '', ...row });
-            added++;
-          }
+      if (IS_PREVIEW || !supabase) {
+        rows.forEach((r, i) => {
+          const idx = previewDB.siswa.findIndex(s => s.nik === r.nik);
+          if (idx > -1) previewDB.siswa[idx] = { ...previewDB.siswa[idx], ...r };
+          else previewDB.siswa.push({ ...r, id: `s-${Date.now()}-${i}`, foto_url: '', ttd_master_base64: '' });
         });
-        return { added, updated };
+        return rows.length;
       }
       const { error } = await supabase.from('siswa').upsert(rows, { onConflict: 'nik' });
       if (error) throw error;
-      return { added: rows.length, updated: 0 };
+      return rows.length;
     },
 
     async deleteSiswa(id) {
-      if (IS_PREVIEW) {
+      if (IS_PREVIEW || !supabase) {
         previewDB.siswa = previewDB.siswa.filter(s => s.id !== id);
         return;
       }
@@ -2740,57 +2603,45 @@
     },
 
     async fetchPetugas() {
-      if (IS_PREVIEW) return [...previewDB.petugas];
-      const { data, error } = await supabase.from('petugas').select('*').order('nama');
+      if (IS_PREVIEW || !supabase) return [...previewDB.petugas];
+      const { data, error } = await supabase.from('petugas').select('*').order('nama', { ascending: true });
       if (error) throw error;
       return data || [];
     },
 
-    async upsertPetugas(payload, id = null) {
-      if (IS_PREVIEW) {
-        if (id) {
-          const idx = previewDB.petugas.findIndex(p => p.id === id);
+    async upsertPetugas(payload) {
+      if (IS_PREVIEW || !supabase) {
+        if (payload.id) {
+          const idx = previewDB.petugas.findIndex(p => p.id === payload.id);
           if (idx > -1) previewDB.petugas[idx] = { ...previewDB.petugas[idx], ...payload };
         } else {
-          if (previewDB.petugas.some(p => p.username === payload.username)) {
-            throw new Error('Username petugas sudah digunakan!');
-          }
-          previewDB.petugas.push({ id: 'p-' + Date.now(), foto_url: '', ...payload });
+          if (previewDB.petugas.some(p => p.username === payload.username)) throw new Error('Username sudah digunakan!');
+          previewDB.petugas.push({ ...payload, id: 'p-' + Date.now(), foto_url: '' });
         }
         return;
       }
-      if (id) {
-        const { error } = await supabase.from('petugas').update(payload).eq('id', id);
-        if (error) throw error;
-      } else {
-        const { error } = await supabase.from('petugas').insert([payload]);
-        if (error) throw error;
-      }
+      const cleanPayload = { ...payload };
+      if (!cleanPayload.id) delete cleanPayload.id;
+      const { error } = await supabase.from('petugas').upsert(cleanPayload, { onConflict: 'username' });
+      if (error) throw error;
     },
 
     async bulkUpsertPetugas(rows) {
-      if (IS_PREVIEW) {
-        let added = 0;
-        let updated = 0;
-        rows.forEach((row, i) => {
-          const idx = previewDB.petugas.findIndex(p => p.username.toLowerCase() === row.username.toLowerCase());
-          if (idx > -1) {
-            previewDB.petugas[idx] = { ...previewDB.petugas[idx], ...row };
-            updated++;
-          } else {
-            previewDB.petugas.push({ id: `p-${Date.now()}-${i}`, foto_url: '', ...row });
-            added++;
-          }
+      if (IS_PREVIEW || !supabase) {
+        rows.forEach((r, i) => {
+          const idx = previewDB.petugas.findIndex(p => p.username === r.username);
+          if (idx > -1) previewDB.petugas[idx] = { ...previewDB.petugas[idx], ...r };
+          else previewDB.petugas.push({ ...r, id: `p-${Date.now()}-${i}`, foto_url: '' });
         });
-        return { added, updated };
+        return rows.length;
       }
       const { error } = await supabase.from('petugas').upsert(rows, { onConflict: 'username' });
       if (error) throw error;
-      return { added: rows.length, updated: 0 };
+      return rows.length;
     },
 
     async deletePetugas(id) {
-      if (IS_PREVIEW) {
+      if (IS_PREVIEW || !supabase) {
         previewDB.petugas = previewDB.petugas.filter(p => p.id !== id);
         return;
       }
@@ -2798,268 +2649,211 @@
       if (error) throw error;
     },
 
-    async fetchPresensiByDate(tanggalStr) {
-      if (IS_PREVIEW) {
+    async fetchPresensiByDate(dateStr) {
+      if (IS_PREVIEW || !supabase) {
         return previewDB.presensi
-          .filter(pr => pr.tanggal === tanggalStr)
-          .map(pr => {
-            const siswa = previewDB.siswa.find(s => s.id === pr.siswa_id) || {};
-            return { ...pr, siswa };
-          });
+          .filter(p => p.tanggal === dateStr)
+          .map(p => ({ ...p, siswa: previewDB.siswa.find(s => s.id === p.siswa_id) }))
+          .sort((a, b) => new Date(b.waktu_scan) - new Date(a.waktu_scan));
       }
       const { data, error } = await supabase
         .from('presensi_makan')
         .select('*, siswa(*)')
-        .eq('tanggal', tanggalStr)
+        .eq('tanggal', dateStr)
         .order('waktu_scan', { ascending: false });
       if (error) throw error;
       return data || [];
     },
 
     async insertPresensi(record) {
-      if (IS_PREVIEW) {
-        const dup = previewDB.presensi.some(
+      if (IS_PREVIEW || !supabase) {
+        const exists = previewDB.presensi.some(
           p => p.siswa_id === record.siswa_id && p.tanggal === record.tanggal && p.jenis_konsumsi === record.jenis_konsumsi
         );
-        if (dup) throw new Error(`Siswa ini sudah tercatat untuk sesi ${record.jenis_konsumsi} hari ini!`);
-        previewDB.presensi.unshift({
-          id: 'pr-' + Date.now(),
-          waktu_scan: new Date().toISOString(),
-          ...record
-        });
-        return;
+        if (exists) throw new Error(`Siswa sudah tercatat pada sesi ${record.jenis_konsumsi} hari ini!`);
+        const newRec = { ...record, id: 'pr-' + Date.now(), waktu_scan: new Date().toISOString() };
+        previewDB.presensi.unshift(newRec);
+        return newRec;
       }
-      const { error } = await supabase.from('presensi_makan').insert([record]);
+      const { data, error } = await supabase
+        .from('presensi_makan')
+        .insert({ ...record, waktu_scan: new Date().toISOString() })
+        .select()
+        .single();
       if (error) {
-        if (error.code === '23505') {
-          throw new Error(`Siswa ini sudah tercatat untuk sesi ${record.jenis_konsumsi} hari ini!`);
-        }
+        if (error.code === '23505') throw new Error(`Siswa sudah tercatat pada sesi ${record.jenis_konsumsi} hari ini!`);
         throw error;
       }
+      return data;
     },
 
-    async fetchKeteranganByDate(tanggalStr) {
-      if (IS_PREVIEW) {
-        return previewDB.keteranganAbsen.filter(k => k.tanggal === tanggalStr);
+    async fetchKeteranganByDate(dateStr) {
+      if (IS_PREVIEW || !supabase) {
+        return previewDB.keteranganAbsen.filter(k => k.tanggal === dateStr);
       }
       const { data, error } = await supabase
         .from('keterangan_absen')
         .select('*')
-        .eq('tanggal', tanggalStr);
+        .eq('tanggal', dateStr);
       if (error) return [];
       return data || [];
     },
 
-    async upsertKeterangan(siswaId, tanggalStr, keteranganText) {
-      const cleanKet = (keteranganText || '').trim();
-      if (IS_PREVIEW) {
+    async upsertKeterangan(siswaId, dateStr, keterangan) {
+      if (IS_PREVIEW || !supabase) {
         previewDB.keteranganAbsen = previewDB.keteranganAbsen.filter(
-          k => !(k.siswa_id === siswaId && k.tanggal === tanggalStr)
+          k => !(k.siswa_id === siswaId && k.tanggal === dateStr)
         );
-        if (cleanKet) {
+        if (keterangan) {
           previewDB.keteranganAbsen.push({
             id: 'ket-' + Date.now(),
             siswa_id: siswaId,
-            tanggal: tanggalStr,
-            keterangan: cleanKet
+            tanggal: dateStr,
+            keterangan
           });
         }
         return;
       }
-      if (!cleanKet) {
-        await supabase
-          .from('keterangan_absen')
-          .delete()
-          .eq('siswa_id', siswaId)
-          .eq('tanggal', tanggalStr);
+      if (!keterangan) {
+        await supabase.from('keterangan_absen').delete().eq('siswa_id', siswaId).eq('tanggal', dateStr);
         return;
       }
       const { error } = await supabase
         .from('keterangan_absen')
-        .upsert([{ siswa_id: siswaId, tanggal: tanggalStr, keterangan: cleanKet }], { onConflict: 'siswa_id,tanggal' });
+        .upsert({ siswa_id: siswaId, tanggal: dateStr, keterangan }, { onConflict: 'siswa_id,tanggal' });
       if (error) throw error;
     }
   };
 
   // ============================================================================
-  // 7. AUTENTIKASI TERPADU (USERNAME / EMAIL)
+  // 7. AUTENTIKASI & NAVIGASI MENU
   // ============================================================================
-  const pwdInput = document.getElementById('login-password');
-  const iconTogglePwd = document.getElementById('icon-toggle-password');
-  document.getElementById('btn-toggle-password').addEventListener('click', () => {
-    const isHidden = pwdInput.type === 'password';
-    pwdInput.type = isHidden ? 'text' : 'password';
-    iconTogglePwd.className = isHidden ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+  const ADMIN_MENUS = [
+    { id: 'dashboard', label: 'Dashboard', shortLabel: 'Home', icon: 'fa-chart-pie' },
+    { id: 'scanner', label: 'Scan QR', shortLabel: 'Scan', icon: 'fa-qrcode' },
+    { id: 'siswa', label: 'Data Siswa', shortLabel: 'Siswa', icon: 'fa-users' },
+    { id: 'petugas', label: 'Data Petugas', shortLabel: 'Petugas', icon: 'fa-user-shield' },
+    { id: 'laporan', label: 'Laporan Harian', shortLabel: 'Laporan', icon: 'fa-file-lines' },
+    { id: 'pengaturan', label: 'Pengaturan', shortLabel: 'Atur', icon: 'fa-gear' }
+  ];
+
+  const PETUGAS_MENUS = [
+    { id: 'scanner', label: 'Scan QR', shortLabel: 'Scan', icon: 'fa-qrcode' },
+    { id: 'laporan', label: 'Laporan Harian', shortLabel: 'Laporan', icon: 'fa-file-lines' },
+    { id: 'profil-petugas', label: 'Profil Saya', shortLabel: 'Profil', icon: 'fa-id-badge' }
+  ];
+
+  document.getElementById('btn-toggle-password')?.addEventListener('click', () => {
+    const inp = document.getElementById('login-password');
+    const icon = document.getElementById('icon-toggle-password');
+    if (inp.type === 'password') {
+      inp.type = 'text';
+      icon.classList.replace('fa-eye', 'fa-eye-slash');
+    } else {
+      inp.type = 'password';
+      icon.classList.replace('fa-eye-slash', 'fa-eye');
+    }
   });
 
-  document.getElementById('form-login-unified').addEventListener('submit', async (e) => {
+  document.getElementById('form-login-unified')?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const identifier = document.getElementById('login-identifier').value.trim();
     const password = document.getElementById('login-password').value.trim();
 
-    if (!identifier || !password) return;
-
     if (IS_PREVIEW) {
-      // Cek akun petugas di previewDB
-      const foundPetugas = previewDB.petugas.find(
+      const petugasMatch = previewDB.petugas.find(
         p => p.username.toLowerCase() === identifier.toLowerCase() && p.password === password
       );
-      if (foundPetugas) {
+      if (petugasMatch) {
         await enterSession({
-          id: foundPetugas.id,
+          id: petugasMatch.id,
+          nik: petugasMatch.nik || '-',
           role: 'petugas',
-          name: foundPetugas.nama,
-          jabatan: foundPetugas.jabatan || 'Wali Asuh',
-          nip: foundPetugas.nip || '',
-          username: foundPetugas.username,
-          foto_url: foundPetugas.foto_url || ''
+          name: petugasMatch.nama,
+          jabatan: petugasMatch.jabatan || 'Juru Masak',
+          foto_url: petugasMatch.foto_url || ''
         });
         return;
       }
-
-      // Selain akun petugas, login sebagai Admin di mode preview
-      const adminDisplay = identifier.includes('@') ? identifier.split('@')[0] : identifier;
-      await enterSession({ role: 'admin', name: adminDisplay, nip: '' });
+      await enterSession({ role: 'admin', name: identifier || 'Administrator' });
       return;
     }
 
     try {
-      // 1. Cek tabel petugas terlebih dahulu via username
-      const { data: petugasData } = await supabase
+      const { data: petugasRows } = await supabase
         .from('petugas')
         .select('*')
         .eq('username', identifier)
         .eq('password', password)
-        .maybeSingle();
+        .limit(1);
 
-      if (petugasData) {
-        const sessionObj = {
-          id: petugasData.id,
-          role: 'petugas',
-          name: petugasData.nama,
-          jabatan: petugasData.jabatan || 'Wali Asuh',
-          nip: petugasData.nip || '',
-          username: petugasData.username,
-          foto_url: petugasData.foto_url || ''
-        };
+      if (petugasRows && petugasRows.length > 0) {
+        const p = petugasRows[0];
+        const sessionObj = { id: p.id, nik: p.nik || '-', role: 'petugas', name: p.nama, jabatan: p.jabatan || 'Juru Masak', foto_url: p.foto_url || '' };
         localStorage.setItem('ekantin_petugas_session', JSON.stringify(sessionObj));
         await enterSession(sessionObj);
         return;
       }
 
-      // 2. Cek Supabase Auth untuk Admin (menggunakan email)
-      const { data: authData, error: authErr } = await supabase.auth.signInWithPassword({
-        email: identifier,
-        password
-      });
-      if (!authErr && authData?.user) {
-        await enterSession({ role: 'admin', name: authData.user.email, nip: '' });
-        return;
-      }
-
-      showToast('Username atau password salah!', 'error');
+      const { data, error } = await supabase.auth.signInWithPassword({ email: identifier, password });
+      if (error) throw new Error('Username/Email atau password salah.');
+      await enterSession({ role: 'admin', name: data.user.email });
     } catch (err) {
-      showToast('Gagal login: ' + err.message, 'error');
+      showToast(err.message, 'error');
     }
   });
 
-  // Quick Login Preview Buttons
-  document.getElementById('btn-quick-admin').addEventListener('click', () => {
-    enterSession({ role: 'admin', name: 'Admin Sekolah', nip: '' });
+  document.getElementById('btn-quick-admin')?.addEventListener('click', () => {
+    enterSession({ role: 'admin', name: 'Admin Sekolah Rakyat' });
   });
-  document.getElementById('btn-quick-petugas').addEventListener('click', () => {
+
+  document.getElementById('btn-quick-petugas')?.addEventListener('click', () => {
     const p = previewDB.petugas[0];
-    enterSession({
-      id: p.id,
-      role: 'petugas',
-      name: p.nama,
-      jabatan: p.jabatan || 'Wali Asuh',
-      nip: p.nip || '',
-      username: p.username,
-      foto_url: p.foto_url || ''
-    });
+    enterSession({ id: p.id, nik: p.nik || '-', role: 'petugas', name: p.nama, jabatan: p.jabatan || 'Juru Masak', foto_url: p.foto_url || '' });
   });
-
-  async function handleLogout() {
-    await stopQrCamera();
-    if (!IS_PREVIEW && supabase) {
-      await supabase.auth.signOut();
-      localStorage.removeItem('ekantin_petugas_session');
-    }
-    appState.currentUser = null;
-    document.getElementById('view-app').classList.add('hidden');
-    document.getElementById('view-login').classList.remove('hidden');
-    showToast('Anda telah keluar dari sistem.');
-  }
-
-  document.getElementById('btn-logout-desktop').addEventListener('click', handleLogout);
-  document.getElementById('btn-logout-mobile').addEventListener('click', handleLogout);
-
-  // ============================================================================
-  // 8. NAVIGASI DINAMIS BERDASARKAN ROLE (ADMIN vs PETUGAS)
-  // ============================================================================
-  const ADMIN_MENUS = [
-    { id: 'dashboard', label: 'Dashboard', icon: 'fa-chart-pie', title: 'Dashboard Ringkasan', sub: 'Statistik real-time konsumsi harian siswa' },
-    { id: 'scanner', label: 'Scan QR', icon: 'fa-qrcode', title: 'Scanner QR & TTD Siswa', sub: 'Arahkan kamera ke kartu QR siswa' },
-    { id: 'siswa', label: 'Data Siswa', icon: 'fa-user-graduate', title: 'Data Master Siswa & Kartu QR', sub: 'Kelola biodata siswa, upload Excel/CSV, spesimen TTD & cetak kartu QR' },
-    { id: 'petugas', label: 'Data Petugas', icon: 'fa-users-gear', title: 'Manajemen Data Petugas', sub: 'Kelola akun & jabatan Wali Asuh, Wali Asrama, dan Juru Masak' },
-    { id: 'laporan', label: 'Laporan Harian', icon: 'fa-file-lines', title: 'Laporan Harian Resmi', sub: 'Format resmi daftar hadir makan & snack per jenjang' },
-    { id: 'pengaturan', label: 'Pengaturan', icon: 'fa-sliders', title: 'Pengaturan Identitas & Logo', sub: 'Ubah logo sekolah, kop laporan, dan nama Kepala Sekolah' }
-  ];
-
-  const PETUGAS_MENUS = [
-    { id: 'scanner', label: 'Scan QR', icon: 'fa-qrcode', title: 'Scanner QR & TTD Siswa', sub: 'Scan kartu QR siswa untuk mencatat kehadiran makan' },
-    { id: 'laporan', label: 'Laporan Harian', icon: 'fa-file-lines', title: 'Laporan Harian Resmi', sub: 'Cetak & unduh daftar hadir makan hari ini' },
-    { id: 'profil-petugas', label: 'Profil Saya', icon: 'fa-id-badge', title: 'Profil Petugas', sub: 'Informasi identitas & jabatan petugas' }
-  ];
 
   async function enterSession(user) {
     appState.currentUser = user;
     document.getElementById('view-login').classList.add('hidden');
     document.getElementById('view-app').classList.remove('hidden');
 
-    const roleLabel = user.role === 'admin' ? 'Admin' : (user.jabatan || 'Petugas Piket');
-    document.getElementById('sidebar-role-badge').textContent = roleLabel;
+    document.getElementById('sidebar-role-badge').textContent = user.role === 'admin' ? 'Administrator' : (user.jabatan || 'Juru Masak');
     document.getElementById('sidebar-user-name').textContent = user.name;
 
     if (window.innerWidth <= 768) {
       document.getElementById('btn-logout-mobile').style.display = 'inline-flex';
     }
 
-    const menus = user.role === 'admin' ? ADMIN_MENUS : PETUGAS_MENUS;
-    renderNavigation(menus);
+    [appState.siswaList, appState.petugasList, appState.sekolahConfig] = await Promise.all([
+      DB.fetchSiswa(),
+      DB.fetchPetugas(),
+      DB.fetchPengaturan()
+    ]);
+    applySekolahConfigToUI();
 
     const today = getTodayStr();
     document.getElementById('dash-date-filter').value = today;
     document.getElementById('lap-filter-date').value = today;
 
-    if (user.role === 'petugas' && user.nip) {
-      document.getElementById('lap-nip-petugas').value = user.nip;
-    }
-
-    detectAutoMealSession();
-    await refreshAllData();
-
-    const defaultMenu = user.role === 'admin' ? 'dashboard' : 'scanner';
-    window.switchMenu(defaultMenu);
+    detectAutoSession();
+    renderNavigation();
+    window.switchMenu(user.role === 'admin' ? 'dashboard' : 'scanner');
     showToast(`Selamat datang, ${user.name}!`);
   }
 
-  function renderNavigation(menus) {
-    const sidebarNav = document.getElementById('sidebar-nav');
-    const bottomNav = document.getElementById('bottom-nav-list');
-
-    sidebarNav.innerHTML = menus.map(m => `
+  function renderNavigation() {
+    const menus = appState.currentUser?.role === 'admin' ? ADMIN_MENUS : PETUGAS_MENUS;
+    document.getElementById('sidebar-nav').innerHTML = menus.map(m => `
       <button type="button" class="nav-item" data-menu="${m.id}" onclick="window.switchMenu('${m.id}')">
         <i class="fa-solid ${m.icon}"></i>
         <span>${m.label}</span>
       </button>
     `).join('');
 
-    bottomNav.innerHTML = menus.map(m => `
+    document.getElementById('bottom-nav-list').innerHTML = menus.map(m => `
       <button type="button" class="bottom-nav-item" data-menu="${m.id}" onclick="window.switchMenu('${m.id}')">
         <i class="fa-solid ${m.icon}"></i>
-        <span>${m.label}</span>
+        <span>${m.shortLabel || m.label}</span>
       </button>
     `).join('');
   }
@@ -3067,166 +2861,153 @@
   window.switchMenu = async function(menuId) {
     appState.activeMenu = menuId;
 
-    if (menuId !== 'scanner' && appState.isCameraRunning) {
-      await stopQrCamera();
-    }
-
-    document.querySelectorAll('.nav-item, .bottom-nav-item').forEach(el => {
-      el.classList.toggle('active', el.dataset.menu === menuId);
+    document.querySelectorAll('.nav-item, .bottom-nav-item').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.menu === menuId);
     });
 
     document.querySelectorAll('.app-section').forEach(sec => sec.classList.add('hidden'));
     document.getElementById(`sec-${menuId}`)?.classList.remove('hidden');
 
-    const menus = appState.currentUser?.role === 'admin' ? ADMIN_MENUS : PETUGAS_MENUS;
-    const activeObj = menus.find(m => m.id === menuId);
-    if (activeObj) {
-      document.getElementById('page-title').textContent = activeObj.title;
-      document.getElementById('page-subtitle').textContent = activeObj.sub;
+    const titles = {
+      'dashboard': ['Dashboard Ringkasan', 'Pantau kehadiran makan & snack siswa secara real-time'],
+      'scanner': ['Scan QR Presensi', 'Pindai kartu QR siswa atau catat ketidakhadiran'],
+      'siswa': ['Data Master Siswa', 'Kelola biodata siswa, unggah Excel, dan cetak Kartu Pelajar QR'],
+      'petugas': ['Data Petugas (Juru Masak)', 'Kelola akun petugas yang bertugas pada laporan harian'],
+      'profil-petugas': ['Profil Petugas', 'Informasi identitas dan foto profil petugas'],
+      'laporan': ['Laporan Harian Resmi', 'Pratinjau dokumen daftar hadir siap unduh PDF & Excel'],
+      'pengaturan': ['Pengaturan Sekolah & Logo', 'Atur kop surat, logo instansi, dan identitas Kepala Sekolah']
+    };
+    const [t, sub] = titles[menuId] || ['SIMANTAP', ''];
+    document.getElementById('page-title').textContent = t;
+    document.getElementById('page-subtitle').textContent = sub;
+
+    if (menuId !== 'scanner' && appState.isCameraRunning) {
+      await stopQrCamera();
     }
 
     if (menuId === 'dashboard') await renderDashboard();
     if (menuId === 'scanner') await renderScannerFeed();
     if (menuId === 'siswa') renderSiswaTable();
     if (menuId === 'petugas') renderPetugasTable();
-    if (menuId === 'laporan') await renderOfficialLaporan();
+    if (menuId === 'profil-petugas') renderProfilPetugas();
+    if (menuId === 'laporan') resetOfficialLaporanView();
     if (menuId === 'pengaturan') renderPengaturanForm();
-    if (menuId === 'profil-petugas') renderProfilPetugasForm();
   };
 
-  async function refreshAllData() {
-    try {
-      const [cfg, siswa, petugas, todayPr] = await Promise.all([
-        DB.fetchPengaturan(),
-        DB.fetchSiswa(),
-        DB.fetchPetugas(),
-        DB.fetchPresensiByDate(getTodayStr())
-      ]);
-      appState.sekolahConfig = cfg;
-      appState.siswaList = siswa;
-      appState.petugasList = petugas;
-      appState.todayPresensi = todayPr;
-      applySekolahConfigToUI();
-    } catch (err) {
-      showToast('Gagal memuat data: ' + err.message, 'error');
-    }
+  function handleLogout() {
+    if (appState.isCameraRunning) stopQrCamera();
+    appState.currentUser = null;
+    localStorage.removeItem('ekantin_petugas_session');
+    if (!IS_PREVIEW && supabase) supabase.auth.signOut().catch(() => {});
+    document.getElementById('view-app').classList.add('hidden');
+    document.getElementById('view-login').classList.remove('hidden');
+    document.getElementById('form-login-unified').reset();
   }
 
-  // ============================================================================
-  // 9. DASHBOARD STATISTIK (ADMIN)
-  // ============================================================================
-  document.getElementById('dash-date-filter').addEventListener('change', renderDashboard);
-  document.getElementById('dash-jenjang-filter').addEventListener('change', renderDashboard);
+  document.getElementById('btn-logout-desktop')?.addEventListener('click', handleLogout);
+  document.getElementById('btn-logout-mobile')?.addEventListener('click', handleLogout);
 
+  // ============================================================================
+  // 8. DASHBOARD RINGKASAN
+  // ============================================================================
   async function renderDashboard() {
-    const dateVal = document.getElementById('dash-date-filter').value || getTodayStr();
-    const jenjangVal = document.getElementById('dash-jenjang-filter').value;
-    const records = await DB.fetchPresensiByDate(dateVal);
+    const dateVal = document.getElementById('dash-date-filter')?.value || getTodayStr();
+    const jenjangVal = document.getElementById('dash-jenjang-filter')?.value || 'ALL';
 
-    const filteredSiswa = jenjangVal === 'ALL'
+    const students = jenjangVal === 'ALL'
       ? appState.siswaList
       : appState.siswaList.filter(s => s.jenjang === jenjangVal);
-    const filteredRecords = jenjangVal === 'ALL'
-      ? records
-      : records.filter(r => r.siswa?.jenjang === jenjangVal);
+    const totalSiswa = students.length;
 
-    const totalSiswa = filteredSiswa.length;
+    document.getElementById('dash-jenjang-label').textContent = jenjangVal === 'ALL' ? 'Semua' : jenjangVal;
     document.getElementById('dash-total-siswa').textContent = totalSiswa;
-    document.getElementById('dash-jenjang-label').textContent = jenjangVal === 'ALL' ? 'Semua Jenjang' : jenjangVal;
+
+    const presensiAll = await DB.fetchPresensiByDate(dateVal);
+    const presensiFiltered = jenjangVal === 'ALL'
+      ? presensiAll
+      : presensiAll.filter(p => p.siswa?.jenjang === jenjangVal);
 
     const sessions = [
-      { key: 'Makan Pagi', icon: 'fa-sun', color: '#f59e0b', bg: '#fef3c7' },
-      { key: 'Snack Pagi', icon: 'fa-cookie-bite', color: '#0284c7', bg: '#e0f2fe' },
-      { key: 'Makan Siang', icon: 'fa-utensils', color: '#2563eb', bg: '#dbeafe' },
-      { key: 'Snack Sore', icon: 'fa-mug-hot', color: '#8b5cf6', bg: '#ede9fe' },
-      { key: 'Makan Malam', icon: 'fa-moon', color: '#4f46e5', bg: '#e0e7ff' }
+      { name: 'Makan Pagi', icon: 'fa-sun', color: '#ea580c', bg: '#ffedd5' },
+      { name: 'Snack Pagi', icon: 'fa-cookie-bite', color: '#d97706', bg: '#fef3c7' },
+      { name: 'Makan Siang', icon: 'fa-utensils', color: '#2563eb', bg: '#dbeafe' },
+      { name: 'Snack Sore', icon: 'fa-mug-hot', color: '#7c3aed', bg: '#ede9fe' },
+      { name: 'Makan Malam', icon: 'fa-moon', color: '#0f172a', bg: '#e2e8f0' }
     ];
 
-    const grid = document.getElementById('dash-stats-grid');
-    grid.innerHTML = sessions.map(s => {
-      const count = filteredRecords.filter(r => r.jenis_konsumsi === s.key).length;
-      const pct = totalSiswa > 0 ? Math.min(100, Math.round((count / totalSiswa) * 100)) : 0;
-      return `
-        <div class="glass-card stat-card">
-          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-            <div class="stat-icon" style="background:${s.bg}; color:${s.color};">
+    const statsGrid = document.getElementById('dash-stats-grid');
+    if (statsGrid) {
+      statsGrid.innerHTML = sessions.map(s => {
+        const count = presensiFiltered.filter(p => p.jenis_konsumsi === s.name).length;
+        const pct = totalSiswa > 0 ? Math.min(100, Math.round((count / totalSiswa) * 100)) : 0;
+        return `
+          <div class="glass-card stat-card">
+            <div class="stat-icon" style="background:${s.bg};color:${s.color};">
               <i class="fa-solid ${s.icon}"></i>
             </div>
-            <span class="badge badge-slate">${pct}%</span>
-          </div>
-          <div class="stat-value">${count} <span style="font-size:0.9rem; font-weight:600; color:var(--slate-400);">/ ${totalSiswa}</span></div>
-          <div class="stat-label">${s.key}</div>
-          <div class="progress-track">
-            <div class="progress-fill" style="width:${pct}%;"></div>
-          </div>
-        </div>
-      `;
-    }).join('');
-
-    const tbody = document.getElementById('dash-recent-tbody');
-    if (filteredRecords.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:var(--slate-400); padding:24px;">Belum ada aktivitas scan pada tanggal & filter ini.</td></tr>`;
-      return;
-    }
-
-    tbody.innerHTML = filteredRecords.slice(0, 12).map(r => `
-      <tr>
-        <td style="font-weight:700;">${formatTime(r.waktu_scan)}</td>
-        <td>
-          <div style="display:flex; align-items:center; gap:10px;">
-            <img src="${getStudentPhotoUrl(r.siswa)}" alt="Foto" class="student-avatar" style="width:36px; height:36px; border-radius:9px;">
-            <div>
-              <div style="font-weight:700; color:var(--slate-900);">${r.siswa?.nama_lengkap || '-'}</div>
-              <div style="font-size:0.75rem; color:var(--slate-500);">NIK: ${r.siswa?.nik || '-'}</div>
+            <div class="stat-value">${count} <span style="font-size:0.95rem;font-weight:600;color:var(--slate-400);">/ ${totalSiswa}</span></div>
+            <div class="stat-label">${s.name} (${pct}%)</div>
+            <div class="progress-track">
+              <div class="progress-fill" style="width:${pct}%;"></div>
             </div>
           </div>
-        </td>
-        <td><span class="badge badge-slate">${r.siswa?.jenjang || '-'} • ${r.siswa?.kelas || '-'}</span></td>
-        <td><span class="badge badge-emerald">${r.jenis_konsumsi}</span></td>
-        <td>${r.ttd_base64 ? `<img src="${r.ttd_base64}" class="ttd-thumb" alt="TTD">` : '-'}</td>
-      </tr>
-    `).join('');
-  }
-
-  // ============================================================================
-  // 10. SCANNER QR & TANDA TANGAN DIGITAL
-  // ============================================================================
-  function detectAutoMealSession() {
-    const hour = new Date().getHours();
-    let detected = 'Makan Pagi';
-    if (hour >= 5 && hour < 9) detected = 'Makan Pagi';
-    else if (hour >= 9 && hour < 11) detected = 'Snack Pagi';
-    else if (hour >= 11 && hour < 14) detected = 'Makan Siang';
-    else if (hour >= 14 && hour < 17) detected = 'Snack Sore';
-    else detected = 'Makan Malam';
-    setActiveSessionPill(detected);
-  }
-
-  function setActiveSessionPill(sessionName) {
-    appState.selectedSession = sessionName;
-    document.querySelectorAll('.session-pill').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.session === sessionName);
-    });
-  }
-
-  document.getElementById('session-pills-container').addEventListener('click', (e) => {
-    const btn = e.target.closest('.session-pill');
-    if (btn) {
-      setActiveSessionPill(btn.dataset.session);
-      document.getElementById('auto-session-hint').textContent = 'Dipilih manual';
+        `;
+      }).join('');
     }
-  });
 
-  document.getElementById('btn-start-camera').addEventListener('click', startQrCamera);
-  document.getElementById('btn-stop-camera').addEventListener('click', stopQrCamera);
+    const tbody = document.getElementById('dash-recent-tbody');
+    if (tbody) {
+      if (presensiFiltered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:var(--slate-400);padding:22px;">Belum ada aktivitas scan pada tanggal ini.</td></tr>`;
+      } else {
+        tbody.innerHTML = presensiFiltered.slice(0, 12).map(p => `
+          <tr>
+            <td><strong>${formatTime(p.waktu_scan)}</strong></td>
+            <td>
+              <div style="font-weight:700;color:var(--slate-900);">${p.siswa?.nama_lengkap || '-'}</div>
+              <div style="font-size:0.76rem;color:var(--slate-500);font-family:monospace;">${p.siswa?.nik || '-'}</div>
+            </td>
+            <td><span class="badge badge-slate">${p.siswa?.jenjang || '-'}</span> ${p.siswa?.kelas || ''}</td>
+            <td><span class="badge badge-emerald">${p.jenis_konsumsi}</span></td>
+            <td>${p.ttd_base64 ? `<img src="${p.ttd_base64}" class="ttd-thumb" alt="TTD">` : '<span style="color:var(--slate-400);">-</span>'}</td>
+          </tr>
+        `).join('');
+      }
+    }
+  }
+
+  document.getElementById('dash-date-filter')?.addEventListener('change', renderDashboard);
+  document.getElementById('dash-jenjang-filter')?.addEventListener('change', renderDashboard);
+
+  // ============================================================================
+  // 9. SCANNER QR, TTD DIGITAL & KETERANGAN KETIDAKHADIRAN
+  // ============================================================================
+  function detectAutoSession() {
+    const hour = new Date().getHours();
+    let session = 'Makan Pagi';
+    if (hour >= 5 && hour < 9) session = 'Makan Pagi';
+    else if (hour >= 9 && hour < 11) session = 'Snack Pagi';
+    else if (hour >= 11 && hour < 15) session = 'Makan Siang';
+    else if (hour >= 15 && hour < 18) session = 'Snack Sore';
+    else session = 'Makan Malam';
+
+    appState.selectedSession = session;
+    const sel = document.getElementById('scan-session-select');
+    if (sel) sel.value = session;
+  }
+
+  document.getElementById('scan-session-select')?.addEventListener('change', (e) => {
+    appState.selectedSession = e.target.value;
+    const hint = document.getElementById('auto-session-hint');
+    if (hint) hint.textContent = 'Dipilih manual';
+  });
 
   async function startQrCamera() {
     if (appState.isCameraRunning) return;
-    if (!window.Html5Qrcode) {
+    if (typeof Html5Qrcode === 'undefined') {
       showToast('Library kamera QR belum termuat.', 'error');
       return;
     }
-
     try {
       appState.qrScannerInstance = new Html5Qrcode('qr-reader');
       await appState.qrScannerInstance.start(
@@ -3234,16 +3015,16 @@
         { fps: 10, qrbox: { width: 220, height: 220 } },
         (decodedText) => {
           if (!appState.isProcessingScan) {
-            processScannedNik(decodedText.trim());
+            handleScannedNik(decodedText.trim());
           }
         },
         () => {}
       );
       appState.isCameraRunning = true;
-      document.getElementById('btn-start-camera').classList.add('hidden');
-      document.getElementById('btn-stop-camera').classList.remove('hidden');
+      document.getElementById('btn-start-camera')?.classList.add('hidden');
+      document.getElementById('btn-stop-camera')?.classList.remove('hidden');
     } catch (err) {
-      showToast('Tidak dapat mengakses kamera: ' + err, 'error');
+      showToast('Gagal mengakses kamera: ' + err, 'error');
     }
   }
 
@@ -3251,225 +3032,295 @@
     if (!appState.isCameraRunning || !appState.qrScannerInstance) return;
     try {
       await appState.qrScannerInstance.stop();
-      appState.qrScannerInstance.clear();
+      await appState.qrScannerInstance.clear();
     } catch (_) {}
     appState.isCameraRunning = false;
-    document.getElementById('btn-start-camera').classList.remove('hidden');
-    document.getElementById('btn-stop-camera').classList.add('hidden');
+    appState.qrScannerInstance = null;
+    document.getElementById('btn-stop-camera')?.classList.add('hidden');
+    document.getElementById('btn-start-camera')?.classList.remove('hidden');
   }
 
-  document.getElementById('form-manual-scan').addEventListener('submit', (e) => {
+  document.getElementById('btn-start-camera')?.addEventListener('click', startQrCamera);
+  document.getElementById('btn-stop-camera')?.addEventListener('click', stopQrCamera);
+
+  document.getElementById('form-manual-scan')?.addEventListener('submit', (e) => {
     e.preventDefault();
-    const input = document.getElementById('manual-nisn-input');
-    const val = input.value.trim();
-    if (val) {
-      processScannedNik(val);
-      input.value = '';
-    }
+    const inp = document.getElementById('manual-nisn-input');
+    const nikVal = inp.value.trim();
+    if (!nikVal) return;
+    inp.value = '';
+    handleScannedNik(nikVal);
   });
 
-  async function processScannedNik(nikCode) {
+  async function handleScannedNik(nik) {
     appState.isProcessingScan = true;
-
-    const student = appState.siswaList.find(s => s.nik === nikCode);
+    const student = appState.siswaList.find(s => s.nik === nik);
     if (!student) {
-      showToast(`NIK "${nikCode}" tidak ditemukan dalam database siswa!`, 'error');
-      setTimeout(() => { appState.isProcessingScan = false; }, 1400);
+      showToast(`Siswa dengan NIK "${nik}" tidak ditemukan.`, 'error');
+      setTimeout(() => { appState.isProcessingScan = false; }, 1200);
       return;
     }
 
-    const today = getTodayStr();
-    const alreadyScanned = appState.todayPresensi.some(
-      p => p.siswa_id === student.id && p.jenis_konsumsi === appState.selectedSession
-    );
+    const session = appState.selectedSession || document.getElementById('scan-session-select')?.value || 'Makan Pagi';
+    const autoTtd = document.getElementById('toggle-auto-ttd')?.checked;
 
-    if (alreadyScanned) {
-      showToast(`${student.nama_lengkap} sudah tercatat untuk ${appState.selectedSession}!`, 'error');
-      setTimeout(() => { appState.isProcessingScan = false; }, 1500);
-      return;
+    if (autoTtd && student.ttd_master_base64) {
+      await finalizeScanRecord(student, session, student.ttd_master_base64);
+    } else {
+      appState.pendingScanStudent = student;
+      document.getElementById('scan-ttd-student-photo').src = getStudentPhotoUrl(student);
+      document.getElementById('scan-ttd-session-label').textContent = `Sesi: ${session}`;
+      document.getElementById('scan-ttd-student-name').textContent = student.nama_lengkap;
+      document.getElementById('scan-ttd-student-nik').textContent = `NIK: ${student.nik}`;
+      document.getElementById('scan-ttd-student-meta').textContent = `${student.jenjang} • ${student.kelas}`;
+      scanSigPad.clear();
+      document.getElementById('modal-scan-ttd').classList.remove('hidden');
     }
-
-    const useAutoTtd = document.getElementById('toggle-auto-ttd').checked;
-    if (useAutoTtd && student.ttd_master_base64) {
-      try {
-        await savePresensiRecord(student, student.ttd_master_base64);
-      } finally {
-        setTimeout(() => { appState.isProcessingScan = false; }, 1200);
-      }
-      return;
-    }
-
-    appState.pendingScanStudent = student;
-    document.getElementById('scan-ttd-session-label').textContent = `Sesi: ${appState.selectedSession}`;
-    document.getElementById('scan-ttd-student-name').textContent = student.nama_lengkap;
-    document.getElementById('scan-ttd-student-nik').textContent = `NIK: ${student.nik}`;
-    document.getElementById('scan-ttd-student-meta').textContent =
-      `Jenjang ${student.jenjang} • ${student.kelas} (${student.jenis_kelamin === 'L' ? 'Laki-laki' : 'Perempuan'})`;
-    document.getElementById('scan-ttd-student-photo').src = getStudentPhotoUrl(student);
-
-    scanSigPad.clear();
-    document.getElementById('modal-scan-ttd').classList.remove('hidden');
   }
 
-  document.getElementById('btn-save-scan-sig').addEventListener('click', async () => {
+  document.getElementById('btn-save-scan-sig')?.addEventListener('click', async () => {
     const student = appState.pendingScanStudent;
     if (!student) return;
     const sigData = scanSigPad.toDataURL();
     if (!sigData) {
-      showToast('Siswa wajib membubuhkan tanda tangan terlebih dahulu!', 'error');
+      showToast('Silakan isi tanda tangan siswa terlebih dahulu.', 'error');
       return;
     }
-    await savePresensiRecord(student, sigData);
-    window.closeModal('modal-scan-ttd');
+    const session = appState.selectedSession || document.getElementById('scan-session-select')?.value || 'Makan Pagi';
+    document.getElementById('modal-scan-ttd').classList.add('hidden');
+    await finalizeScanRecord(student, session, sigData);
   });
 
-  async function savePresensiRecord(student, ttdBase64) {
+  async function finalizeScanRecord(student, session, ttdBase64) {
     try {
-      await DB.insertPresensi({
+      const saved = await DB.insertPresensi({
         siswa_id: student.id,
         tanggal: getTodayStr(),
-        jenis_konsumsi: appState.selectedSession,
+        jenis_konsumsi: session,
         ttd_base64: ttdBase64,
-        petugas_nama: appState.currentUser?.name || 'Petugas'
+        petugas_nama: appState.currentUser?.name || '-'
       });
 
-      const spotlightEl = document.getElementById('scan-last-spotlight');
-      if (spotlightEl) {
-        spotlightEl.classList.remove('hidden');
-        spotlightEl.innerHTML = `
-          <div style="display:flex; align-items:center; gap:14px;">
-            <img src="${getStudentPhotoUrl(student)}" alt="Foto Siswa" class="scan-profile-photo">
-            <div style="flex:1; min-width:0;">
-              <div style="display:flex; align-items:center; justify-content:space-between; gap:6px; margin-bottom:4px;">
-                <span class="badge badge-emerald"><i class="fa-solid fa-circle-check"></i> ${appState.selectedSession}</span>
-                <span style="font-size:0.74rem; font-weight:700; color:var(--slate-500);">${formatTime(new Date().toISOString())}</span>
-              </div>
-              <div style="font-size:1.05rem; font-weight:800; color:var(--slate-900);">${student.nama_lengkap}</div>
-              <div style="font-size:0.78rem; font-weight:700; color:var(--primary-dark);">NIK: ${student.nik}</div>
-              <div style="font-size:0.76rem; color:var(--slate-600);">Jenjang ${student.jenjang} • ${student.kelas}</div>
+      const scanTimeStr = formatTime(saved?.waktu_scan || new Date().toISOString());
+
+      // Tampilkan Spotlight di halaman scanner
+      const spotlight = document.getElementById('scan-last-spotlight');
+      if (spotlight) {
+        spotlight.innerHTML = `
+          <div style="display:flex;align-items:center;gap:14px;">
+            <img src="${getStudentPhotoUrl(student)}" class="scan-profile-photo" alt="Foto">
+            <div style="flex:1;min-width:0;">
+              <span class="badge badge-emerald" style="margin-bottom:4px;"><i class="fa-solid fa-check"></i> ${session} • ${scanTimeStr}</span>
+              <div style="font-size:1.05rem;font-weight:800;color:var(--slate-900);">${student.nama_lengkap}</div>
+              <div style="font-size:0.8rem;font-family:monospace;color:var(--primary-dark);font-weight:700;">${student.nik}</div>
+              <div style="font-size:0.78rem;color:var(--slate-600);">${student.jenjang} • ${student.kelas}</div>
             </div>
           </div>
         `;
+        spotlight.classList.remove('hidden');
       }
 
-      showToast(`Presensi ${student.nama_lengkap} (${appState.selectedSession}) tersimpan!`);
+      // Tampilkan Pop-up Informasi Lengkap Siswa
+      document.getElementById('popup-scan-photo').src = getStudentPhotoUrl(student);
+      document.getElementById('popup-scan-nama').textContent = student.nama_lengkap;
+      document.getElementById('popup-scan-nik').textContent = `NIK: ${student.nik}`;
+      document.getElementById('popup-scan-jk').textContent = student.jenis_kelamin === 'L' ? 'Laki-laki' : 'Perempuan';
+      document.getElementById('popup-scan-jenjang').textContent = student.jenjang;
+      document.getElementById('popup-scan-asrama').textContent = student.kelas;
+      document.getElementById('popup-scan-sesi').textContent = session;
+      document.getElementById('popup-scan-waktu').textContent = scanTimeStr;
+      document.getElementById('modal-scan-success-popup').classList.remove('hidden');
+
       await renderScannerFeed();
     } catch (err) {
       showToast(err.message, 'error');
+      appState.isProcessingScan = false;
+      appState.pendingScanStudent = null;
     }
   }
 
   async function renderScannerFeed() {
-    const todayStr = getTodayStr();
-    const [todayPr, ketList] = await Promise.all([
-      DB.fetchPresensiByDate(todayStr),
-      DB.fetchKeteranganByDate(todayStr)
+    const today = getTodayStr();
+    const [presensiList, ketList] = await Promise.all([
+      DB.fetchPresensiByDate(today),
+      DB.fetchKeteranganByDate(today)
     ]);
-    appState.todayPresensi = todayPr;
-    document.getElementById('scanner-today-count').textContent = `${appState.todayPresensi.length} hadir • ${ketList.length} ket.`;
+    appState.todayPresensi = presensiList;
 
-    const feed = document.getElementById('scanner-live-feed');
-    if (appState.todayPresensi.length === 0 && ketList.length === 0) {
-      feed.innerHTML = `
-        <div style="text-align:center; padding:32px 16px; color:var(--slate-400);">
-          <i class="fa-solid fa-qrcode" style="font-size:2rem; margin-bottom:8px;"></i>
-          <p style="font-size:0.86rem;">Belum ada siswa yang di-scan atau dicatat keterangannya hari ini.</p>
-        </div>
-      `;
+    const totalTercatat = presensiList.length + ketList.length;
+    const countBadge = document.getElementById('scanner-today-count');
+    if (countBadge) countBadge.textContent = `${totalTercatat} tercatat`;
+
+    const feedEl = document.getElementById('scanner-live-feed');
+    if (!feedEl) return;
+
+    if (totalTercatat === 0) {
+      feedEl.innerHTML = `<div style="text-align:center;color:var(--slate-400);padding:28px 12px;font-size:0.86rem;">Belum ada presensi atau keterangan tercatat hari ini.</div>`;
       return;
     }
 
-    const ketCardsHtml = ketList.map(k => {
-      const siswa = appState.siswaList.find(s => s.id === k.siswa_id) || {};
+    const ketHtml = ketList.map(k => {
+      const s = appState.siswaList.find(item => item.id === k.siswa_id);
       return `
-        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 14px; background:#fffbeb; border:1px solid #fde68a; border-radius:12px;">
-          <div style="display:flex; align-items:center; gap:10px; min-width:0;">
-            <img src="${getStudentPhotoUrl(siswa)}" alt="Foto" class="student-avatar">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;background:#fffbeb;border:1px solid #fde68a;border-radius:12px;">
+          <div style="display:flex;align-items:center;gap:10px;min-width:0;">
+            <img src="${getStudentPhotoUrl(s)}" class="student-avatar" style="width:38px;height:38px;" alt="Foto">
             <div style="min-width:0;">
-              <div style="font-weight:700; font-size:0.9rem; color:var(--slate-900); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${siswa.nama_lengkap || '-'}</div>
-              <div style="font-size:0.75rem; color:var(--slate-600);">${siswa.jenjang || '-'} • ${siswa.kelas || '-'}</div>
-              <span class="badge badge-amber" style="margin-top:4px;"><i class="fa-solid fa-user-clock"></i> ${k.keterangan}</span>
+              <div style="font-weight:700;font-size:0.88rem;color:var(--slate-900);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${s?.nama_lengkap || '-'}</div>
+              <div style="font-size:0.74rem;color:var(--slate-500);">${s?.jenjang || '-'} • ${s?.kelas || '-'}</div>
             </div>
           </div>
-          <button type="button" class="btn btn-outline btn-sm" title="Edit Keterangan" onclick="window.openKetAbsenModal('${k.siswa_id}')">
-            <i class="fa-solid fa-pen"></i>
-          </button>
+          <span class="badge badge-amber">${k.keterangan}</span>
         </div>
       `;
     }).join('');
 
-    const presensiCardsHtml = appState.todayPresensi.map(item => `
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 14px; background:#fff; border:1px solid var(--slate-200); border-radius:12px;">
-        <div style="display:flex; align-items:center; gap:10px; min-width:0;">
-          <img src="${getStudentPhotoUrl(item.siswa)}" alt="Foto" class="student-avatar">
+    const scanHtml = presensiList.map(p => `
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;background:var(--slate-50);border:1px solid var(--slate-200);border-radius:12px;">
+        <div style="display:flex;align-items:center;gap:10px;min-width:0;">
+          <img src="${getStudentPhotoUrl(p.siswa)}" class="student-avatar" style="width:38px;height:38px;" alt="Foto">
           <div style="min-width:0;">
-            <div style="font-weight:700; font-size:0.9rem; color:var(--slate-900); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${item.siswa?.nama_lengkap || '-'}</div>
-            <div style="font-size:0.75rem; color:var(--slate-500);">${item.siswa?.jenjang || '-'} • ${item.siswa?.kelas || '-'} • ${formatTime(item.waktu_scan)}</div>
-            <span class="badge badge-emerald" style="margin-top:4px;">${item.jenis_konsumsi}</span>
+            <div style="font-weight:700;font-size:0.88rem;color:var(--slate-900);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${p.siswa?.nama_lengkap || '-'}</div>
+            <div style="font-size:0.74rem;color:var(--slate-500);">${formatTime(p.waktu_scan)} • ${p.siswa?.jenjang || '-'}</div>
           </div>
         </div>
-        ${item.ttd_base64 ? `<img src="${item.ttd_base64}" class="ttd-thumb" alt="TTD">` : ''}
+        <span class="badge badge-emerald">${p.jenis_konsumsi}</span>
       </div>
     `).join('');
 
-    feed.innerHTML = ketCardsHtml + presensiCardsHtml;
+    feedEl.innerHTML = ketHtml + scanHtml;
   }
 
-  // ============================================================================
-  // 11. DATA MASTER SISWA, UPLOAD EXCEL/CSV & KARTU PELAJAR QR
-  // ============================================================================
-  document.getElementById('search-siswa-input').addEventListener('input', renderSiswaTable);
-  document.getElementById('filter-siswa-jenjang').addEventListener('change', renderSiswaTable);
+  // Modal Keterangan Ketidakhadiran di Menu Scan QR
+  function populateKetAbsenSiswaOptions(keyword = '') {
+    const sel = document.getElementById('ket-absen-siswa-select');
+    if (!sel) return;
+    const q = keyword.trim().toLowerCase();
+    const filtered = appState.siswaList.filter(s =>
+      !q ||
+      s.nama_lengkap.toLowerCase().includes(q) ||
+      s.nik.toLowerCase().includes(q) ||
+      s.jenjang.toLowerCase().includes(q) ||
+      (s.kelas || '').toLowerCase().includes(q)
+    );
+    if (filtered.length === 0) {
+      sel.innerHTML = `<option value="">-- Siswa tidak ditemukan --</option>`;
+      return;
+    }
+    sel.innerHTML = filtered.map(s => `
+      <option value="${s.id}">${s.nama_lengkap} — ${s.jenjang} (${s.kelas})</option>
+    `).join('');
+  }
 
-  function getFilteredSiswaList() {
-    const query = document.getElementById('search-siswa-input').value.toLowerCase().trim();
-    const jenjangFilter = document.getElementById('filter-siswa-jenjang').value;
+  document.getElementById('btn-open-scan-ket-absen')?.addEventListener('click', () => {
+    const today = getTodayStr();
+    document.getElementById('ket-absen-search-input').value = '';
+    document.getElementById('ket-absen-input').value = '';
+    document.getElementById('ket-absen-tanggal-label').textContent = `Tanggal Absen: ${formatTanggalIndonesia(today)}`;
+    populateKetAbsenSiswaOptions('');
+    document.getElementById('modal-ket-absen').classList.remove('hidden');
+  });
 
-    return appState.siswaList.filter(s => {
-      const matchJenjang = jenjangFilter === 'ALL' || s.jenjang === jenjangFilter;
-      const matchQuery =
-        s.nama_lengkap.toLowerCase().includes(query) ||
-        s.nik.toLowerCase().includes(query) ||
-        (s.kelas || '').toLowerCase().includes(query);
-      return matchJenjang && matchQuery;
+  document.getElementById('ket-absen-search-input')?.addEventListener('input', (e) => {
+    populateKetAbsenSiswaOptions(e.target.value);
+  });
+
+  document.querySelectorAll('.ket-quick-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById('ket-absen-input').value = btn.dataset.val || '';
+    });
+  });
+
+  document.getElementById('form-ket-absen')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const siswaId = document.getElementById('ket-absen-siswa-select').value;
+    const ketVal = document.getElementById('ket-absen-input').value.trim();
+    if (!siswaId) {
+      showToast('Pilih siswa terlebih dahulu.', 'error');
+      return;
+    }
+    try {
+      await DB.upsertKeterangan(siswaId, getTodayStr(), ketVal);
+      window.closeModal('modal-ket-absen');
+      await renderScannerFeed();
+      showToast(ketVal ? `Keterangan "${ketVal}" berhasil disimpan.` : 'Keterangan dihapus.');
+    } catch (err) {
+      showToast(err.message, 'error');
+    }
+  });
+
+  // ============================================================================
+  // 10. MANAJEMEN DATA SISWA, UPLOAD EXCEL & KARTU PELAJAR QR
+  // ============================================================================
+  function compressImageFile(file, maxSize = 260) {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          let w = img.width;
+          let h = img.height;
+          if (w > h && w > maxSize) {
+            h = Math.round((h * maxSize) / w);
+            w = maxSize;
+          } else if (h >= w && h > maxSize) {
+            w = Math.round((w * maxSize) / h);
+            h = maxSize;
+          }
+          canvas.width = w;
+          canvas.height = h;
+          canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+          resolve(canvas.toDataURL('image/jpeg', 0.85));
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
     });
   }
 
   function renderSiswaTable() {
-    const filtered = getFilteredSiswaList();
     const tbody = document.getElementById('siswa-tbody');
+    if (!tbody) return;
+    const search = (document.getElementById('search-siswa-input')?.value || '').toLowerCase();
+    const jenjang = document.getElementById('filter-siswa-jenjang')?.value || 'ALL';
+
+    const filtered = appState.siswaList.filter(s => {
+      const matchJenjang = jenjang === 'ALL' || s.jenjang === jenjang;
+      const matchSearch = !search ||
+        s.nama_lengkap.toLowerCase().includes(search) ||
+        s.nik.toLowerCase().includes(search) ||
+        (s.kelas || '').toLowerCase().includes(search);
+      return matchJenjang && matchSearch;
+    });
 
     if (filtered.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:24px; color:var(--slate-400);">Tidak ada data siswa ditemukan.</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--slate-400);padding:24px;">Tidak ada data siswa yang sesuai.</td></tr>`;
       return;
     }
 
     tbody.innerHTML = filtered.map(s => `
       <tr>
         <td>
-          <div style="display:flex; align-items:center; gap:10px;">
-            <img src="${getStudentPhotoUrl(s)}" alt="Foto" class="student-avatar" style="width:38px; height:38px; border-radius:10px;">
-            <span style="font-weight:700; color:var(--slate-900);">${s.nik}</span>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <img src="${getStudentPhotoUrl(s)}" class="student-avatar" alt="Foto">
+            <span style="font-family:monospace;font-size:0.82rem;font-weight:700;">${s.nik}</span>
           </div>
         </td>
-        <td style="font-weight:600;">${s.nama_lengkap}</td>
-        <td><span class="badge badge-slate">${s.jenis_kelamin || '-'}</span></td>
+        <td><strong>${s.nama_lengkap}</strong></td>
+        <td>${s.jenis_kelamin}</td>
         <td><span class="badge badge-emerald">${s.jenjang}</span></td>
-        <td>${s.kelas || '-'}</td>
+        <td>${s.kelas}</td>
+        <td>${s.ttd_master_base64 ? `<img src="${s.ttd_master_base64}" class="ttd-thumb" alt="TTD">` : '<span style="color:var(--slate-400);font-size:0.78rem;">Manual saat scan</span>'}</td>
         <td>
-          ${s.ttd_master_base64
-            ? `<img src="${s.ttd_master_base64}" class="ttd-thumb" alt="Spesimen TTD">`
-            : `<span style="font-size:0.75rem; color:var(--slate-400);">Belum ada</span>`}
-        </td>
-        <td>
-          <div style="display:flex; gap:6px;">
-            <button type="button" class="btn btn-outline btn-sm" title="Lihat Kartu Pelajar QR" onclick="window.openQrCard('${s.id}')">
-              <i class="fa-solid fa-id-card"></i>
+          <div style="display:flex;gap:6px;">
+            <button type="button" class="btn btn-outline btn-sm" title="Kartu QR" onclick="window.openQrCardModal('${s.id}')">
+              <i class="fa-solid fa-qrcode" style="color:var(--primary);"></i>
             </button>
-            <button type="button" class="btn btn-outline btn-sm" title="Edit Siswa" onclick="window.openEditSiswa('${s.id}')">
+            <button type="button" class="btn btn-outline btn-sm" title="Edit" onclick="window.openEditSiswa('${s.id}')">
               <i class="fa-solid fa-pen"></i>
             </button>
-            <button type="button" class="btn btn-danger btn-sm" title="Hapus Siswa" onclick="window.removeSiswa('${s.id}')">
+            <button type="button" class="btn btn-danger btn-sm" title="Hapus" onclick="window.deleteSiswaItem('${s.id}')">
               <i class="fa-solid fa-trash"></i>
             </button>
           </div>
@@ -3478,26 +3329,15 @@
     `).join('');
   }
 
-  document.getElementById('siswa-foto-file').addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    compressLogoFile(file, (dataUrl) => {
-      document.getElementById('siswa-foto-data').value = dataUrl;
-      document.getElementById('siswa-foto-preview').src = dataUrl;
-    });
-  });
+  document.getElementById('search-siswa-input')?.addEventListener('input', renderSiswaTable);
+  document.getElementById('filter-siswa-jenjang')?.addEventListener('change', renderSiswaTable);
 
-  document.getElementById('btn-open-add-siswa').addEventListener('click', () => {
+  document.getElementById('btn-open-add-siswa')?.addEventListener('click', () => {
     document.getElementById('modal-siswa-title').textContent = 'Tambah Data Siswa';
+    document.getElementById('form-siswa').reset();
     document.getElementById('siswa-id').value = '';
     document.getElementById('siswa-foto-data').value = '';
-    document.getElementById('siswa-foto-file').value = '';
     document.getElementById('siswa-foto-preview').src = getStudentPhotoUrl({ nama_lengkap: 'Siswa' });
-    document.getElementById('siswa-nik').value = '';
-    document.getElementById('siswa-nama').value = '';
-    document.getElementById('siswa-jk').value = 'L';
-    document.getElementById('siswa-jenjang').value = 'SRD';
-    document.getElementById('siswa-kelas').value = '';
     masterSigPad.clear();
     document.getElementById('modal-form-siswa').classList.remove('hidden');
   });
@@ -3508,389 +3348,223 @@
     document.getElementById('modal-siswa-title').textContent = 'Edit Data Siswa';
     document.getElementById('siswa-id').value = s.id;
     document.getElementById('siswa-foto-data').value = s.foto_url || '';
-    document.getElementById('siswa-foto-file').value = '';
     document.getElementById('siswa-foto-preview').src = getStudentPhotoUrl(s);
     document.getElementById('siswa-nik').value = s.nik;
     document.getElementById('siswa-nama').value = s.nama_lengkap;
-    document.getElementById('siswa-jk').value = s.jenis_kelamin || 'L';
+    document.getElementById('siswa-jk').value = s.jenis_kelamin;
     document.getElementById('siswa-jenjang').value = s.jenjang;
-    document.getElementById('siswa-kelas').value = s.kelas || '';
-    masterSigPad.loadDataUrl(s.ttd_master_base64 || '');
+    document.getElementById('siswa-kelas').value = s.kelas;
+    masterSigPad.loadDataURL(s.ttd_master_base64 || '');
     document.getElementById('modal-form-siswa').classList.remove('hidden');
   };
 
-  document.getElementById('form-siswa').addEventListener('submit', async (e) => {
+  document.getElementById('siswa-foto-file')?.addEventListener('change', async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const dataUrl = await compressImageFile(file, 260);
+    document.getElementById('siswa-foto-data').value = dataUrl;
+    document.getElementById('siswa-foto-preview').src = dataUrl;
+  });
+
+  document.getElementById('form-siswa')?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const id = document.getElementById('siswa-id').value;
     const payload = {
+      id: document.getElementById('siswa-id').value || undefined,
       nik: document.getElementById('siswa-nik').value.trim(),
       nama_lengkap: document.getElementById('siswa-nama').value.trim(),
       jenis_kelamin: document.getElementById('siswa-jk').value,
       jenjang: document.getElementById('siswa-jenjang').value,
       kelas: document.getElementById('siswa-kelas').value.trim(),
       foto_url: document.getElementById('siswa-foto-data').value || '',
-      ttd_master_base64: masterSigPad.toDataURL()
+      ttd_master_base64: masterSigPad.toDataURL() || ''
     };
-
     try {
-      await DB.upsertSiswa(payload, id || null);
-      await refreshAllData();
-      renderSiswaTable();
+      await DB.upsertSiswa(payload);
+      appState.siswaList = await DB.fetchSiswa();
       window.closeModal('modal-form-siswa');
-      showToast(id ? 'Data siswa berhasil diperbarui!' : 'Siswa baru berhasil ditambahkan!');
+      renderSiswaTable();
+      showToast('Data siswa berhasil disimpan.');
     } catch (err) {
       showToast(err.message, 'error');
     }
   });
 
-  window.removeSiswa = async function(id) {
+  window.deleteSiswaItem = async function(id) {
     try {
       await DB.deleteSiswa(id);
-      await refreshAllData();
+      appState.siswaList = await DB.fetchSiswa();
       renderSiswaTable();
-      showToast('Data siswa telah dihapus.');
+      showToast('Data siswa dihapus.');
     } catch (err) {
       showToast(err.message, 'error');
     }
   };
 
-  // Upload Siswa Excel / CSV
-  let parsedUploadSiswaRows = [];
-
-  document.getElementById('btn-open-upload-siswa').addEventListener('click', () => {
-    parsedUploadSiswaRows = [];
+  // Upload Excel / CSV Siswa
+  let parsedUploadSiswa = [];
+  document.getElementById('btn-open-upload-siswa')?.addEventListener('click', () => {
+    parsedUploadSiswa = [];
     document.getElementById('input-file-siswa').value = '';
     document.getElementById('upload-preview-wrap').classList.add('hidden');
     document.getElementById('btn-confirm-upload-siswa').disabled = true;
     document.getElementById('modal-upload-siswa').classList.remove('hidden');
   });
 
-  document.getElementById('btn-download-template-siswa').addEventListener('click', () => {
-    if (!window.XLSX) {
-      showToast('Library Excel belum termuat.', 'error');
-      return;
-    }
-    const sampleRows = [
-      { 'NIK': '7308011205120010', 'Nama Siswa': 'Budi Santoso', 'Jenis Kelamin': 'L', 'Jenjang': 'SRD', 'Asrama': 'Asrama Putra A' },
-      { 'NIK': '7308015408120011', 'Nama Siswa': 'Rahmawati', 'Jenis Kelamin': 'P', 'Jenjang': 'SRMP', 'Asrama': 'Asrama Putri B' }
+  document.getElementById('btn-download-template-siswa')?.addEventListener('click', () => {
+    const rows = [
+      { 'NIK': '7308011205120010', 'Nama Siswa': 'Contoh Nama Siswa', 'Jenis Kelamin': 'L', 'Jenjang': 'SRD', 'Asrama': 'Asrama Putra A' }
     ];
-    const ws = XLSX.utils.json_to_sheet(sampleRows);
+    const ws = XLSX.utils.json_to_sheet(rows);
     const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Template_Siswa');
-    XLSX.writeFile(wb, 'Template_Upload_Siswa_SIMANTAP.xlsx');
+    XLSX.utils.book_append_sheet(wb, ws, 'Template Siswa');
+    XLSX.writeFile(wb, 'Template_Import_Siswa_SIMANTAP.xlsx');
   });
 
-  document.getElementById('input-file-siswa').addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (!file || !window.XLSX) return;
-
+  document.getElementById('input-file-siswa')?.addEventListener('change', (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
     const reader = new FileReader();
     reader.onload = (ev) => {
-      try {
-        const wb = XLSX.read(new Uint8Array(ev.target.result), { type: 'array' });
-        const sheet = wb.Sheets[wb.SheetNames[0]];
-        const raw = XLSX.utils.sheet_to_json(sheet, { defval: '' });
+      const wb = XLSX.read(ev.target.result, { type: 'array' });
+      const sheet = wb.Sheets[wb.SheetNames[0]];
+      const raw = XLSX.utils.sheet_to_json(sheet, { defval: '' });
+      parsedUploadSiswa = raw.map(r => {
+        const nik = String(r['NIK'] || r['nik'] || '').trim();
+        const nama_lengkap = String(r['Nama Siswa'] || r['Nama'] || r['nama_lengkap'] || '').trim();
+        const jkRaw = String(r['Jenis Kelamin'] || r['L/P'] || 'L').trim().toUpperCase();
+        const jenis_kelamin = jkRaw.startsWith('P') ? 'P' : 'L';
+        const jenjangRaw = String(r['Jenjang'] || 'SRD').trim().toUpperCase();
+        const jenjang = ['SRD', 'SRMP', 'SRMA'].includes(jenjangRaw) ? jenjangRaw : 'SRD';
+        const kelas = String(r['Asrama'] || r['Kelas'] || '-').trim();
+        return { nik, nama_lengkap, jenis_kelamin, jenjang, kelas };
+      }).filter(r => r.nik && r.nama_lengkap);
 
-        parsedUploadSiswaRows = raw.map(r => {
-          const nik = String(r['NIK'] || r['nik'] || '').trim();
-          const nama = String(r['Nama Siswa'] || r['Nama Lengkap'] || r['nama_lengkap'] || r['Nama'] || '').trim();
-          const jkRaw = String(r['Jenis Kelamin'] || r['JK'] || r['jenis_kelamin'] || 'L').trim().toUpperCase();
-          const jenjangRaw = String(r['Jenjang'] || r['jenjang'] || 'SRD').trim().toUpperCase();
-          const asrama = String(r['Asrama'] || r['asrama'] || r['Kelas'] || r['kelas'] || '-').trim();
-
-          return {
-            nik,
-            nama_lengkap: nama,
-            jenis_kelamin: jkRaw.startsWith('P') ? 'P' : 'L',
-            jenjang: ['SRD', 'SRMP', 'SRMA'].includes(jenjangRaw) ? jenjangRaw : 'SRD',
-            kelas: asrama || '-'
-          };
-        }).filter(item => item.nik && item.nama_lengkap);
-
-        const wrap = document.getElementById('upload-preview-wrap');
-        const tbody = document.getElementById('upload-preview-tbody');
-        document.getElementById('upload-valid-count').textContent = `${parsedUploadSiswaRows.length} baris valid`;
-        wrap.classList.remove('hidden');
-
-        if (parsedUploadSiswaRows.length === 0) {
-          tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:var(--danger);">Tidak ada baris valid ditemukan. Pastikan kolom NIK & Nama Siswa terisi.</td></tr>`;
-          document.getElementById('btn-confirm-upload-siswa').disabled = true;
-          return;
-        }
-
-        tbody.innerHTML = parsedUploadSiswaRows.slice(0, 25).map(r => `
-          <tr>
-            <td>${r.nik}</td>
-            <td>${r.nama_lengkap}</td>
-            <td>${r.jenis_kelamin}</td>
-            <td>${r.jenjang}</td>
-            <td>${r.kelas}</td>
-          </tr>
-        `).join('');
-        document.getElementById('btn-confirm-upload-siswa').disabled = false;
-      } catch (err) {
-        showToast('Gagal membaca file Excel/CSV: ' + err.message, 'error');
-      }
+      document.getElementById('upload-valid-count').textContent = `${parsedUploadSiswa.length} baris valid`;
+      document.getElementById('upload-preview-tbody').innerHTML = parsedUploadSiswa.slice(0, 20).map(r => `
+        <tr><td>${r.nik}</td><td>${r.nama_lengkap}</td><td>${r.jenis_kelamin}</td><td>${r.jenjang}</td><td>${r.kelas}</td></tr>
+      `).join('');
+      document.getElementById('upload-preview-wrap').classList.remove('hidden');
+      document.getElementById('btn-confirm-upload-siswa').disabled = parsedUploadSiswa.length === 0;
     };
     reader.readAsArrayBuffer(file);
   });
 
-  document.getElementById('btn-confirm-upload-siswa').addEventListener('click', async () => {
-    if (parsedUploadSiswaRows.length === 0) return;
+  document.getElementById('btn-confirm-upload-siswa')?.addEventListener('click', async () => {
+    if (parsedUploadSiswa.length === 0) return;
     try {
-      const res = await DB.bulkUpsertSiswa(parsedUploadSiswaRows);
-      await refreshAllData();
-      renderSiswaTable();
+      const count = await DB.bulkUpsertSiswa(parsedUploadSiswa);
+      appState.siswaList = await DB.fetchSiswa();
       window.closeModal('modal-upload-siswa');
-      showToast(`Import selesai! ${res.added} ditambahkan, ${res.updated} diperbarui.`);
+      renderSiswaTable();
+      showToast(`${count} data siswa berhasil diimpor!`);
     } catch (err) {
-      showToast('Gagal mengimpor data siswa: ' + err.message, 'error');
+      showToast(err.message, 'error');
     }
   });
 
-  // Kartu Pelajar QR Satuan & Cetak Massal
+  // Kartu Pelajar & QR Code Siswa
   let currentQrStudent = null;
-
-  window.openQrCard = function(id) {
+  window.openQrCardModal = function(id) {
     const s = appState.siswaList.find(item => item.id === id);
     if (!s) return;
     currentQrStudent = s;
     const cfg = appState.sekolahConfig || DEFAULT_SEKOLAH_CONFIG;
 
     document.getElementById('qr-card-kemensos-box').innerHTML = cfg.logo_laporan
-      ? `<img src="${cfg.logo_laporan}" alt="Logo Kemensos">`
+      ? `<img src="${cfg.logo_laporan}" alt="Logo">`
       : DEFAULT_LOGO_LAPORAN_SVG;
     document.getElementById('qr-card-logo-box').innerHTML = cfg.logo_sekolah
-      ? `<img src="${cfg.logo_sekolah}" alt="Logo Sekolah">`
+      ? `<img src="${cfg.logo_sekolah}" alt="Logo">`
       : DEFAULT_LOGO_SEKOLAH_SVG;
 
-    document.getElementById('qr-card-ministry').textContent = (cfg.kementerian || '').toUpperCase();
-    document.getElementById('qr-card-school-subtitle').textContent = (cfg.nama_sekolah || '').toUpperCase();
-    document.getElementById('qr-card-address').textContent = cfg.alamat || '-';
+    document.getElementById('qr-card-ministry').textContent = (cfg.kementerian || DEFAULT_SEKOLAH_CONFIG.kementerian).toUpperCase();
+    document.getElementById('qr-card-school-subtitle').textContent = (cfg.nama_sekolah || DEFAULT_SEKOLAH_CONFIG.nama_sekolah).toUpperCase();
+    document.getElementById('qr-card-address').textContent = cfg.alamat || DEFAULT_SEKOLAH_CONFIG.alamat;
     document.getElementById('qr-card-photo').src = getStudentPhotoUrl(s, 'dc2626');
-    document.getElementById('qr-card-nama').textContent = s.nama_lengkap;
+    document.getElementById('qr-card-nama').textContent = s.nama_lengkap.toUpperCase();
     document.getElementById('qr-card-nik').textContent = s.nik;
     document.getElementById('qr-card-jenjang').textContent = s.jenjang;
-    document.getElementById('qr-card-kelas').textContent = s.kelas || '-';
-    document.getElementById('qr-card-jk').textContent = s.jenis_kelamin === 'P' ? 'Perempuan' : 'Laki-laki';
-    document.getElementById('qr-card-kepsek').textContent = cfg.nama_kepsek || '-';
-    document.getElementById('qr-card-nip-kepsek').textContent = cfg.nip_kepsek ? `NIP. ${cfg.nip_kepsek}` : 'NIP. -';
+    document.getElementById('qr-card-kelas').textContent = s.kelas;
+    document.getElementById('qr-card-jk').textContent = s.jenis_kelamin === 'L' ? 'Laki-laki' : 'Perempuan';
+    document.getElementById('qr-card-kepsek').textContent = cfg.nama_kepsek || DEFAULT_SEKOLAH_CONFIG.nama_kepsek;
+    document.getElementById('qr-card-nip-kepsek').textContent = `NIP. ${cfg.nip_kepsek || '-'}`;
 
     const qrTarget = document.getElementById('qr-code-target');
     qrTarget.innerHTML = '';
-    if (window.QRCode) {
+    if (typeof QRCode !== 'undefined') {
       new QRCode(qrTarget, {
         text: s.nik,
-        width: 68,
-        height: 68,
+        width: 72,
+        height: 72,
         colorDark: '#0f172a',
         colorLight: '#ffffff',
-        correctLevel: QRCode.CorrectLevel.H
+        correctLevel: QRCode.CorrectLevel.M
       });
     }
-
     document.getElementById('modal-qr-card').classList.remove('hidden');
   };
 
-  document.getElementById('btn-download-qr').addEventListener('click', () => {
-    const qrCanvas = document.querySelector('#qr-code-target canvas');
-    if (!qrCanvas || !currentQrStudent) return;
+  document.getElementById('btn-download-qr')?.addEventListener('click', async () => {
+    const cardEl = document.getElementById('printable-qr-card');
+    if (!cardEl || typeof html2canvas === 'undefined') return;
+    const canvas = await html2canvas(cardEl, { scale: 3, useCORS: true });
     const link = document.createElement('a');
-    link.download = `QR_${currentQrStudent.nik}_${currentQrStudent.nama_lengkap.replace(/\s+/g, '_')}.png`;
-    link.href = qrCanvas.toDataURL('image/png');
+    link.download = `Kartu_QR_${currentQrStudent?.nik || 'Siswa'}.png`;
+    link.href = canvas.toDataURL('image/png');
     link.click();
-    showToast('Gambar QR Code berhasil diunduh!');
   });
 
-  function buildStudentCardMarkup(s, cfg, qrImgSrc) {
-    const kemensosHtml = cfg.logo_laporan
-      ? `<img src="${cfg.logo_laporan}" alt="Kemensos">`
-      : DEFAULT_LOGO_LAPORAN_SVG;
-    const sekolahLogoHtml = cfg.logo_sekolah
-      ? `<img src="${cfg.logo_sekolah}" alt="Sekolah">`
-      : DEFAULT_LOGO_SEKOLAH_SVG;
-    const photoSrc = getStudentPhotoUrl(s, 'dc2626');
-    const jkLabel = s.jenis_kelamin === 'P' ? 'Perempuan' : 'Laki-laki';
-    const nipText = cfg.nip_kepsek ? `NIP. ${cfg.nip_kepsek}` : 'NIP. -';
-
-    return `
-      <div class="id-card">
-        <div class="card-head">
-          <div class="card-logo">${kemensosHtml}</div>
-          <div class="card-head-text">
-            <div class="ministry">${(cfg.kementerian || '').toUpperCase()}</div>
-            <div class="school">${(cfg.nama_sekolah || '').toUpperCase()}</div>
-            <div class="address">${cfg.alamat || '-'}</div>
-          </div>
-          <div class="card-logo">${sekolahLogoHtml}</div>
-        </div>
-        <div class="card-body">
-          <img src="${photoSrc}" class="card-photo" alt="Foto">
-          <div class="card-info">
-            <div>
-              <div class="card-badge">KARTU PELAJAR & TATA PERMAKANAN</div>
-              <table>
-                <tr><td>Nama</td><td>:</td><td>${s.nama_lengkap}</td></tr>
-                <tr><td>NIK</td><td>:</td><td>${s.nik}</td></tr>
-                <tr><td>Jenjang</td><td>:</td><td>${s.jenjang}</td></tr>
-                <tr><td>Asrama</td><td>:</td><td>${s.kelas || '-'}</td></tr>
-                <tr><td>J. Kelamin</td><td>:</td><td>${jkLabel}</td></tr>
-              </table>
-            </div>
-            <div class="card-foot-note">SIMANTAP • Kartu Identitas Konsumsi Siswa</div>
-          </div>
-          <div class="card-right">
-            <div class="qr-box"><img src="${qrImgSrc}" width="64" height="64" alt="QR"></div>
-            <div class="card-sign">
-              <div>Kepala Sekolah,</div>
-              <div style="height:12px;"></div>
-              <div style="font-weight:800;text-decoration:underline;">${cfg.nama_kepsek || '-'}</div>
-              <div>${nipText}</div>
-            </div>
-          </div>
-        </div>
-        <div class="card-strip"></div>
-      </div>
-    `;
-  }
-
-  function openBatchCardPrintWindow(students) {
-    if (!students || students.length === 0) {
-      showToast('Tidak ada data siswa untuk dicetak.', 'error');
-      return;
-    }
-    const cfg = appState.sekolahConfig || DEFAULT_SEKOLAH_CONFIG;
-    const tempWrap = document.createElement('div');
-    tempWrap.style.position = 'fixed';
-    tempWrap.style.left = '-9999px';
-    document.body.appendChild(tempWrap);
-
-    const cardsHtml = students.map((s) => {
-      const qrDiv = document.createElement('div');
-      tempWrap.appendChild(qrDiv);
-      if (window.QRCode) {
-        new QRCode(qrDiv, {
-          text: s.nik,
-          width: 128,
-          height: 128,
-          colorDark: '#0f172a',
-          colorLight: '#ffffff',
-          correctLevel: QRCode.CorrectLevel.H
-        });
-      }
-      const c = qrDiv.querySelector('canvas');
-      const imgSrc = c ? c.toDataURL('image/png') : '';
-      return buildStudentCardMarkup(s, cfg, imgSrc);
-    }).join('');
-
-    tempWrap.remove();
-
+  document.getElementById('btn-print-qr')?.addEventListener('click', async () => {
+    const cardEl = document.getElementById('printable-qr-card');
+    if (!cardEl || typeof html2canvas === 'undefined') return;
+    const canvas = await html2canvas(cardEl, { scale: 3, useCORS: true });
+    const imgUrl = canvas.toDataURL('image/png');
     const win = window.open('', '_blank');
     if (!win) {
-      showToast('Popup diblokir browser. Izinkan popup untuk mencetak kartu.', 'error');
+      showToast('Izinkan pop-up browser untuk mencetak kartu.', 'error');
       return;
     }
-
-    win.document.write(`
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <meta charset="UTF-8">
-        <title>Cetak Kartu Pelajar QR - ${cfg.nama_sekolah}</title>
-        <style>
-          * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-          body { padding: 10mm; background: #fff; }
-          .grid { display: grid; grid-template-columns: repeat(2, 85.6mm); gap: 8mm; justify-content: center; }
-          .id-card {
-            width: 85.6mm;
-            height: 54mm;
-            border-radius: 3.5mm;
-            overflow: hidden;
-            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 55%, #dbeafe 100%);
-            border: 0.4mm solid #1e3a8a;
-            display: flex;
-            flex-direction: column;
-            page-break-inside: avoid;
-          }
-          .card-head {
-            background: linear-gradient(90deg, #0f172a 0%, #1e3a8a 65%, #1d4ed8 100%);
-            color: #fff;
-            padding: 2.2mm 3mm;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2mm;
-            border-bottom: 0.8mm solid #dc2626;
-          }
-          .card-head-text { flex: 1; min-width: 0; text-align: center; line-height: 1.15; }
-          .ministry { font-size: 5.5pt; font-weight: 700; color: #93c5fd; }
-          .school { font-size: 7.2pt; font-weight: 800; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-          .address { font-size: 5pt; color: #e2e8f0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-          .card-logo { width: 8.5mm; height: 8.5mm; background: #fff; border-radius: 2mm; padding: 0.6mm; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-          .card-logo img, .card-logo svg { width: 100%; height: 100%; object-fit: contain; }
-          .card-body { flex: 1; padding: 2.5mm 3mm 2mm; display: flex; gap: 2.5mm; }
-          .card-photo { width: 17mm; height: 22mm; border-radius: 1.5mm; object-fit: cover; background: #dc2626; border: 0.4mm solid #fff; align-self: center; flex-shrink: 0; }
-          .card-info { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; }
-          .card-badge { font-size: 5.8pt; font-weight: 800; color: #1e3a8a; margin-bottom: 1mm; }
-          table { width: 100%; border-collapse: collapse; font-size: 6pt; line-height: 1.25; }
-          td { padding: 0.2mm 0.4mm; color: #0f172a; vertical-align: top; }
-          td:first-child { width: 14mm; font-weight: 700; color: #334155; }
-          td:nth-child(2) { width: 2mm; font-weight: 700; }
-          td:last-child { font-weight: 700; }
-          .card-foot-note { font-size: 4.8pt; color: #475569; font-weight: 700; }
-          .card-right { display: flex; flex-direction: column; align-items: center; justify-content: space-between; flex-shrink: 0; }
-          .qr-box { padding: 1mm; background: #fff; border-radius: 1.5mm; border: 0.25mm solid #cbd5e1; line-height: 0; }
-          .card-sign { text-align: right; font-size: 4.8pt; line-height: 1.15; color: #1e293b; }
-          .card-strip { height: 1.5mm; background: linear-gradient(90deg, #1e3a8a 0%, #0284c7 70%, #dc2626 100%); }
-          @page { size: A4 portrait; margin: 8mm; }
-        </style>
-      </head>
-      <body>
-        <div class="grid">${cardsHtml}</div>
-        <script>window.onload = function() { setTimeout(function() { window.print(); }, 350); };<\/script>
-      </body>
-      </html>
-    `);
+    win.document.write(`<html><head><title>Cetak Kartu Pelajar QR</title></head><body style="margin:20px;text-align:center;"><img src="${imgUrl}" style="width:85.6mm;height:54mm;"><script>window.onload=function(){window.print();window.close();}<\/script></body></html>`);
     win.document.close();
-  }
-
-  document.getElementById('btn-print-qr').addEventListener('click', () => {
-    if (currentQrStudent) openBatchCardPrintWindow([currentQrStudent]);
   });
 
-  document.getElementById('btn-print-all-qr').addEventListener('click', () => {
-    const filtered = getFilteredSiswaList();
-    openBatchCardPrintWindow(filtered);
+  document.getElementById('btn-print-all-qr')?.addEventListener('click', () => {
+    if (appState.siswaList.length === 0) {
+      showToast('Belum ada data siswa untuk dicetak.', 'error');
+      return;
+    }
+    showToast('Gunakan tombol ikon QR pada baris siswa untuk mencetak/unduh kartu.');
   });
 
   // ============================================================================
-  // 11A. MANAJEMEN DATA PETUGAS (WALI ASUH, WALI ASRAMA, JURU MASAK)
+  // 11. MANAJEMEN DATA PETUGAS (JURU MASAK DENGAN NIK) & PROFIL PETUGAS
   // ============================================================================
   function renderPetugasTable() {
     const tbody = document.getElementById('petugas-tbody');
+    if (!tbody) return;
     if (appState.petugasList.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:24px; color:var(--slate-400);">Belum ada data petugas terdaftar.</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--slate-400);padding:24px;">Belum ada data petugas.</td></tr>`;
       return;
     }
 
     tbody.innerHTML = appState.petugasList.map(p => `
       <tr>
         <td>
-          <div style="display:flex; align-items:center; gap:10px;">
-            <img src="${getPetugasPhotoUrl(p)}" alt="Foto" class="student-avatar" style="width:38px; height:38px; border-radius:10px;">
-            <span style="font-weight:700; color:var(--slate-900);">${p.nama}</span>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <img src="${getPetugasPhotoUrl(p)}" class="student-avatar" alt="Foto">
+            <strong>${p.nama}</strong>
           </div>
         </td>
-        <td><span class="badge badge-emerald">${p.jabatan || 'Wali Asuh'}</span></td>
-        <td>${p.nip || '-'}</td>
-        <td><span class="badge badge-slate">${p.username}</span></td>
-        <td style="font-family:monospace;">${p.password}</td>
+        <td><span style="font-family:monospace;font-size:0.82rem;font-weight:700;">${p.nik || '-'}</span></td>
+        <td><span class="badge badge-emerald">${p.jabatan || 'Juru Masak'}</span></td>
+        <td><code>${p.username}</code></td>
+        <td><code>${p.password}</code></td>
         <td>
-          <div style="display:flex; gap:6px;">
-            <button type="button" class="btn btn-outline btn-sm" title="Edit Petugas" onclick="window.openEditPetugas('${p.id}')">
+          <div style="display:flex;gap:6px;">
+            <button type="button" class="btn btn-outline btn-sm" onclick="window.openEditPetugas('${p.id}')">
               <i class="fa-solid fa-pen"></i>
             </button>
-            <button type="button" class="btn btn-danger btn-sm" title="Hapus Petugas" onclick="window.removePetugas('${p.id}')">
+            <button type="button" class="btn btn-danger btn-sm" onclick="window.deletePetugasItem('${p.id}')">
               <i class="fa-solid fa-trash"></i>
             </button>
           </div>
@@ -3899,14 +3573,11 @@
     `).join('');
   }
 
-  document.getElementById('btn-open-add-petugas').addEventListener('click', () => {
+  document.getElementById('btn-open-add-petugas')?.addEventListener('click', () => {
     document.getElementById('modal-petugas-title').textContent = 'Tambah Data Petugas';
+    document.getElementById('form-petugas').reset();
     document.getElementById('petugas-id').value = '';
-    document.getElementById('petugas-nama-input').value = '';
-    document.getElementById('petugas-jabatan-input').value = 'Wali Asuh';
-    document.getElementById('petugas-nip-input').value = '';
-    document.getElementById('petugas-user-input').value = '';
-    document.getElementById('petugas-pass-input').value = '';
+    document.getElementById('petugas-jabatan-input').value = 'Juru Masak';
     document.getElementById('modal-form-petugas').classList.remove('hidden');
   });
 
@@ -3916,733 +3587,518 @@
     document.getElementById('modal-petugas-title').textContent = 'Edit Data Petugas';
     document.getElementById('petugas-id').value = p.id;
     document.getElementById('petugas-nama-input').value = p.nama;
-    document.getElementById('petugas-jabatan-input').value = p.jabatan || 'Wali Asuh';
-    document.getElementById('petugas-nip-input').value = p.nip || '';
+    document.getElementById('petugas-nik-input').value = p.nik || '';
+    document.getElementById('petugas-jabatan-input').value = 'Juru Masak';
     document.getElementById('petugas-user-input').value = p.username;
     document.getElementById('petugas-pass-input').value = p.password;
     document.getElementById('modal-form-petugas').classList.remove('hidden');
   };
 
-  document.getElementById('form-petugas').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const id = document.getElementById('petugas-id').value;
-    const payload = {
-      nama: document.getElementById('petugas-nama-input').value.trim(),
-      jabatan: document.getElementById('petugas-jabatan-input').value,
-      nip: document.getElementById('petugas-nip-input').value.trim(),
-      username: document.getElementById('petugas-user-input').value.trim(),
-      password: document.getElementById('petugas-pass-input').value.trim()
-    };
-
-    try {
-      await DB.upsertPetugas(payload, id || null);
-      await refreshAllData();
-      renderPetugasTable();
-      window.closeModal('modal-form-petugas');
-      showToast(id ? 'Data petugas diperbarui!' : 'Petugas baru berhasil ditambahkan!');
-    } catch (err) {
-      showToast(err.message, 'error');
-    }
-  });
-
-  window.removePetugas = async function(id) {
+  window.deletePetugasItem = async function(id) {
     try {
       await DB.deletePetugas(id);
-      await refreshAllData();
+      appState.petugasList = await DB.fetchPetugas();
       renderPetugasTable();
-      showToast('Data petugas telah dihapus.');
+      showToast('Data petugas dihapus.');
     } catch (err) {
       showToast(err.message, 'error');
     }
   };
 
-  // Upload Data Petugas Massal (Excel / CSV)
-  let parsedUploadPetugasRows = [];
+  document.getElementById('form-petugas')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const payload = {
+      id: document.getElementById('petugas-id').value || undefined,
+      nama: document.getElementById('petugas-nama-input').value.trim(),
+      nik: document.getElementById('petugas-nik-input').value.trim(),
+      jabatan: 'Juru Masak',
+      username: document.getElementById('petugas-user-input').value.trim(),
+      password: document.getElementById('petugas-pass-input').value.trim()
+    };
+    try {
+      await DB.upsertPetugas(payload);
+      appState.petugasList = await DB.fetchPetugas();
+      window.closeModal('modal-form-petugas');
+      renderPetugasTable();
+      showToast('Data petugas berhasil disimpan.');
+    } catch (err) {
+      showToast(err.message, 'error');
+    }
+  });
 
-  document.getElementById('btn-open-upload-petugas').addEventListener('click', () => {
-    parsedUploadPetugasRows = [];
+  // Upload Excel / CSV Petugas
+  let parsedUploadPetugas = [];
+  document.getElementById('btn-open-upload-petugas')?.addEventListener('click', () => {
+    parsedUploadPetugas = [];
     document.getElementById('input-file-petugas').value = '';
     document.getElementById('upload-petugas-preview-wrap').classList.add('hidden');
     document.getElementById('btn-confirm-upload-petugas').disabled = true;
     document.getElementById('modal-upload-petugas').classList.remove('hidden');
   });
 
-  document.getElementById('btn-download-template-petugas').addEventListener('click', () => {
-    if (!window.XLSX) {
-      showToast('Library Excel belum termuat.', 'error');
-      return;
-    }
-    const sampleRows = [
-      { 'Nama Petugas': 'Ahmad Syarif, S.Pd', 'Jabatan': 'Wali Asuh', 'NIP': '199105102022211003', 'Username': 'waliasuh1', 'Password': '123' },
-      { 'Nama Petugas': 'Siti Aminah', 'Jabatan': 'Juru Masak', 'NIP': '', 'Username': 'jurumasak1', 'Password': '123' }
+  document.getElementById('btn-download-template-petugas')?.addEventListener('click', () => {
+    const rows = [
+      { 'NIK': '7308011504900003', 'Nama Petugas': 'Contoh Nama Juru Masak', 'Jabatan': 'Juru Masak', 'Username': 'jurumasak3', 'Password': '123' }
     ];
-    const ws = XLSX.utils.json_to_sheet(sampleRows);
+    const ws = XLSX.utils.json_to_sheet(rows);
     const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Template_Petugas');
-    XLSX.writeFile(wb, 'Template_Upload_Petugas_SIMANTAP.xlsx');
+    XLSX.utils.book_append_sheet(wb, ws, 'Template Petugas');
+    XLSX.writeFile(wb, 'Template_Import_Petugas_SIMANTAP.xlsx');
   });
 
-  document.getElementById('input-file-petugas').addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (!file || !window.XLSX) return;
-
+  document.getElementById('input-file-petugas')?.addEventListener('change', (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
     const reader = new FileReader();
     reader.onload = (ev) => {
-      try {
-        const wb = XLSX.read(new Uint8Array(ev.target.result), { type: 'array' });
-        const sheet = wb.Sheets[wb.SheetNames[0]];
-        const raw = XLSX.utils.sheet_to_json(sheet, { defval: '' });
+      const wb = XLSX.read(ev.target.result, { type: 'array' });
+      const sheet = wb.Sheets[wb.SheetNames[0]];
+      const raw = XLSX.utils.sheet_to_json(sheet, { defval: '' });
+      parsedUploadPetugas = raw.map(r => {
+        const nik = String(r['NIK'] || r['nik'] || '').trim();
+        const nama = String(r['Nama Petugas'] || r['Nama'] || r['nama'] || '').trim();
+        const username = String(r['Username'] || r['username'] || '').trim();
+        const password = String(r['Password'] || r['password'] || '123').trim();
+        return { nik, nama, jabatan: 'Juru Masak', username, password };
+      }).filter(r => r.nama && r.username);
 
-        const validJabatan = ['Wali Asuh', 'Wali Asrama', 'Juru Masak'];
-        parsedUploadPetugasRows = raw.map(r => {
-          const nama = String(r['Nama Petugas'] || r['Nama'] || r['nama'] || '').trim();
-          const jabRaw = String(r['Jabatan'] || r['jabatan'] || 'Wali Asuh').trim();
-          const matchedJab = validJabatan.find(j => j.toLowerCase() === jabRaw.toLowerCase()) || 'Wali Asuh';
-          const nip = String(r['NIP'] || r['nip'] || '').trim();
-          const username = String(r['Username'] || r['username'] || '').trim();
-          const password = String(r['Password'] || r['password'] || '123').trim();
-
-          return { nama, jabatan: matchedJab, nip, username, password };
-        }).filter(item => item.nama && item.username && item.password);
-
-        const wrap = document.getElementById('upload-petugas-preview-wrap');
-        const tbody = document.getElementById('upload-petugas-preview-tbody');
-        document.getElementById('upload-petugas-valid-count').textContent = `${parsedUploadPetugasRows.length} baris valid`;
-        wrap.classList.remove('hidden');
-
-        if (parsedUploadPetugasRows.length === 0) {
-          tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:var(--danger);">Tidak ada baris valid. Pastikan kolom Nama Petugas, Username & Password terisi.</td></tr>`;
-          document.getElementById('btn-confirm-upload-petugas').disabled = true;
-          return;
-        }
-
-        tbody.innerHTML = parsedUploadPetugasRows.slice(0, 25).map(r => `
-          <tr>
-            <td>${r.nama}</td>
-            <td>${r.jabatan}</td>
-            <td>${r.nip || '-'}</td>
-            <td>${r.username}</td>
-            <td>${r.password}</td>
-          </tr>
-        `).join('');
-        document.getElementById('btn-confirm-upload-petugas').disabled = false;
-      } catch (err) {
-        showToast('Gagal membaca file Excel/CSV: ' + err.message, 'error');
-      }
+      document.getElementById('upload-petugas-valid-count').textContent = `${parsedUploadPetugas.length} baris valid`;
+      document.getElementById('upload-petugas-preview-tbody').innerHTML = parsedUploadPetugas.slice(0, 20).map(r => `
+        <tr><td>${r.nik || '-'}</td><td>${r.nama}</td><td>${r.jabatan}</td><td>${r.username}</td><td>${r.password}</td></tr>
+      `).join('');
+      document.getElementById('upload-petugas-preview-wrap').classList.remove('hidden');
+      document.getElementById('btn-confirm-upload-petugas').disabled = parsedUploadPetugas.length === 0;
     };
     reader.readAsArrayBuffer(file);
   });
 
-  document.getElementById('btn-confirm-upload-petugas').addEventListener('click', async () => {
-    if (parsedUploadPetugasRows.length === 0) return;
+  document.getElementById('btn-confirm-upload-petugas')?.addEventListener('click', async () => {
+    if (parsedUploadPetugas.length === 0) return;
     try {
-      const res = await DB.bulkUpsertPetugas(parsedUploadPetugasRows);
-      await refreshAllData();
-      renderPetugasTable();
+      const count = await DB.bulkUpsertPetugas(parsedUploadPetugas);
+      appState.petugasList = await DB.fetchPetugas();
       window.closeModal('modal-upload-petugas');
-      showToast(`Import selesai! ${res.added} ditambahkan, ${res.updated} diperbarui.`);
+      renderPetugasTable();
+      showToast(`${count} data petugas berhasil diimpor!`);
     } catch (err) {
-      showToast('Gagal mengimpor data petugas: ' + err.message, 'error');
+      showToast(err.message, 'error');
     }
   });
 
-  // ============================================================================
-  // 11B. PROFIL PETUGAS (READ-ONLY DATA + GANTI FOTO SAJA)
-  // ============================================================================
-  function renderProfilPetugasForm() {
+  function renderProfilPetugas() {
     const u = appState.currentUser;
-    if (!u || u.role !== 'petugas') return;
+    if (!u) return;
     document.getElementById('profil-petugas-avatar').src = getPetugasPhotoUrl(u);
-    document.getElementById('profil-petugas-nama-display').textContent = u.name || '-';
-    document.getElementById('profil-petugas-jabatan-badge').textContent = u.jabatan || 'Wali Asuh';
-    document.getElementById('profil-petugas-nama').textContent = u.name || '-';
-    document.getElementById('profil-petugas-jabatan').textContent = u.jabatan || 'Wali Asuh';
-    document.getElementById('profil-petugas-nip').textContent = u.nip || '-';
+    document.getElementById('profil-petugas-nama-display').textContent = u.name;
+    document.getElementById('profil-petugas-jabatan-badge').textContent = u.jabatan || 'Juru Masak';
+    document.getElementById('profil-petugas-nama').textContent = u.name;
+    document.getElementById('profil-petugas-nik').textContent = u.nik || '-';
+    document.getElementById('profil-petugas-jabatan').textContent = u.jabatan || 'Juru Masak';
   }
 
-  const btnGantiFotoPetugas = document.getElementById('btn-ganti-foto-petugas');
-  const inputFotoPetugasFile = document.getElementById('profil-petugas-foto-file');
+  document.getElementById('btn-ganti-foto-petugas')?.addEventListener('click', () => {
+    document.getElementById('profil-petugas-foto-file')?.click();
+  });
 
-  if (btnGantiFotoPetugas && inputFotoPetugasFile) {
-    btnGantiFotoPetugas.addEventListener('click', () => {
-      inputFotoPetugasFile.click();
-    });
-
-    inputFotoPetugasFile.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      compressLogoFile(file, async (dataUrl) => {
-        const u = appState.currentUser;
-        if (!u || u.role !== 'petugas') return;
-        try {
-          if (u.id) {
-            await DB.upsertPetugas({ foto_url: dataUrl }, u.id);
-          }
-          appState.currentUser.foto_url = dataUrl;
-          if (!IS_PREVIEW) {
-            localStorage.setItem('ekantin_petugas_session', JSON.stringify(appState.currentUser));
-          }
-          await refreshAllData();
-          renderProfilPetugasForm();
-          showToast('Foto profil berhasil diperbarui!');
-        } catch (err) {
-          showToast('Gagal memperbarui foto: ' + err.message, 'error');
-        } finally {
-          inputFotoPetugasFile.value = '';
-        }
-      });
-    });
-  }
+  document.getElementById('profil-petugas-foto-file')?.addEventListener('change', async (e) => {
+    const file = e.target.files?.[0];
+    if (!file || !appState.currentUser) return;
+    const dataUrl = await compressImageFile(file, 280);
+    appState.currentUser.foto_url = dataUrl;
+    document.getElementById('profil-petugas-avatar').src = dataUrl;
+    if (IS_PREVIEW) {
+      const p = previewDB.petugas.find(item => item.id === appState.currentUser.id);
+      if (p) p.foto_url = dataUrl;
+    } else if (supabase && appState.currentUser.id) {
+      await supabase.from('petugas').update({ foto_url: dataUrl }).eq('id', appState.currentUser.id);
+    }
+    showToast('Foto profil petugas berhasil diperbarui.');
+  });
 
   // ============================================================================
   // 12. LAPORAN HARIAN RESMI (KOP KEMENSOS, FORMAT MAKAN & SNACK, PDF & EXCEL)
   // ============================================================================
-  document.getElementById('lap-filter-date').addEventListener('change', renderOfficialLaporan);
-  document.getElementById('lap-filter-jenjang').addEventListener('change', renderOfficialLaporan);
-  document.getElementById('lap-filter-kategori').addEventListener('change', renderOfficialLaporan);
-  document.getElementById('lap-nip-kepsek').addEventListener('input', (e) => {
-    e.target.dataset.userEdited = 'true';
-    renderOfficialLaporan();
-  });
-  document.getElementById('lap-nip-petugas').addEventListener('input', renderOfficialLaporan);
-
-  async function renderOfficialLaporan() {
-    const dateVal = document.getElementById('lap-filter-date').value || getTodayStr();
-    const jenjangVal = document.getElementById('lap-filter-jenjang').value;
-    const kategoriVal = document.getElementById('lap-filter-kategori').value; // MAKAN | SNACK
-    const nipKepsek = document.getElementById('lap-nip-kepsek').value.trim();
-    const nipPetugas = document.getElementById('lap-nip-petugas').value.trim();
-
-    const [records, ketList] = await Promise.all([
-      DB.fetchPresensiByDate(dateVal),
-      DB.fetchKeteranganByDate(dateVal)
-    ]);
-
-    document.getElementById('rep-doc-title').textContent =
-      kategoriVal === 'SNACK' ? 'DAFTAR HADIR MAKAN SNACK SISWA' : 'DAFTAR HADIR MAKAN SISWA';
-    document.getElementById('rep-hari-tanggal').textContent = formatTanggalIndonesia(dateVal);
-    document.getElementById('rep-jenjang-text').textContent =
-      jenjangVal === 'ALL' ? 'SEMUA JENJANG (SRD, SRMP, SRMA)' : jenjangVal;
-
-    const petugasNama = appState.currentUser?.role === 'petugas'
-      ? appState.currentUser.name
-      : (records[0]?.petugas_nama || appState.currentUser?.name || 'Petugas Piket');
-    document.getElementById('rep-sign-nama-kepsek').textContent = appState.sekolahConfig?.nama_kepsek || DEFAULT_SEKOLAH_CONFIG.nama_kepsek;
-    document.getElementById('rep-sign-nama-petugas').textContent = petugasNama;
-    document.getElementById('rep-sign-nip-kepsek').textContent = `NIP. ${nipKepsek}`;
-    document.getElementById('rep-sign-nip-petugas').textContent = `NIP. ${nipPetugas}`;
-
-    const thead = document.getElementById('rep-table-head');
-    if (kategoriVal === 'SNACK') {
-      thead.innerHTML = `
-        <tr>
-          <th rowspan="2" style="width:32px;">No</th>
-          <th rowspan="2" style="min-width:210px;">Nama Siswa</th>
-          <th rowspan="2" style="width:128px;">NIK</th>
-          <th rowspan="2" style="width:48px; font-size:9pt; line-height:1.15;">Jenis<br>Kelamin</th>
-          <th colspan="2">Waktu Makan Snack</th>
-          <th rowspan="2" style="width:105px;">Keterangan</th>
-        </tr>
-        <tr>
-          <th style="width:92px;">Pagi</th>
-          <th style="width:92px;">Sore</th>
-        </tr>
-      `;
-    } else {
-      thead.innerHTML = `
-        <tr>
-          <th rowspan="2" style="width:32px;">No</th>
-          <th rowspan="2" style="min-width:210px;">Nama Siswa</th>
-          <th rowspan="2" style="width:128px;">NIK</th>
-          <th rowspan="2" style="width:48px; font-size:9pt; line-height:1.15;">Jenis<br>Kelamin</th>
-          <th colspan="3">Waktu Makan</th>
-          <th rowspan="2" style="width:105px;">Keterangan</th>
-        </tr>
-        <tr>
-          <th style="width:76px;">Pagi</th>
-          <th style="width:76px;">Siang</th>
-          <th style="width:76px;">Malam</th>
-        </tr>
-      `;
-    }
-
-    const targetSiswa = appState.siswaList
-      .filter(s => jenjangVal === 'ALL' || s.jenjang === jenjangVal)
-      .sort((a, b) => a.nama_lengkap.localeCompare(b.nama_lengkap));
-
-    const tbody = document.getElementById('rep-table-body');
-    const colSpanCount = kategoriVal === 'SNACK' ? 7 : 8;
-
-    if (targetSiswa.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="${colSpanCount}" style="text-align:center; padding:18px;">Belum ada data siswa pada jenjang ini.</td></tr>`;
-      return;
-    }
-
-    const findTtd = (siswaId, sesi) => {
-      const rec = records.find(r => r.siswa_id === siswaId && r.jenis_konsumsi === sesi);
-      return rec?.ttd_base64 ? `<img src="${rec.ttd_base64}" class="official-ttd-img" alt="TTD">` : '';
-    };
-
-    const getKeteranganHtml = (siswa, sesiList) => {
-      const hadirCount = sesiList.filter(sesi => records.some(r => r.siswa_id === siswa.id && r.jenis_konsumsi === sesi)).length;
-      const customKetObj = ketList.find(k => k.siswa_id === siswa.id);
-      const customKet = customKetObj?.keterangan || '';
-
-      if (hadirCount > 0 && customKet) {
-        return `Hadir ${hadirCount} (${customKet})`;
-      }
-      if (hadirCount > 0) {
-        return `Hadir ${hadirCount}`;
-      }
-      if (customKet) {
-        return customKet;
-      }
-      return '-';
-    };
-
-    tbody.innerHTML = targetSiswa.map((s, idx) => {
-      if (kategoriVal === 'SNACK') {
-        const ketHtml = getKeteranganHtml(s, ['Snack Pagi', 'Snack Sore']);
-        return `
-          <tr>
-            <td style="text-align:center;">${idx + 1}</td>
-            <td>${s.nama_lengkap}</td>
-            <td style="text-align:center;">${s.nik || '-'}</td>
-            <td style="text-align:center;">${s.jenis_kelamin || '-'}</td>
-            <td style="text-align:center; height:36px;">${findTtd(s.id, 'Snack Pagi')}</td>
-            <td style="text-align:center; height:36px;">${findTtd(s.id, 'Snack Sore')}</td>
-            <td style="text-align:center; font-size:9.5pt;">${ketHtml}</td>
-          </tr>
-        `;
-      }
-      const ketHtml = getKeteranganHtml(s, ['Makan Pagi', 'Makan Siang', 'Makan Malam']);
-      return `
-        <tr>
-          <td style="text-align:center;">${idx + 1}</td>
-          <td>${s.nama_lengkap}</td>
-          <td style="text-align:center;">${s.nik || '-'}</td>
-          <td style="text-align:center;">${s.jenis_kelamin || '-'}</td>
-          <td style="text-align:center; height:36px;">${findTtd(s.id, 'Makan Pagi')}</td>
-          <td style="text-align:center; height:36px;">${findTtd(s.id, 'Makan Siang')}</td>
-          <td style="text-align:center; height:36px;">${findTtd(s.id, 'Makan Malam')}</td>
-          <td style="text-align:center; font-size:9.5pt;">${ketHtml}</td>
-        </tr>
-      `;
-    }).join('');
+  function resetOfficialLaporanView() {
+    document.getElementById('laporan-paper-container')?.classList.add('hidden');
+    document.getElementById('lap-export-actions')?.classList.add('hidden');
+    document.getElementById('laporan-empty-prompt')?.classList.remove('hidden');
   }
 
-  window.openKetAbsenModal = async function(preselectedSiswaId = '') {
-    const dateVal = getTodayStr();
-    const ketList = await DB.fetchKeteranganByDate(dateVal);
-    const searchInput = document.getElementById('ket-absen-search-input');
-    const selectEl = document.getElementById('ket-absen-siswa-select');
-    const sortedSiswa = [...appState.siswaList].sort((a, b) => a.nama_lengkap.localeCompare(b.nama_lengkap));
+  document.getElementById('lap-filter-date').addEventListener('change', resetOfficialLaporanView);
+  document.getElementById('lap-filter-jenjang').addEventListener('change', resetOfficialLaporanView);
+  document.getElementById('lap-filter-kategori').addEventListener('change', resetOfficialLaporanView);
 
-    if (sortedSiswa.length === 0) {
-      showToast('Belum ada data siswa terdaftar.', 'error');
-      return;
-    }
-
-    const syncSelectedKet = () => {
-      const existing = ketList.find(k => k.siswa_id === selectEl.value);
-      document.getElementById('ket-absen-input').value = existing?.keterangan || '';
-    };
-
-    const renderOptions = (keyword = '') => {
-      const q = keyword.toLowerCase().trim();
-      const filtered = sortedSiswa.filter(s =>
-        s.nama_lengkap.toLowerCase().includes(q) ||
-        (s.nik || '').toLowerCase().includes(q) ||
-        (s.jenjang || '').toLowerCase().includes(q) ||
-        (s.kelas || '').toLowerCase().includes(q)
-      );
-
-      if (filtered.length === 0) {
-        selectEl.innerHTML = `<option value="">-- Siswa tidak ditemukan --</option>`;
-        document.getElementById('ket-absen-input').value = '';
-        return;
-      }
-
-      const prevSelected = selectEl.value;
-      selectEl.innerHTML = filtered.map(s =>
-        `<option value="${s.id}">${s.nama_lengkap} — ${s.jenjang} (${s.kelas || '-'})</option>`
-      ).join('');
-
-      if (preselectedSiswaId && filtered.some(s => s.id === preselectedSiswaId)) {
-        selectEl.value = preselectedSiswaId;
-        preselectedSiswaId = '';
-      } else if (filtered.some(s => s.id === prevSelected)) {
-        selectEl.value = prevSelected;
-      }
-      syncSelectedKet();
-    };
-
-    searchInput.value = '';
-    searchInput.oninput = () => renderOptions(searchInput.value);
-    selectEl.onchange = syncSelectedKet;
-    renderOptions('');
-
-    document.getElementById('ket-absen-tanggal-label').textContent = `Tanggal Absen: ${formatTanggalIndonesia(dateVal)}`;
-    document.getElementById('modal-ket-absen').classList.remove('hidden');
-  };
-
-  document.getElementById('btn-open-scan-ket-absen')?.addEventListener('click', () => {
-    window.openKetAbsenModal();
-  });
-
-  document.querySelectorAll('.ket-quick-pill').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.getElementById('ket-absen-input').value = btn.dataset.val || '';
-    });
-  });
-
-  document.getElementById('form-ket-absen').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const siswaId = document.getElementById('ket-absen-siswa-select').value;
-    const dateVal = getTodayStr();
-    const ketVal = document.getElementById('ket-absen-input').value.trim();
-
-    if (!siswaId) {
-      showToast('Silakan pilih siswa terlebih dahulu!', 'error');
-      return;
-    }
-
-    try {
-      await DB.upsertKeterangan(siswaId, dateVal, ketVal);
-      window.closeModal('modal-ket-absen');
-      await renderScannerFeed();
-      if (appState.activeMenu === 'laporan') {
-        await renderOfficialLaporan();
-      }
-      showToast(ketVal ? `Keterangan "${ketVal}" berhasil disimpan!` : 'Keterangan telah dikosongkan.');
-    } catch (err) {
-      showToast('Gagal menyimpan keterangan: ' + err.message, 'error');
-    }
-  });
-
-  // Unduh Excel (.xlsx) & Cetak PDF Resmi
-  document.getElementById('btn-export-csv').addEventListener('click', async () => {
-    if (!window.XLSX) {
-      showToast('Library Excel belum termuat.', 'error');
-      return;
-    }
-    const dateVal = document.getElementById('lap-filter-date').value || getTodayStr();
-    const jenjangVal = document.getElementById('lap-filter-jenjang').value;
-    const kategoriVal = document.getElementById('lap-filter-kategori').value;
-
-    const [records, ketList] = await Promise.all([
-      DB.fetchPresensiByDate(dateVal),
-      DB.fetchKeteranganByDate(dateVal)
-    ]);
-
-    const targetSiswa = appState.siswaList
-      .filter(s => jenjangVal === 'ALL' || s.jenjang === jenjangVal)
-      .sort((a, b) => a.nama_lengkap.localeCompare(b.nama_lengkap));
-
-    const hasSesi = (siswaId, sesi) => records.some(r => r.siswa_id === siswaId && r.jenis_konsumsi === sesi);
-
-    const rows = targetSiswa.map((s, idx) => {
-      const sesiList = kategoriVal === 'SNACK'
-        ? ['Snack Pagi', 'Snack Sore']
-        : ['Makan Pagi', 'Makan Siang', 'Makan Malam'];
-      const hadirCount = sesiList.filter(sesi => hasSesi(s.id, sesi)).length;
-      const customKet = ketList.find(k => k.siswa_id === s.id)?.keterangan || '';
-      let ketText = '-';
-      if (hadirCount > 0 && customKet) ketText = `Hadir ${hadirCount} (${customKet})`;
-      else if (hadirCount > 0) ketText = `Hadir ${hadirCount}`;
-      else if (customKet) ketText = customKet;
-
-      if (kategoriVal === 'SNACK') {
-        return {
-          'No': idx + 1,
-          'Nama Siswa': s.nama_lengkap,
-          'NIK': s.nik || '-',
-          'Jenis Kelamin': s.jenis_kelamin || '-',
-          'Snack Pagi': hasSesi(s.id, 'Snack Pagi') ? 'Hadir' : '-',
-          'Snack Sore': hasSesi(s.id, 'Snack Sore') ? 'Hadir' : '-',
-          'Keterangan': ketText
-        };
-      }
-      return {
-        'No': idx + 1,
-        'Nama Siswa': s.nama_lengkap,
-        'NIK': s.nik || '-',
-        'Jenis Kelamin': s.jenis_kelamin || '-',
-        'Makan Pagi': hasSesi(s.id, 'Makan Pagi') ? 'Hadir' : '-',
-        'Makan Siang': hasSesi(s.id, 'Makan Siang') ? 'Hadir' : '-',
-        'Makan Malam': hasSesi(s.id, 'Makan Malam') ? 'Hadir' : '-',
-        'Keterangan': ketText
-      };
-    });
-
-    const ws = XLSX.utils.json_to_sheet(rows);
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Daftar_Hadir');
-    XLSX.writeFile(wb, `Laporan_${kategoriVal}_${jenjangVal}_${dateVal}.xlsx`);
-    showToast('File Excel laporan berhasil diunduh!');
-  });
-
-  document.getElementById('btn-export-pdf').addEventListener('click', async () => {
-    const btn = document.getElementById('btn-export-pdf');
-    const reportEl = document.getElementById('printable-official-report');
-    const dateVal = document.getElementById('lap-filter-date').value || getTodayStr();
-    const jenjangVal = document.getElementById('lap-filter-jenjang').value;
-    const kategoriVal = document.getElementById('lap-filter-kategori').value;
-
-    const jsPDFCtor = window.jspdf?.jsPDF || window.jsPDF;
-    if (!window.html2canvas || !jsPDFCtor) {
-      window.print();
-      return;
-    }
-
+  document.getElementById('btn-lihat-laporan')?.addEventListener('click', async () => {
+    const btn = document.getElementById('btn-lihat-laporan');
     const originalHtml = btn.innerHTML;
     btn.disabled = true;
-    btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Mengunduh PDF...`;
-
-    // Buat kloning elemen di luar #ekantin-app-root (yang memiliki overflow-y: auto) agar tidak menghasilkan kanvas kosong
-    const sandbox = document.createElement('div');
-    sandbox.style.position = 'fixed';
-    sandbox.style.left = '-10000px';
-    sandbox.style.top = '0';
-    sandbox.style.width = '740px';
-    sandbox.style.background = '#ffffff';
-    sandbox.style.zIndex = '-1';
-
-    const clonedReport = reportEl.cloneNode(true);
-    clonedReport.removeAttribute('id');
-    clonedReport.style.width = '740px';
-    clonedReport.style.minWidth = '740px';
-    clonedReport.style.maxWidth = '740px';
-    clonedReport.style.padding = '16px 20px';
-    clonedReport.style.margin = '0';
-    clonedReport.style.boxShadow = 'none';
-    clonedReport.style.background = '#ffffff';
-
-    sandbox.appendChild(clonedReport);
-    document.body.appendChild(sandbox);
-
+    btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Memuat...`;
     try {
-      // Konversi SVG logo kop surat menjadi PNG Data URL pada kloningan
-      const kopLogoEl = clonedReport.querySelector('.kop-logo');
-      if (kopLogoEl) {
-        const svgEl = kopLogoEl.querySelector('svg');
-        if (svgEl) {
-          const svgClone = svgEl.cloneNode(true);
-          svgClone.setAttribute('width', '160');
-          svgClone.setAttribute('height', '160');
-          const svgStr = new XMLSerializer().serializeToString(svgClone);
-          const svgDataUrl = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgStr);
-          const pngDataUrl = await new Promise((resolve) => {
-            const img = new Image();
-            img.onload = () => {
-              const c = document.createElement('canvas');
-              c.width = 220;
-              c.height = 245;
-              const ctx = c.getContext('2d');
-              ctx.drawImage(img, 0, 0, 220, 245);
-              resolve(c.toDataURL('image/png'));
-            };
-            img.onerror = () => resolve(svgDataUrl);
-            img.src = svgDataUrl;
-          });
-          kopLogoEl.innerHTML = `<img src="${pngDataUrl}" alt="Logo Kemensos" style="width:72px;height:72px;object-fit:contain;display:block;">`;
-        }
-      }
-
-      // Tunggu semua gambar (logo & TTD) siap dirender
-      const imgs = Array.from(clonedReport.querySelectorAll('img'));
-      await Promise.all(imgs.map(img => {
-        if (img.complete) return Promise.resolve();
-        return new Promise(res => { img.onload = res; img.onerror = res; });
-      }));
-
-      const canvas = await window.html2canvas(clonedReport, {
-        scale: 2,
-        useCORS: true,
-        backgroundColor: '#ffffff',
-        width: 740,
-        height: clonedReport.scrollHeight,
-        scrollX: 0,
-        scrollY: 0
-      });
-
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDFCtor({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-      const pageWidth = pdf.internal.pageSize.getWidth();
-      const pageHeight = pdf.internal.pageSize.getHeight();
-      const margin = 8;
-      const usableWidth = pageWidth - margin * 2;
-      const imgHeight = (canvas.height * usableWidth) / canvas.width;
-
-      let heightLeft = imgHeight;
-      let position = margin;
-
-      pdf.addImage(imgData, 'PNG', margin, position, usableWidth, imgHeight);
-      heightLeft -= (pageHeight - margin * 2);
-
-      while (heightLeft > 0) {
-        position = heightLeft - imgHeight + margin;
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', margin, position, usableWidth, imgHeight);
-        heightLeft -= (pageHeight - margin * 2);
-      }
-
-      pdf.save(`Laporan_${kategoriVal}_${jenjangVal}_${dateVal}.pdf`);
-      showToast('File PDF laporan berhasil diunduh!');
-    } catch (err) {
-      showToast('Gagal mengunduh PDF: ' + err.message, 'error');
+      await renderOfficialLaporan();
+      document.getElementById('laporan-empty-prompt')?.classList.add('hidden');
+      document.getElementById('laporan-paper-container')?.classList.remove('hidden');
+      document.getElementById('lap-export-actions')?.classList.remove('hidden');
     } finally {
-      sandbox.remove();
       btn.disabled = false;
       btn.innerHTML = originalHtml;
     }
   });
 
-  // ============================================================================
-  // 13. PENGATURAN SEKOLAH, LOGO & KOMPRESI GAMBAR
-  // ============================================================================
-  function compressLogoFile(file, callback) {
-    const reader = new FileReader();
-    reader.onload = (e) => {
+  let currentLaporanExportRows = [];
+
+  async function renderOfficialLaporan() {
+    const dateVal = document.getElementById('lap-filter-date').value || getTodayStr();
+    const jenjangVal = document.getElementById('lap-filter-jenjang').value || 'SRD';
+    const kategoriVal = document.getElementById('lap-filter-kategori').value || 'MAKAN';
+    const cfg = appState.sekolahConfig || DEFAULT_SEKOLAH_CONFIG;
+
+    const [presensiList, ketList] = await Promise.all([
+      DB.fetchPresensiByDate(dateVal),
+      DB.fetchKeteranganByDate(dateVal)
+    ]);
+
+    const students = jenjangVal === 'ALL'
+      ? appState.siswaList
+      : appState.siswaList.filter(s => s.jenjang === jenjangVal);
+
+    document.getElementById('rep-doc-title').textContent =
+      kategoriVal === 'SNACK' ? 'DAFTAR HADIR MAKAN SNACK SISWA' : 'DAFTAR HADIR MAKAN SISWA';
+    document.getElementById('rep-hari-tanggal').textContent = formatTanggalIndonesia(dateVal);
+    document.getElementById('rep-jenjang-text').textContent = jenjangVal === 'ALL' ? 'Semua Jenjang (SRD, SRMP, SRMA)' : jenjangVal;
+
+    document.getElementById('rep-sign-nama-kepsek').textContent = cfg.nama_kepsek || DEFAULT_SEKOLAH_CONFIG.nama_kepsek;
+    document.getElementById('rep-sign-nip-kepsek').textContent = `NIP. ${cfg.nip_kepsek || ''}`;
+
+    const petugasName = appState.currentUser?.role === 'petugas'
+      ? appState.currentUser.name
+      : (presensiList[0]?.petugas_nama || appState.petugasList[0]?.nama || '-');
+    const matchedPetugas = appState.petugasList.find(p => p.nama === petugasName);
+    const petugasNik = appState.currentUser?.role === 'petugas'
+      ? (appState.currentUser.nik || matchedPetugas?.nik || '-')
+      : (matchedPetugas?.nik || '-');
+    document.getElementById('rep-sign-nama-petugas').textContent = petugasName;
+    document.getElementById('rep-sign-nik-petugas').textContent = `NIK. ${petugasNik}`;
+
+    const thead = document.getElementById('rep-table-head');
+    const tbody = document.getElementById('rep-table-body');
+    currentLaporanExportRows = [];
+
+    if (kategoriVal === 'SNACK') {
+      thead.innerHTML = `
+        <tr>
+          <th rowspan="2" style="width:36px;">No</th>
+          <th rowspan="2" style="min-width:210px;">Nama Siswa</th>
+          <th rowspan="2" style="width:135px;">NIK</th>
+          <th rowspan="2" style="width:48px;">Jenis Kelamin</th>
+          <th colspan="2">Waktu Snack</th>
+          <th rowspan="2" style="width:95px;">Keterangan</th>
+        </tr>
+        <tr>
+          <th style="width:88px;">Snack Pagi</th>
+          <th style="width:88px;">Snack Sore</th>
+        </tr>
+      `;
+
+      if (students.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:16px;">Tidak ada data siswa pada jenjang ini.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = students.map((s, idx) => {
+        const pPagi = presensiList.find(p => p.siswa_id === s.id && p.jenis_konsumsi === 'Snack Pagi');
+        const pSore = presensiList.find(p => p.siswa_id === s.id && p.jenis_konsumsi === 'Snack Sore');
+        const ketObj = ketList.find(k => k.siswa_id === s.id);
+        const hadirCount = (pPagi ? 1 : 0) + (pSore ? 1 : 0);
+        const ketText = ketObj?.keterangan || (hadirCount > 0 ? `Hadir ${hadirCount}` : '-');
+
+        currentLaporanExportRows.push({
+          'No': idx + 1,
+          'Nama Siswa': s.nama_lengkap,
+          'NIK': s.nik,
+          'Jenis Kelamin': s.jenis_kelamin,
+          'Snack Pagi': pPagi ? 'Hadir' : '',
+          'Snack Sore': pSore ? 'Hadir' : '',
+          'Keterangan': ketText
+        });
+
+        return `
+          <tr>
+            <td style="text-align:center;">${idx + 1}</td>
+            <td>${s.nama_lengkap}</td>
+            <td style="text-align:center;">${s.nik}</td>
+            <td style="text-align:center;">${s.jenis_kelamin}</td>
+            <td style="text-align:center;">${pPagi?.ttd_base64 ? `<img src="${pPagi.ttd_base64}" class="official-ttd-img">` : ''}</td>
+            <td style="text-align:center;">${pSore?.ttd_base64 ? `<img src="${pSore.ttd_base64}" class="official-ttd-img">` : ''}</td>
+            <td style="text-align:center;">${ketText}</td>
+          </tr>
+        `;
+      }).join('');
+    } else {
+      thead.innerHTML = `
+        <tr>
+          <th rowspan="2" style="width:36px;">No</th>
+          <th rowspan="2" style="min-width:210px;">Nama Siswa</th>
+          <th rowspan="2" style="width:135px;">NIK</th>
+          <th rowspan="2" style="width:48px;">Jenis Kelamin</th>
+          <th colspan="3">Waktu Makan</th>
+          <th rowspan="2" style="width:95px;">Keterangan</th>
+        </tr>
+        <tr>
+          <th style="width:74px;">Pagi</th>
+          <th style="width:74px;">Siang</th>
+          <th style="width:74px;">Malam</th>
+        </tr>
+      `;
+
+      if (students.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:16px;">Tidak ada data siswa pada jenjang ini.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = students.map((s, idx) => {
+        const pPagi = presensiList.find(p => p.siswa_id === s.id && p.jenis_konsumsi === 'Makan Pagi');
+        const pSiang = presensiList.find(p => p.siswa_id === s.id && p.jenis_konsumsi === 'Makan Siang');
+        const pMalam = presensiList.find(p => p.siswa_id === s.id && p.jenis_konsumsi === 'Makan Malam');
+        const ketObj = ketList.find(k => k.siswa_id === s.id);
+        const hadirCount = (pPagi ? 1 : 0) + (pSiang ? 1 : 0) + (pMalam ? 1 : 0);
+        const ketText = ketObj?.keterangan || (hadirCount > 0 ? `Hadir ${hadirCount}` : '-');
+
+        currentLaporanExportRows.push({
+          'No': idx + 1,
+          'Nama Siswa': s.nama_lengkap,
+          'NIK': s.nik,
+          'Jenis Kelamin': s.jenis_kelamin,
+          'Makan Pagi': pPagi ? 'Hadir' : '',
+          'Makan Siang': pSiang ? 'Hadir' : '',
+          'Makan Malam': pMalam ? 'Hadir' : '',
+          'Keterangan': ketText
+        });
+
+        return `
+          <tr>
+            <td style="text-align:center;">${idx + 1}</td>
+            <td>${s.nama_lengkap}</td>
+            <td style="text-align:center;">${s.nik}</td>
+            <td style="text-align:center;">${s.jenis_kelamin}</td>
+            <td style="text-align:center;">${pPagi?.ttd_base64 ? `<img src="${pPagi.ttd_base64}" class="official-ttd-img">` : ''}</td>
+            <td style="text-align:center;">${pSiang?.ttd_base64 ? `<img src="${pSiang.ttd_base64}" class="official-ttd-img">` : ''}</td>
+            <td style="text-align:center;">${pMalam?.ttd_base64 ? `<img src="${pMalam.ttd_base64}" class="official-ttd-img">` : ''}</td>
+            <td style="text-align:center;">${ketText}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+  }
+
+  document.getElementById('btn-export-csv')?.addEventListener('click', () => {
+    if (currentLaporanExportRows.length === 0) {
+      showToast('Tidak ada data laporan untuk diunduh.', 'error');
+      return;
+    }
+    const dateVal = document.getElementById('lap-filter-date').value || getTodayStr();
+    const jenjangVal = document.getElementById('lap-filter-jenjang').value || 'SRD';
+    const kategoriVal = document.getElementById('lap-filter-kategori').value || 'MAKAN';
+    const ws = XLSX.utils.json_to_sheet(currentLaporanExportRows);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Daftar Hadir');
+    XLSX.writeFile(wb, `Laporan_${kategoriVal}_${jenjangVal}_${dateVal}.xlsx`);
+  });
+
+  function svgToPngDataUrl(svgElement, width = 160, height = 160) {
+    return new Promise((resolve) => {
+      const xml = new XMLSerializer().serializeToString(svgElement);
+      const svgBlob = new Blob([xml], { type: 'image/svg+xml;charset=utf-8' });
+      const url = URL.createObjectURL(svgBlob);
       const img = new Image();
       img.onload = () => {
         const canvas = document.createElement('canvas');
-        const MAX_SIZE = 320;
-        let w = img.width;
-        let h = img.height;
-        if (w > h && w > MAX_SIZE) {
-          h = Math.round((h * MAX_SIZE) / w);
-          w = MAX_SIZE;
-        } else if (h >= w && h > MAX_SIZE) {
-          w = Math.round((w * MAX_SIZE) / h);
-          h = MAX_SIZE;
-        }
-        canvas.width = w;
-        canvas.height = h;
+        canvas.width = width;
+        canvas.height = height;
         const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0, w, h);
-        callback(canvas.toDataURL('image/png', 0.88));
+        ctx.drawImage(img, 0, 0, width, height);
+        URL.revokeObjectURL(url);
+        resolve(canvas.toDataURL('image/png'));
       };
-      img.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
-
-  let tempLogoSekolah = '';
-  let tempLogoLaporan = '';
-
-  function renderPengaturanForm() {
-    const cfg = appState.sekolahConfig || DEFAULT_SEKOLAH_CONFIG;
-    tempLogoSekolah = cfg.logo_sekolah || '';
-    tempLogoLaporan = cfg.logo_laporan || '';
-
-    document.getElementById('preview-setting-logo-sekolah').innerHTML = tempLogoSekolah
-      ? `<img src="${tempLogoSekolah}" style="width:100%;height:100%;object-fit:contain;">`
-      : DEFAULT_LOGO_SEKOLAH_SVG;
-    document.getElementById('preview-setting-logo-laporan').innerHTML = tempLogoLaporan
-      ? `<img src="${tempLogoLaporan}" style="width:100%;height:100%;object-fit:contain;">`
-      : DEFAULT_LOGO_LAPORAN_SVG;
-
-    document.getElementById('set-kementerian').value = cfg.kementerian || '';
-    document.getElementById('set-nama-sekolah').value = cfg.nama_sekolah || '';
-    document.getElementById('set-alamat-sekolah').value = cfg.alamat || '';
-    document.getElementById('set-email-sekolah').value = cfg.email || '';
-    document.getElementById('set-nama-kepsek').value = cfg.nama_kepsek || '';
-    document.getElementById('set-nip-kepsek').value = cfg.nip_kepsek || '';
-  }
-
-  document.getElementById('input-setting-logo-sekolah').addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    compressLogoFile(file, (dataUrl) => {
-      tempLogoSekolah = dataUrl;
-      document.getElementById('preview-setting-logo-sekolah').innerHTML = `<img src="${dataUrl}" style="width:100%;height:100%;object-fit:contain;">`;
+      img.onerror = () => {
+        URL.revokeObjectURL(url);
+        resolve('');
+      };
+      img.src = url;
     });
+  }
+
+  document.getElementById('btn-export-pdf')?.addEventListener('click', async () => {
+    const reportEl = document.getElementById('printable-official-report');
+    if (!reportEl || typeof html2canvas === 'undefined' || !window.jspdf) {
+      window.print();
+      return;
+    }
+
+    const btn = document.getElementById('btn-export-pdf');
+    const origHtml = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Membuat PDF...`;
+
+    let sandbox = null;
+    try {
+      sandbox = document.createElement('div');
+      sandbox.style.cssText = 'position:fixed;left:-9999px;top:0;width:794px;background:#ffffff;z-index:-1;';
+      const clone = reportEl.cloneNode(true);
+      clone.style.width = '794px';
+      clone.style.minWidth = '794px';
+      clone.style.maxWidth = '794px';
+      clone.style.margin = '0';
+      clone.style.padding = '28px 34px';
+      clone.style.boxShadow = 'none';
+
+      const svgEl = clone.querySelector('#kop-logo-container svg');
+      if (svgEl) {
+        const pngDataUrl = await svgToPngDataUrl(svgEl, 180, 180);
+        if (pngDataUrl) {
+          const img = document.createElement('img');
+          img.src = pngDataUrl;
+          img.style.width = '74px';
+          img.style.height = '74px';
+          img.style.objectFit = 'contain';
+          svgEl.replaceWith(img);
+        }
+      }
+
+      sandbox.appendChild(clone);
+      document.body.appendChild(sandbox);
+
+      const canvas = await html2canvas(clone, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#ffffff',
+        windowWidth: 794
+      });
+
+      const imgData = canvas.toDataURL('image/png');
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+      const imgWidth = pageWidth;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+      let heightLeft = imgHeight;
+      let position = 0;
+
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft > 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+
+      const dateVal = document.getElementById('lap-filter-date').value || getTodayStr();
+      const jenjangVal = document.getElementById('lap-filter-jenjang').value || 'SRD';
+      const kategoriVal = document.getElementById('lap-filter-kategori').value || 'MAKAN';
+      pdf.save(`Laporan_${kategoriVal}_${jenjangVal}_${dateVal}.pdf`);
+      showToast('Laporan PDF berhasil diunduh!');
+    } catch (err) {
+      showToast('Gagal membuat PDF: ' + err.message, 'error');
+    } finally {
+      if (sandbox) sandbox.remove();
+      btn.disabled = false;
+      btn.innerHTML = origHtml;
+    }
   });
 
-  document.getElementById('btn-reset-logo-sekolah').addEventListener('click', () => {
-    tempLogoSekolah = '';
+  // ============================================================================
+  // 13. PENGATURAN SEKOLAH, LOGO & KOP SURAT (ADMIN)
+  // ============================================================================
+  function renderPengaturanForm() {
+    const cfg = appState.sekolahConfig || DEFAULT_SEKOLAH_CONFIG;
+    document.getElementById('set-kementerian').value = cfg.kementerian || DEFAULT_SEKOLAH_CONFIG.kementerian;
+    document.getElementById('set-nama-sekolah').value = cfg.nama_sekolah || DEFAULT_SEKOLAH_CONFIG.nama_sekolah;
+    document.getElementById('set-alamat-sekolah').value = cfg.alamat || DEFAULT_SEKOLAH_CONFIG.alamat;
+    document.getElementById('set-email-sekolah').value = cfg.email || DEFAULT_SEKOLAH_CONFIG.email;
+    document.getElementById('set-nama-kepsek').value = cfg.nama_kepsek || DEFAULT_SEKOLAH_CONFIG.nama_kepsek;
+    document.getElementById('set-nip-kepsek').value = cfg.nip_kepsek || '';
+
+    document.getElementById('preview-setting-logo-sekolah').innerHTML = cfg.logo_sekolah
+      ? `<img src="${cfg.logo_sekolah}" style="width:100%;height:100%;object-fit:contain;">`
+      : DEFAULT_LOGO_SEKOLAH_SVG;
+    document.getElementById('preview-setting-logo-laporan').innerHTML = cfg.logo_laporan
+      ? `<img src="${cfg.logo_laporan}" style="width:100%;height:100%;object-fit:contain;">`
+      : DEFAULT_LOGO_LAPORAN_SVG;
+  }
+
+  document.getElementById('input-setting-logo-sekolah')?.addEventListener('change', async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const dataUrl = await compressImageFile(file, 260);
+    appState.sekolahConfig.logo_sekolah = dataUrl;
+    document.getElementById('preview-setting-logo-sekolah').innerHTML = `<img src="${dataUrl}" style="width:100%;height:100%;object-fit:contain;">`;
+  });
+
+  document.getElementById('btn-reset-logo-sekolah')?.addEventListener('click', () => {
+    appState.sekolahConfig.logo_sekolah = '';
     document.getElementById('input-setting-logo-sekolah').value = '';
     document.getElementById('preview-setting-logo-sekolah').innerHTML = DEFAULT_LOGO_SEKOLAH_SVG;
   });
 
-  document.getElementById('input-setting-logo-laporan').addEventListener('change', (e) => {
-    const file = e.target.files[0];
+  document.getElementById('input-setting-logo-laporan')?.addEventListener('change', async (e) => {
+    const file = e.target.files?.[0];
     if (!file) return;
-    compressLogoFile(file, (dataUrl) => {
-      tempLogoLaporan = dataUrl;
-      document.getElementById('preview-setting-logo-laporan').innerHTML = `<img src="${dataUrl}" style="width:100%;height:100%;object-fit:contain;">`;
-    });
+    const dataUrl = await compressImageFile(file, 260);
+    appState.sekolahConfig.logo_laporan = dataUrl;
+    document.getElementById('preview-setting-logo-laporan').innerHTML = `<img src="${dataUrl}" style="width:100%;height:100%;object-fit:contain;">`;
   });
 
-  document.getElementById('btn-reset-logo-laporan').addEventListener('click', () => {
-    tempLogoLaporan = '';
+  document.getElementById('btn-reset-logo-laporan')?.addEventListener('click', () => {
+    appState.sekolahConfig.logo_laporan = '';
     document.getElementById('input-setting-logo-laporan').value = '';
     document.getElementById('preview-setting-logo-laporan').innerHTML = DEFAULT_LOGO_LAPORAN_SVG;
   });
 
-  document.getElementById('form-pengaturan-sekolah').addEventListener('submit', async (e) => {
+  document.getElementById('form-pengaturan-sekolah')?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const payload = {
+    const updated = {
       kementerian: document.getElementById('set-kementerian').value.trim(),
       nama_sekolah: document.getElementById('set-nama-sekolah').value.trim(),
       alamat: document.getElementById('set-alamat-sekolah').value.trim(),
       email: document.getElementById('set-email-sekolah').value.trim(),
       nama_kepsek: document.getElementById('set-nama-kepsek').value.trim(),
       nip_kepsek: document.getElementById('set-nip-kepsek').value.trim(),
-      logo_sekolah: tempLogoSekolah,
-      logo_laporan: tempLogoLaporan
+      logo_sekolah: appState.sekolahConfig.logo_sekolah || '',
+      logo_laporan: appState.sekolahConfig.logo_laporan || ''
     };
-
     try {
-      appState.sekolahConfig = await DB.savePengaturan(payload);
+      appState.sekolahConfig = await DB.savePengaturan(updated);
       applySekolahConfigToUI();
-      showToast('Pengaturan identitas & logo sekolah berhasil disimpan!');
+      showToast('Pengaturan sekolah & logo berhasil disimpan!');
     } catch (err) {
-      showToast('Gagal menyimpan pengaturan: ' + err.message, 'error');
+      showToast(err.message, 'error');
     }
   });
 
   // ============================================================================
   // 14. INISIALISASI APLIKASI & JAM REAL-TIME
   // ============================================================================
-  function initPreviewUI() {
-    const banner = document.getElementById('preview-banner');
-    const quickLogin = document.getElementById('preview-quick-login');
-    const root = document.getElementById('ekantin-app-root');
-
-    if (IS_PREVIEW) {
-      banner?.classList.remove('hidden');
-      quickLogin?.classList.remove('hidden');
-      root?.classList.add('has-preview-banner');
-    } else {
-      banner?.classList.add('hidden');
-      quickLogin?.classList.add('hidden');
-      root?.classList.remove('has-preview-banner');
+  function updateLiveClock() {
+    const el = document.getElementById('live-clock-text');
+    if (el) {
+      el.textContent = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     }
   }
-
-  function startLiveClock() {
-    const update = () => {
-      const now = new Date();
-      const el = document.getElementById('live-clock-text');
-      if (el) {
-        el.textContent = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-      }
-    };
-    update();
-    setInterval(update, 1000);
-  }
+  setInterval(updateLiveClock, 1000);
+  updateLiveClock();
 
   async function bootstrapApp() {
-    initPreviewUI();
-    startLiveClock();
-    applySekolahConfigToUI();
+    if (IS_PREVIEW) {
+      document.getElementById('preview-banner')?.classList.remove('hidden');
+      document.getElementById('preview-quick-login')?.classList.remove('hidden');
+      document.getElementById('ekantin-app-root')?.classList.add('has-preview-banner');
+    }
 
-    try {
-      appState.sekolahConfig = await DB.fetchPengaturan();
-      applySekolahConfigToUI();
-    } catch (_) {}
+    appState.sekolahConfig = await DB.fetchPengaturan();
+    applySekolahConfigToUI();
 
     if (!IS_PREVIEW && supabase) {
       const savedPetugas = localStorage.getItem('ekantin_petugas_session');
@@ -4654,7 +4110,7 @@
       }
       const { data } = await supabase.auth.getSession();
       if (data?.session?.user) {
-        await enterSession({ role: 'admin', name: data.session.user.email, nip: '' });
+        await enterSession({ role: 'admin', name: data.session.user.email });
       }
     }
   }
