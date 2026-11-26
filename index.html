@@ -1545,8 +1545,8 @@
         <div class="glass-card" style="padding: 20px;">
           <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px;">
             <div>
-              <h3 style="font-size: 1rem; font-weight: 700;">Daftar Data Petugas (Juru Masak)</h3>
-              <p style="font-size: 0.8rem; color: var(--slate-500);">Nama petugas Juru Masak akan tampil otomatis pada kolom tanda tangan laporan harian</p>
+              <h3 style="font-size: 1rem; font-weight: 700;">Daftar Data Petugas</h3>
+              <p style="font-size: 0.8rem; color: var(--slate-500);">Nama petugas akan tampil otomatis pada kolom tanda tangan laporan harian</p>
             </div>
             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
               <button type="button" id="btn-open-upload-petugas" class="btn btn-outline">
@@ -1731,7 +1731,6 @@
                 <div>Petugas</div>
                 <div class="sign-space"></div>
                 <div id="rep-sign-nama-petugas" style="font-weight: bold; text-decoration: underline;">-</div>
-                <div id="rep-sign-nik-petugas">NIK. -</div>
               </div>
             </div>
           </div>
@@ -2935,7 +2934,7 @@
       'dashboard': ['Dashboard Ringkasan', 'Pantau kehadiran makan & snack siswa secara real-time'],
       'scanner': ['Scan QR Presensi', 'Pindai kartu QR siswa atau catat ketidakhadiran'],
       'siswa': ['Data Master Siswa', 'Kelola biodata siswa, unggah Excel, dan cetak Kartu Pelajar QR'],
-      'petugas': ['Data Petugas (Juru Masak)', 'Kelola akun petugas yang bertugas pada laporan harian'],
+      'petugas': ['Data Petugas', 'Kelola akun petugas yang bertugas pada laporan harian'],
       'profil-petugas': ['Profil Petugas', 'Informasi identitas dan foto profil petugas'],
       'laporan': ['Laporan Harian Resmi', 'Pratinjau dokumen daftar hadir siap unduh PDF & Excel'],
       'pengaturan': ['Pengaturan Sekolah & Logo', 'Atur kop surat, logo instansi, dan identitas Kepala Sekolah']
@@ -3829,48 +3828,74 @@
     document.getElementById('rep-hari-tanggal').textContent = formatTanggalIndonesia(dateVal);
     document.getElementById('rep-jenjang-text').textContent = jenjangVal === 'ALL' ? 'Semua Jenjang (SRD, SRMP, SRMA)' : jenjangVal;
 
+    // Tanda tangan Kepala Sekolah & Petugas
     document.getElementById('rep-sign-nama-kepsek').textContent = cfg.nama_kepsek || DEFAULT_SEKOLAH_CONFIG.nama_kepsek;
-    document.getElementById('rep-sign-nip-kepsek').textContent = `NIP. ${cfg.nip_kepsek || ''}`;
+    document.getElementById('rep-sign-nip-kepsek').textContent = `NIP. ${cfg.nip_kepsek || '-'}`;
 
-    const petugasName = appState.currentUser?.role === 'petugas'
-      ? appState.currentUser.name
-      : (presensiList[0]?.petugas_nama || appState.petugasList[0]?.nama || '-');
-    const matchedPetugas = appState.petugasList.find(p => p.nama === petugasName);
-    const petugasNik = appState.currentUser?.role === 'petugas'
-      ? (appState.currentUser.nik || matchedPetugas?.nik || '-')
-      : (matchedPetugas?.nik || '-');
-    document.getElementById('rep-sign-nama-petugas').textContent = petugasName;
-    document.getElementById('rep-sign-nik-petugas').textContent = `NIK. ${petugasNik}`;
+    const activePetugas = appState.currentUser?.role === 'petugas'
+      ? appState.currentUser
+      : (appState.petugasList[0] || { nama: '-' });
+    document.getElementById('rep-sign-nama-petugas').textContent = activePetugas.name || activePetugas.nama || '-';
 
     const thead = document.getElementById('rep-table-head');
     const tbody = document.getElementById('rep-table-body');
-    currentLaporanExportRows = [];
+    const isSnack = kategoriVal === 'SNACK';
 
-    if (kategoriVal === 'SNACK') {
+    if (isSnack) {
       thead.innerHTML = `
         <tr>
-          <th rowspan="2" style="width:36px;">No</th>
-          <th rowspan="2" style="min-width:210px;">Nama Siswa</th>
-          <th rowspan="2" style="width:135px;">NIK</th>
-          <th rowspan="2" style="width:48px;">Jenis Kelamin</th>
+          <th rowspan="2" style="width:34px;">No</th>
+          <th rowspan="2" style="min-width:195px;">Nama Siswa</th>
+          <th rowspan="2" style="width:132px;">NIK</th>
+          <th rowspan="2" style="width:52px;">Jenis<br>Kelamin</th>
           <th colspan="2">Waktu Snack</th>
-          <th rowspan="2" style="width:95px;">Keterangan</th>
+          <th rowspan="2" style="width:105px;">Keterangan</th>
         </tr>
         <tr>
-          <th style="width:88px;">Snack Pagi</th>
-          <th style="width:88px;">Snack Sore</th>
+          <th style="width:88px;">Pagi</th>
+          <th style="width:88px;">Sore</th>
         </tr>
       `;
+    } else {
+      thead.innerHTML = `
+        <tr>
+          <th rowspan="2" style="width:34px;">No</th>
+          <th rowspan="2" style="min-width:195px;">Nama Siswa</th>
+          <th rowspan="2" style="width:132px;">NIK</th>
+          <th rowspan="2" style="width:52px;">Jenis<br>Kelamin</th>
+          <th colspan="3">Waktu Makan</th>
+          <th rowspan="2" style="width:105px;">Keterangan</th>
+        </tr>
+        <tr>
+          <th style="width:78px;">Pagi</th>
+          <th style="width:78px;">Siang</th>
+          <th style="width:78px;">Malam</th>
+        </tr>
+      `;
+    }
 
-      if (students.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:16px;">Tidak ada data siswa pada jenjang ini.</td></tr>`;
-        return;
-      }
+    currentLaporanExportRows = [];
 
-      tbody.innerHTML = students.map((s, idx) => {
-        const pPagi = presensiList.find(p => p.siswa_id === s.id && p.jenis_konsumsi === 'Snack Pagi');
-        const pSore = presensiList.find(p => p.siswa_id === s.id && p.jenis_konsumsi === 'Snack Sore');
-        const ketObj = ketList.find(k => k.siswa_id === s.id);
+    if (students.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="${isSnack ? 7 : 8}" style="text-align:center;padding:18px;">Belum ada data siswa pada jenjang ini.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = students.map((s, idx) => {
+      const sPresensi = presensiList.filter(p => p.siswa_id === s.id);
+      const ketObj = ketList.find(k => k.siswa_id === s.id);
+
+      const getCellSig = (sesiName) => {
+        const rec = sPresensi.find(p => p.jenis_konsumsi === sesiName);
+        if (!rec) return '';
+        return rec.ttd_base64
+          ? `<img src="${rec.ttd_base64}" class="official-ttd-img" alt="TTD">`
+          : '✓';
+      };
+
+      if (isSnack) {
+        const pSore = sPresensi.find(p => p.jenis_konsumsi === 'Snack Sore');
+        const pPagi = sPresensi.find(p => p.jenis_konsumsi === 'Snack Pagi');
         const hadirCount = (pPagi ? 1 : 0) + (pSore ? 1 : 0);
         const ketText = ketObj?.keterangan || (hadirCount > 0 ? `Hadir ${hadirCount}` : '-');
 
@@ -3879,8 +3904,8 @@
           'Nama Siswa': s.nama_lengkap,
           'NIK': s.nik,
           'Jenis Kelamin': s.jenis_kelamin,
-          'Snack Pagi': pPagi ? 'Hadir' : '',
-          'Snack Sore': pSore ? 'Hadir' : '',
+          'Snack Pagi': pPagi ? 'Hadir' : '-',
+          'Snack Sore': pSore ? 'Hadir' : '-',
           'Keterangan': ketText
         });
 
@@ -3890,39 +3915,15 @@
             <td>${s.nama_lengkap}</td>
             <td style="text-align:center;">${s.nik}</td>
             <td style="text-align:center;">${s.jenis_kelamin}</td>
-            <td style="text-align:center;">${pPagi?.ttd_base64 ? `<img src="${pPagi.ttd_base64}" class="official-ttd-img">` : ''}</td>
-            <td style="text-align:center;">${pSore?.ttd_base64 ? `<img src="${pSore.ttd_base64}" class="official-ttd-img">` : ''}</td>
+            <td style="text-align:center;">${getCellSig('Snack Pagi')}</td>
+            <td style="text-align:center;">${getCellSig('Snack Sore')}</td>
             <td style="text-align:center;">${ketText}</td>
           </tr>
         `;
-      }).join('');
-    } else {
-      thead.innerHTML = `
-        <tr>
-          <th rowspan="2" style="width:36px;">No</th>
-          <th rowspan="2" style="min-width:210px;">Nama Siswa</th>
-          <th rowspan="2" style="width:135px;">NIK</th>
-          <th rowspan="2" style="width:48px;">Jenis Kelamin</th>
-          <th colspan="3">Waktu Makan</th>
-          <th rowspan="2" style="width:95px;">Keterangan</th>
-        </tr>
-        <tr>
-          <th style="width:74px;">Pagi</th>
-          <th style="width:74px;">Siang</th>
-          <th style="width:74px;">Malam</th>
-        </tr>
-      `;
-
-      if (students.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:16px;">Tidak ada data siswa pada jenjang ini.</td></tr>`;
-        return;
-      }
-
-      tbody.innerHTML = students.map((s, idx) => {
-        const pPagi = presensiList.find(p => p.siswa_id === s.id && p.jenis_konsumsi === 'Makan Pagi');
-        const pSiang = presensiList.find(p => p.siswa_id === s.id && p.jenis_konsumsi === 'Makan Siang');
-        const pMalam = presensiList.find(p => p.siswa_id === s.id && p.jenis_konsumsi === 'Makan Malam');
-        const ketObj = ketList.find(k => k.siswa_id === s.id);
+      } else {
+        const pPagi = sPresensi.find(p => p.jenis_konsumsi === 'Makan Pagi');
+        const pSiang = sPresensi.find(p => p.jenis_konsumsi === 'Makan Siang');
+        const pMalam = sPresensi.find(p => p.jenis_konsumsi === 'Makan Malam');
         const hadirCount = (pPagi ? 1 : 0) + (pSiang ? 1 : 0) + (pMalam ? 1 : 0);
         const ketText = ketObj?.keterangan || (hadirCount > 0 ? `Hadir ${hadirCount}` : '-');
 
@@ -3931,9 +3932,9 @@
           'Nama Siswa': s.nama_lengkap,
           'NIK': s.nik,
           'Jenis Kelamin': s.jenis_kelamin,
-          'Makan Pagi': pPagi ? 'Hadir' : '',
-          'Makan Siang': pSiang ? 'Hadir' : '',
-          'Makan Malam': pMalam ? 'Hadir' : '',
+          'Makan Pagi': pPagi ? 'Hadir' : '-',
+          'Makan Siang': pSiang ? 'Hadir' : '-',
+          'Makan Malam': pMalam ? 'Hadir' : '-',
           'Keterangan': ketText
         });
 
@@ -3943,57 +3944,37 @@
             <td>${s.nama_lengkap}</td>
             <td style="text-align:center;">${s.nik}</td>
             <td style="text-align:center;">${s.jenis_kelamin}</td>
-            <td style="text-align:center;">${pPagi?.ttd_base64 ? `<img src="${pPagi.ttd_base64}" class="official-ttd-img">` : ''}</td>
-            <td style="text-align:center;">${pSiang?.ttd_base64 ? `<img src="${pSiang.ttd_base64}" class="official-ttd-img">` : ''}</td>
-            <td style="text-align:center;">${pMalam?.ttd_base64 ? `<img src="${pMalam.ttd_base64}" class="official-ttd-img">` : ''}</td>
+            <td style="text-align:center;">${getCellSig('Makan Pagi')}</td>
+            <td style="text-align:center;">${getCellSig('Makan Siang')}</td>
+            <td style="text-align:center;">${getCellSig('Makan Malam')}</td>
             <td style="text-align:center;">${ketText}</td>
           </tr>
         `;
-      }).join('');
-    }
+      }
+    }).join('');
   }
 
+  // Ekspor Excel (.xlsx)
   document.getElementById('btn-export-csv')?.addEventListener('click', () => {
     if (currentLaporanExportRows.length === 0) {
-      showToast('Tidak ada data laporan untuk diunduh.', 'error');
+      showToast('Tidak ada data laporan untuk diekspor.', 'error');
       return;
     }
     const dateVal = document.getElementById('lap-filter-date').value || getTodayStr();
     const jenjangVal = document.getElementById('lap-filter-jenjang').value || 'SRD';
     const kategoriVal = document.getElementById('lap-filter-kategori').value || 'MAKAN';
+
     const ws = XLSX.utils.json_to_sheet(currentLaporanExportRows);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Daftar Hadir');
     XLSX.writeFile(wb, `Laporan_${kategoriVal}_${jenjangVal}_${dateVal}.xlsx`);
   });
 
-  function svgToPngDataUrl(svgElement, width = 160, height = 160) {
-    return new Promise((resolve) => {
-      const xml = new XMLSerializer().serializeToString(svgElement);
-      const svgBlob = new Blob([xml], { type: 'image/svg+xml;charset=utf-8' });
-      const url = URL.createObjectURL(svgBlob);
-      const img = new Image();
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        canvas.width = width;
-        canvas.height = height;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0, width, height);
-        URL.revokeObjectURL(url);
-        resolve(canvas.toDataURL('image/png'));
-      };
-      img.onerror = () => {
-        URL.revokeObjectURL(url);
-        resolve('');
-      };
-      img.src = url;
-    });
-  }
-
+  // Download PDF A4 Utuh (Tanpa terpotong kanan & bebas offset scroll fixed)
   document.getElementById('btn-export-pdf')?.addEventListener('click', async () => {
-    const reportEl = document.getElementById('printable-official-report');
-    if (!reportEl || typeof html2canvas === 'undefined' || !window.jspdf) {
-      window.print();
+    const sourceEl = document.getElementById('printable-official-report');
+    if (!sourceEl || typeof html2canvas === 'undefined' || !window.jspdf) {
+      showToast('Library PDF belum siap, silakan coba sesaat lagi.', 'error');
       return;
     }
 
@@ -4002,39 +3983,31 @@
     btn.disabled = true;
     btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Membuat PDF...`;
 
-    let sandbox = null;
+    let cloneHost = null;
     try {
-      sandbox = document.createElement('div');
-      sandbox.style.cssText = 'position:fixed;left:-9999px;top:0;width:794px;background:#ffffff;z-index:-1;';
-      const clone = reportEl.cloneNode(true);
-      clone.style.width = '794px';
-      clone.style.minWidth = '794px';
-      clone.style.maxWidth = '794px';
-      clone.style.margin = '0';
-      clone.style.padding = '28px 34px';
-      clone.style.boxShadow = 'none';
+      const dateVal = document.getElementById('lap-filter-date').value || getTodayStr();
+      const jenjangVal = document.getElementById('lap-filter-jenjang').value || 'SRD';
+      const kategoriVal = document.getElementById('lap-filter-kategori').value || 'MAKAN';
 
-      const svgEl = clone.querySelector('#kop-logo-container svg');
-      if (svgEl) {
-        const pngDataUrl = await svgToPngDataUrl(svgEl, 180, 180);
-        if (pngDataUrl) {
-          const img = document.createElement('img');
-          img.src = pngDataUrl;
-          img.style.width = '74px';
-          img.style.height = '74px';
-          img.style.objectFit = 'contain';
-          svgEl.replaceWith(img);
-        }
-      }
+      cloneHost = document.createElement('div');
+      cloneHost.style.cssText = 'position:fixed;left:0;top:0;width:760px;background:#ffffff;z-index:-1;pointer-events:none;';
+      const clonedReport = sourceEl.cloneNode(true);
+      clonedReport.style.width = '760px';
+      clonedReport.style.minWidth = '760px';
+      clonedReport.style.maxWidth = '760px';
+      clonedReport.style.margin = '0';
+      clonedReport.style.padding = '24px 28px';
+      clonedReport.style.boxShadow = 'none';
+      cloneHost.appendChild(clonedReport);
+      document.body.appendChild(cloneHost);
 
-      sandbox.appendChild(clone);
-      document.body.appendChild(sandbox);
+      await new Promise(r => setTimeout(r, 80));
 
-      const canvas = await html2canvas(clone, {
+      const canvas = await html2canvas(clonedReport, {
         scale: 2,
         useCORS: true,
         backgroundColor: '#ffffff',
-        windowWidth: 794
+        windowWidth: 760
       });
 
       const imgData = canvas.toDataURL('image/png');
@@ -4042,31 +4015,282 @@
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pageWidth = pdf.internal.pageSize.getWidth();
       const pageHeight = pdf.internal.pageSize.getHeight();
-      const imgWidth = pageWidth;
+      const margin = 8;
+      const imgWidth = pageWidth - margin * 2;
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
       let heightLeft = imgHeight;
-      let position = 0;
+      let position = margin;
 
-      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
+      pdf.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
+      heightLeft -= (pageHeight - margin * 2);
 
       while (heightLeft > 0) {
-        position = heightLeft - imgHeight;
+        position = heightLeft - imgHeight + margin;
         pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
+        pdf.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
+        heightLeft -= (pageHeight - margin * 2);
       }
 
-      const dateVal = document.getElementById('lap-filter-date').value || getTodayStr();
-      const jenjangVal = document.getElementById('lap-filter-jenjang').value || 'SRD';
-      const kategoriVal = document.getElementById('lap-filter-kategori').value || 'MAKAN';
       pdf.save(`Laporan_${kategoriVal}_${jenjangVal}_${dateVal}.pdf`);
-      showToast('Laporan PDF berhasil diunduh!');
+      showToast('Laporan PDF berhasil diunduh.');
     } catch (err) {
-      showToast('Gagal membuat PDF: ' + err.message, 'error');
+      showToast('Gagal mengunduh PDF: ' + err.message, 'error');
     } finally {
-      if (sandbox) sandbox.remove();
+      if (cloneHost) cloneHost.remove();
+      btn.disabled = false;
+      btn.innerHTML = origHtml;
+    }
+  });
+
+  // Cetak Semua Kartu Pelajar QR (Grid 2 Kolom per Halaman A4)
+  document.getElementById('btn-print-all-qr')?.addEventListener('click', async () => {
+    const search = (document.getElementById('search-siswa-input')?.value || '').toLowerCase();
+    const jenjang = document.getElementById('filter-siswa-jenjang')?.value || 'ALL';
+
+    const targetStudents = appState.siswaList.filter(s => {
+      const matchJenjang = jenjang === 'ALL' || s.jenjang === jenjang;
+      const matchSearch = !search ||
+        s.nama_lengkap.toLowerCase().includes(search) ||
+        s.nik.toLowerCase().includes(search) ||
+        (s.kelas || '').toLowerCase().includes(search);
+      return matchJenjang && matchSearch;
+    });
+
+    if (targetStudents.length === 0) {
+      showToast('Belum ada data siswa yang sesuai untuk dicetak.', 'error');
+      return;
+    }
+
+    if (typeof QRCode === 'undefined') {
+      showToast('Library QRCode belum termuat.', 'error');
+      return;
+    }
+
+    const btn = document.getElementById('btn-print-all-qr');
+    const origHtml = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Menyiapkan ${targetStudents.length} Kartu...`;
+
+    let tempContainer = null;
+    try {
+      const cfg = appState.sekolahConfig || DEFAULT_SEKOLAH_CONFIG;
+      const kemensosLogoHtml = cfg.logo_laporan
+        ? `<img src="${cfg.logo_laporan}" alt="Logo" style="width:100%;height:100%;object-fit:contain;">`
+        : DEFAULT_LOGO_LAPORAN_SVG;
+      const sekolahLogoHtml = cfg.logo_sekolah
+        ? `<img src="${cfg.logo_sekolah}" alt="Logo" style="width:100%;height:100%;object-fit:contain;">`
+        : DEFAULT_LOGO_SEKOLAH_SVG;
+
+      // Buat QR code masing-masing siswa secara offscreen
+      tempContainer = document.createElement('div');
+      tempContainer.style.cssText = 'position:fixed;left:-9999px;top:0;visibility:hidden;';
+      document.body.appendChild(tempContainer);
+
+      const cardsHtml = [];
+      for (let i = 0; i < targetStudents.length; i++) {
+        const s = targetStudents[i];
+        const qrBox = document.createElement('div');
+        tempContainer.appendChild(qrBox);
+
+        new QRCode(qrBox, {
+          text: s.nik,
+          width: 120,
+          height: 120,
+          colorDark: '#0f172a',
+          colorLight: '#ffffff',
+          correctLevel: QRCode.CorrectLevel.M
+        });
+
+        await new Promise(r => setTimeout(r, 15));
+        const canvas = qrBox.querySelector('canvas');
+        const img = qrBox.querySelector('img');
+        const qrDataUrl = canvas ? canvas.toDataURL('image/png') : (img?.src || '');
+        const photoUrl = getStudentPhotoUrl(s, 'dc2626');
+
+        cardsHtml.push(`
+          <div class="print-card">
+            <div class="pc-header">
+              <div class="pc-logo">${kemensosLogoHtml}</div>
+              <div class="pc-head-text">
+                <div class="pc-ministry">${(cfg.kementerian || DEFAULT_SEKOLAH_CONFIG.kementerian).toUpperCase()}</div>
+                <div class="pc-school">${(cfg.nama_sekolah || DEFAULT_SEKOLAH_CONFIG.nama_sekolah).toUpperCase()}</div>
+                <div class="pc-addr">${cfg.alamat || DEFAULT_SEKOLAH_CONFIG.alamat}</div>
+              </div>
+              <div class="pc-logo">${sekolahLogoHtml}</div>
+            </div>
+            <div class="pc-body">
+              <img src="${photoUrl}" class="pc-photo" alt="Foto">
+              <div class="pc-info">
+                <div>
+                  <div class="pc-badge">KARTU PELAJAR &amp; TATA PERMAKANAN</div>
+                  <table class="pc-table">
+                    <tr><td>Nama</td><td>:</td><td>${s.nama_lengkap.toUpperCase()}</td></tr>
+                    <tr><td>NIK</td><td>:</td><td>${s.nik}</td></tr>
+                    <tr><td>Jenjang</td><td>:</td><td>${s.jenjang}</td></tr>
+                    <tr><td>Asrama</td><td>:</td><td>${s.kelas}</td></tr>
+                    <tr><td>J. Kelamin</td><td>:</td><td>${s.jenis_kelamin === 'L' ? 'Laki-laki' : 'Perempuan'}</td></tr>
+                  </table>
+                </div>
+                <div class="pc-foot-note">SIMANTAP • Kartu Identitas Konsumsi Siswa</div>
+              </div>
+              <div class="pc-right">
+                <div class="pc-qr-wrap">
+                  <img src="${qrDataUrl}" style="width:16.5mm;height:16.5mm;display:block;" alt="QR">
+                </div>
+                <div class="pc-sign">
+                  <div>Kepala Sekolah,</div>
+                  <div style="height:4mm;"></div>
+                  <div style="font-weight:800;text-decoration:underline;">${cfg.nama_kepsek || DEFAULT_SEKOLAH_CONFIG.nama_kepsek}</div>
+                  <div>NIP. ${cfg.nip_kepsek || '-'}</div>
+                </div>
+              </div>
+            </div>
+            <div class="pc-strip"></div>
+          </div>
+        `);
+      }
+
+      const printWin = window.open('', '_blank');
+      if (!printWin) {
+        showToast('Izinkan pop-up browser agar halaman cetak seluruh kartu dapat terbuka.', 'error');
+        return;
+      }
+
+      printWin.document.write(`
+        <!DOCTYPE html>
+        <html lang="id">
+        <head>
+          <meta charset="UTF-8">
+          <title>Cetak Seluruh Kartu Pelajar QR (${targetStudents.length} Siswa)</title>
+          <style>
+            * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            body { background: #f1f5f9; padding: 10mm; }
+            .toolbar { background: #0f172a; color: #fff; padding: 10px 16px; border-radius: 10px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+            .toolbar button { background: #2563eb; color: #fff; border: none; padding: 8px 16px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+            .cards-grid {
+              display: grid;
+              grid-template-columns: repeat(2, 85.6mm);
+              gap: 6mm;
+              justify-content: center;
+            }
+            .print-card {
+              width: 85.6mm;
+              height: 54mm;
+              border-radius: 3mm;
+              overflow: hidden;
+              background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 55%, #dbeafe 100%);
+              border: 0.4mm solid #1e3a8a;
+              display: flex;
+              flex-direction: column;
+              page-break-inside: avoid;
+              break-inside: avoid;
+            }
+            .pc-header {
+              background: linear-gradient(90deg, #0f172a 0%, #1e3a8a 65%, #1d4ed8 100%);
+              color: #fff;
+              padding: 2.2mm 3mm 2mm;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              gap: 2mm;
+              border-bottom: 0.8mm solid #dc2626;
+            }
+            .pc-logo {
+              width: 8.5mm;
+              height: 8.5mm;
+              background: #fff;
+              border-radius: 2mm;
+              padding: 0.6mm;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-shrink: 0;
+            }
+            .pc-head-text { flex: 1; text-align: center; min-width: 0; line-height: 1.15; }
+            .pc-ministry { font-size: 5pt; font-weight: 700; color: #93c5fd; }
+            .pc-school { font-size: 5.7pt; font-weight: 800; color: #fff; margin: 0.4mm 0; }
+            .pc-addr { font-size: 4.5pt; color: #e2e8f0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+            .pc-body {
+              flex: 1;
+              padding: 2.4mm 3mm 1.8mm;
+              display: flex;
+              align-items: stretch;
+              gap: 2.5mm;
+            }
+            .pc-photo {
+              width: 16mm;
+              height: 21mm;
+              border-radius: 1.5mm;
+              object-fit: cover;
+              background: #dc2626;
+              border: 0.5mm solid #fff;
+              align-self: center;
+              flex-shrink: 0;
+            }
+            .pc-info {
+              flex: 1;
+              min-width: 0;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+            }
+            .pc-badge { font-size: 5.4pt; font-weight: 800; color: #1e3a8a; margin-bottom: 0.8mm; }
+            .pc-table { width: 100%; border-collapse: collapse; font-size: 5.4pt; line-height: 1.24; }
+            .pc-table td { padding: 0.2mm 0.4mm; vertical-align: top; color: #0f172a; }
+            .pc-table td:first-child { width: 13mm; font-weight: 700; color: #334155; }
+            .pc-table td:nth-child(2) { width: 2mm; font-weight: 700; }
+            .pc-table td:last-child { font-weight: 700; }
+            .pc-foot-note { font-size: 4.5pt; color: #475569; font-weight: 700; }
+            .pc-right {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: space-between;
+              flex-shrink: 0;
+            }
+            .pc-qr-wrap {
+              padding: 1mm;
+              background: #fff;
+              border-radius: 1.5mm;
+              border: 0.3mm solid #cbd5e1;
+            }
+            .pc-sign {
+              text-align: right;
+              font-size: 4.3pt;
+              line-height: 1.15;
+              color: #1e293b;
+            }
+            .pc-strip {
+              height: 1.4mm;
+              background: linear-gradient(90deg, #1e3a8a 0%, #0284c7 70%, #dc2626 100%);
+            }
+            @media print {
+              body { background: #fff; padding: 4mm; }
+              .toolbar { display: none !important; }
+              @page { size: A4 portrait; margin: 8mm; }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="toolbar">
+            <span>Total Siap Cetak: <strong>${targetStudents.length} Kartu Pelajar QR</strong> (Ukuran Standar ID Card 85.6 × 54 mm)</span>
+            <button onclick="window.print()">Cetak Sekarang</button>
+          </div>
+          <div class="cards-grid">${cardsHtml.join('')}</div>
+          <script>
+            window.onload = function() {
+              setTimeout(function() { window.print(); }, 300);
+            };
+          <\/script>
+        </body>
+        </html>
+      `);
+      printWin.document.close();
+    } catch (err) {
+      showToast('Gagal menyiapkan cetak kartu: ' + err.message, 'error');
+    } finally {
+      if (tempContainer) tempContainer.remove();
       btn.disabled = false;
       btn.innerHTML = origHtml;
     }
