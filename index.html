@@ -1014,28 +1014,43 @@
       }
       .sidebar { display: none !important; }
       .bottom-nav { display: block; }
+      .app-shell {
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
+      }
       .main-content {
         margin-left: 0;
-        padding: 14px 12px 92px;
+        width: 100%;
+        max-width: 100%;
+        padding: 14px 12px 96px;
+        overflow-x: hidden;
+      }
+      .app-section {
+        width: 100%;
+        max-width: 100%;
       }
       .topbar {
-        margin-bottom: 16px;
+        margin-bottom: 14px;
         gap: 8px;
+        width: 100%;
       }
       .topbar > div:first-child {
         flex: 1;
         min-width: 0;
       }
       #page-title {
-        font-size: 1.15rem !important;
+        font-size: 1.12rem !important;
         line-height: 1.25;
       }
       #page-subtitle {
-        font-size: 0.78rem !important;
+        font-size: 0.76rem !important;
       }
       .glass-card {
         padding: 14px !important;
         border-radius: 14px;
+        width: 100%;
+        max-width: 100%;
       }
       .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
       .stat-card { padding: 14px !important; }
@@ -1056,12 +1071,22 @@
       #dash-date-filter,
       #dash-jenjang-filter {
         flex: 1;
-        min-width: 145px;
+        min-width: 0;
       }
 
       /* Scanner QR & Dropdown Sesi di HP */
+      .scanner-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        width: 100%;
+      }
+      .scanner-grid > .glass-card {
+        min-width: 0;
+        width: 100%;
+      }
       #qr-reader {
-        min-height: 230px;
+        min-height: 220px;
+        width: 100%;
       }
       #form-manual-scan {
         flex-direction: column;
@@ -1083,30 +1108,68 @@
       #sec-petugas .glass-card > div:first-child {
         flex-direction: column;
         align-items: stretch !important;
+        width: 100%;
+      }
+      #sec-siswa .glass-card > div:first-child > div:first-child {
+        min-width: 0 !important;
+        width: 100%;
+        flex-direction: column;
+        gap: 8px !important;
+      }
+      #search-siswa-input,
+      #filter-siswa-jenjang {
+        min-width: 0 !important;
+        width: 100% !important;
       }
       #sec-siswa .glass-card > div:first-child > div:last-child,
       #sec-petugas .glass-card > div:first-child > div:last-child {
         display: grid !important;
         grid-template-columns: 1fr 1fr;
         gap: 8px !important;
+        width: 100%;
+      }
+      #sec-siswa .glass-card > div:first-child > div:last-child .btn,
+      #sec-petugas .glass-card > div:first-child > div:last-child .btn {
+        width: 100%;
+        min-width: 0;
+        padding: 9px 8px;
+        font-size: 0.76rem;
+        white-space: normal;
+        text-align: center;
+        line-height: 1.25;
       }
       #btn-open-add-siswa,
       #btn-open-add-petugas {
         grid-column: span 2;
       }
 
-      /* Laporan Harian & Pratinjau Kertas di HP */
+      /* Laporan Harian & Tombol Ekspor di HP */
       #sec-laporan .glass-card > div:first-child {
         grid-template-columns: 1fr !important;
         gap: 10px !important;
+        width: 100%;
       }
-      #sec-laporan .glass-card > div:last-child {
+      #lap-export-actions {
         display: grid !important;
         grid-template-columns: 1fr 1fr;
+        gap: 8px !important;
+        width: 100%;
+      }
+      #lap-export-actions.hidden {
+        display: none !important;
+      }
+      #lap-export-actions .btn {
+        width: 100%;
+        min-width: 0;
+        padding: 9px 8px;
+        font-size: 0.78rem;
+        white-space: normal;
+        text-align: center;
       }
       .report-paper-wrap {
         padding: 10px;
         border-radius: 12px;
+        width: 100%;
       }
       .report-paper {
         padding: 18px 20px;
