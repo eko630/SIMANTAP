@@ -3902,23 +3902,23 @@
     }).join('');
   }
 
-  // Ekspor Excel (.xlsx)
+  // Unduh Excel (.xlsx) Laporan Harian
   document.getElementById('btn-export-csv')?.addEventListener('click', () => {
     if (currentLaporanExportRows.length === 0) {
-      showToast('Tidak ada data laporan untuk diekspor.', 'error');
+      showToast('Tidak ada data laporan untuk diunduh.', 'error');
       return;
     }
     const dateVal = document.getElementById('lap-filter-date').value || getTodayStr();
     const jenjangVal = document.getElementById('lap-filter-jenjang').value || 'SRD';
     const kategoriVal = document.getElementById('lap-filter-kategori').value || 'MAKAN';
-
     const ws = XLSX.utils.json_to_sheet(currentLaporanExportRows);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Daftar Hadir');
     XLSX.writeFile(wb, `Laporan_${kategoriVal}_${jenjangVal}_${dateVal}.xlsx`);
+    showToast('File Excel laporan berhasil diunduh.');
   });
 
-  // Download PDF A4 Utuh (Tanpa terpotong kanan & bebas offset scroll fixed)
+  // Download PDF A4 Utuh (Margin atas/bawah presisi & baris tabel tidak terbelah antar halaman)
   document.getElementById('btn-export-pdf')?.addEventListener('click', async () => {
     const sourceEl = document.getElementById('printable-official-report');
     if (!sourceEl || typeof html2canvas === 'undefined' || !window.jspdf) {
@@ -3937,47 +3937,101 @@
       const jenjangVal = document.getElementById('lap-filter-jenjang').value || 'SRD';
       const kategoriVal = document.getElementById('lap-filter-kategori').value || 'MAKAN';
 
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const pageWidth = pdf.internal.pageSize.getWidth();   // 210 mm
+      const pageHeight = pdf.internal.pageSize.getHeight(); // 297 mm
+      const marginTop = 14;    // Margin atas 14 mm
+      const marginBottom = 14; // Margin bawah 14 mm
+      const marginSide = 12;   // Margin kiri & kanan 12 mm
+      const contentWidthMm = pageWidth - marginSide * 2;     // 186 mm
+      const contentHeightMm = pageHeight - marginTop - marginBottom; // 269 mm
+
+      const renderWidthPx = 760;
+      const pxPerMm = renderWidthPx / contentWidthMm;
+      const maxPageHeightPx = Math.floor(contentHeightMm * pxPerMm);
+
       cloneHost = document.createElement('div');
-      cloneHost.style.cssText = 'position:fixed;left:0;top:0;width:760px;background:#ffffff;z-index:-1;pointer-events:none;';
-      const clonedReport = sourceEl.cloneNode(true);
-      clonedReport.style.width = '760px';
-      clonedReport.style.minWidth = '760px';
-      clonedReport.style.maxWidth = '760px';
-      clonedReport.style.margin = '0';
-      clonedReport.style.padding = '24px 28px';
-      clonedReport.style.boxShadow = 'none';
-      cloneHost.appendChild(clonedReport);
+      cloneHost.style.cssText = `position:fixed;left:0;top:0;width:${renderWidthPx}px;background:#ffffff;z-index:-1;pointer-events:none;`;
       document.body.appendChild(cloneHost);
+
+      // Siapkan bagian-bagian laporan: Header (Kop + Judul + Meta), Tabel, dan Blok Tanda Tangan
+      const kopEl = sourceEl.querySelector('.kop-surat')?.cloneNode(true);
+      const titleEl = sourceEl.querySelector('.report-title-block')?.cloneNode(true);
+      const metaEl = sourceEl.querySelector('.report-meta-table')?.cloneNode(true);
+      const origTable = sourceEl.querySelector('.official-table');
+      const theadClone = origTable?.querySelector('thead')?.cloneNode(true);
+      const bodyRows = Array.from(origTable?.querySelectorAll('tbody tr') || []).map(tr => tr.cloneNode(true));
+      const signEl = sourceEl.querySelector('.report-sign-grid')?.cloneNode(true);
+
+      const createPageBox = () => {
+        const box = document.createElement('div');
+        box.className = 'report-paper';
+        box.style.cssText = `width:${renderWidthPx}px;min-width:${renderWidthPx}px;max-width:${renderWidthPx}px;margin:0;padding:0;box-shadow:none;background:#ffffff;`;
+        return box;
+      };
+
+      const createTableChunk = () => {
+        const tbl = document.createElement('table');
+        tbl.className = 'official-table';
+        tbl.style.width = '100%';
+        if (theadClone) tbl.appendChild(theadClone.cloneNode(true));
+        const tb = document.createElement('tbody');
+        tbl.appendChild(tb);
+        return { tbl, tb };
+      };
+
+      const pages = [];
+      let currentPage = createPageBox();
+      cloneHost.appendChild(currentPage);
+
+      if (kopEl) currentPage.appendChild(kopEl);
+      if (titleEl) currentPage.appendChild(titleEl);
+      if (metaEl) currentPage.appendChild(metaEl);
+
+      let { tbl: currentTbl, tb: currentTbody } = createTableChunk();
+      currentPage.appendChild(currentTbl);
+
+      for (const row of bodyRows) {
+        currentTbody.appendChild(row);
+        if (currentPage.offsetHeight > maxPageHeightPx && currentTbody.children.length > 1) {
+          currentTbody.removeChild(row);
+          pages.push(currentPage);
+
+          currentPage = createPageBox();
+          cloneHost.appendChild(currentPage);
+          ({ tbl: currentTbl, tb: currentTbody } = createTableChunk());
+          currentPage.appendChild(currentTbl);
+          currentTbody.appendChild(row);
+        }
+      }
+
+      if (signEl) {
+        currentPage.appendChild(signEl);
+        if (currentPage.offsetHeight > maxPageHeightPx) {
+          currentPage.removeChild(signEl);
+          pages.push(currentPage);
+
+          currentPage = createPageBox();
+          cloneHost.appendChild(currentPage);
+          currentPage.appendChild(signEl);
+        }
+      }
+      pages.push(currentPage);
 
       await new Promise(r => setTimeout(r, 80));
 
-      const canvas = await html2canvas(clonedReport, {
-        scale: 2,
-        useCORS: true,
-        backgroundColor: '#ffffff',
-        windowWidth: 760
-      });
-
-      const imgData = canvas.toDataURL('image/png');
-      const { jsPDF } = window.jspdf;
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      const pageWidth = pdf.internal.pageSize.getWidth();
-      const pageHeight = pdf.internal.pageSize.getHeight();
-      const margin = 8;
-      const imgWidth = pageWidth - margin * 2;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-      let heightLeft = imgHeight;
-      let position = margin;
-
-      pdf.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
-      heightLeft -= (pageHeight - margin * 2);
-
-      while (heightLeft > 0) {
-        position = heightLeft - imgHeight + margin;
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
-        heightLeft -= (pageHeight - margin * 2);
+      for (let i = 0; i < pages.length; i++) {
+        if (i > 0) pdf.addPage();
+        const canvas = await html2canvas(pages[i], {
+          scale: 2,
+          useCORS: true,
+          backgroundColor: '#ffffff',
+          windowWidth: renderWidthPx
+        });
+        const imgData = canvas.toDataURL('image/png');
+        const renderedHeightMm = (canvas.height * contentWidthMm) / canvas.width;
+        pdf.addImage(imgData, 'PNG', marginSide, marginTop, contentWidthMm, renderedHeightMm);
       }
 
       pdf.save(`Laporan_${kategoriVal}_${jenjangVal}_${dateVal}.pdf`);
